@@ -3,6 +3,7 @@
 import {TaskNoteInterface} from "@/app/todays-tasks/TodaysTasks";
 import {PopDirection} from "@/components/TaskNote/enums/Popdirection";
 import TaskNoteButton from "@/components/TaskNote/TaskNoteButton/TaskNoteButton";
+import {useRouter} from "next/navigation";
 
 interface TaskNotProp {
   taskNote: TaskNoteInterface
@@ -11,7 +12,7 @@ interface TaskNotProp {
 }
 
 function TaskNote({taskNote, popDirection = PopDirection.LEFT, className}: TaskNotProp) {
-
+  const router = useRouter();
   const transformDirection = (): string => {
     let direction = 'group-hover:-translate-x-4 group-hover:-translate-y-4'
     switch (popDirection) {
@@ -28,28 +29,31 @@ function TaskNote({taskNote, popDirection = PopDirection.LEFT, className}: TaskN
     return direction;
   }
 
-  const onDelete = () => {
+  const onDelete = (event) => {
+    event.stopPropagation();
     console.log('----------DELETE');
   }
 
-  const onEdit = () => {
-    console.log('----------DELETE');
+  const onEdit = (event) => {
+    event.stopPropagation();
+
+    console.log('----------EDIT');
   }
 
   return (
-    <a href="#" className={`group relative block h-64 sm:h-80 lg:h-96 ${className}`}>
+    <a onClick={() => {
+      router.push(`/task/${taskNote.id}`)
+    }}
+       className={`hover:cursor-pointer group relative block h-64 sm:h-80 lg:h-96 ${className}`}>
       <span className="absolute inset-0 border-2 border-dashed border-black"></span>
 
       <div
         className={`relative flex h-full transform flex-col justify-between border-2 border-black bg-white transition-transform ${transformDirection()}`}
       >
-        <div className="flex w-full justify-end pr-4 pt-4">
+        <div className="flex w-full justify-end pr-4 pt-4 invisible group-hover:visible">
           <TaskNoteButton
             hoverColor="bg-red-400"
-            onClick={(event) => {
-              event.preventDefault();
-              onDelete()
-            }}>Done</TaskNoteButton>
+            onClick={onDelete}>Done</TaskNoteButton>
         </div>
         <div className="flex flex-row justify-between">
           <div>
@@ -82,13 +86,10 @@ function TaskNote({taskNote, popDirection = PopDirection.LEFT, className}: TaskN
               <p className="mt-4 text-sm sm:text-base">{taskNote.description}</p>
             </div>
           </div>
-          <div className="mt-auto mb-auto mr-4">
+          <div className="mt-auto mb-auto mr-4 invisible group-hover:visible">
             <TaskNoteButton
               hoverColor="bg-blue-400"
-              onClick={(event) => {
-                event.preventDefault();
-                onEdit()
-              }}>EDIT</TaskNoteButton>
+              onClick={onEdit}>EDIT</TaskNoteButton>
           </div>
         </div>
       </div>
