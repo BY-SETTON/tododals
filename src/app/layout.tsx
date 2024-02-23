@@ -1,6 +1,7 @@
 import type {Metadata} from "next";
 import "./globals.css";
 import Navbar, {NavItem} from "@/components/Navbar/Navbar";
+import {usePathname} from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
                                      children,
                                    }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode,
 }>) {
 
   const navItem: NavItem[] = [
