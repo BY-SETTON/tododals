@@ -1,20 +1,43 @@
 import * as Icons from 'react-feather/dist'
 import {TaskNoteInterface} from "@/app/todays-tasks/TodaysTasks";
 
-interface TaskNotProp {
-  taskNote: TaskNoteInterface
+export enum PopDirection {
+  UP = 0,
+  DOWN = 1,
+  LEFT = 2,
+  RIGHT = 3
 }
 
-export default function TaskNote({taskNote}: TaskNotProp) {
+interface TaskNotProp {
+  taskNote: TaskNoteInterface
+  popDirection: PopDirection
+  className?: string,
+}
 
+export default function TaskNote({taskNote, popDirection = PopDirection.LEFT, className}: TaskNotProp) {
+  console.log(popDirection);
   let arr = Object.keys(Icons);
-  console.log(arr);
+
+  const transformDirection = (): string => {
+    let direction = 'group-hover:-translate-x-2 group-hover:-translate-y-2'
+    switch (popDirection) {
+      case PopDirection.DOWN:
+        return 'group-hover:-translate-x-2';
+      case PopDirection.UP:
+        return 'group-hover:-translate-y-2';
+      case PopDirection.RIGHT:
+        return 'group-hover:translate-x-2 group-hover:-translate-y-2'
+      case PopDirection.LEFT:
+        return 'group-hover:-translate-x-2 group-hover:-translate-y-2'
+      default:
+    }
+    return direction;
+  }
   return (
-    <a href="#" className="group relative block h-64 sm:h-80 lg:h-96">
-      {/*<ArrowRight/>*/}
+    <a href="#" className={`group relative block h-64 sm:h-80 lg:h-96 ${className}`}>
       <span className="absolute inset-0 border-2 border-dashed border-black"></span>
       <div
-        className="relative flex h-full transform items-end border-2 border-black bg-white transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2"
+        className={`relative flex h-full transform items-end border-2 border-black bg-white transition-transform ${transformDirection()}`}
       >
         <div
           className="p-4 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 sm:p-6 lg:p-8"
