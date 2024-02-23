@@ -14,6 +14,7 @@ export default function RootLayout({
 }>) {
 
   const navItem: NavItem[] = [
+    {title: 'Home', route: '/'},
     {title: 'Tasks', route: '/tasks'},
     {title: 'Edit', route: '/edit'},
     {title: 'Calender', route: '/calender'}
