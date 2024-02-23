@@ -1,5 +1,6 @@
 import {TaskNoteInterface} from "@/app/todays-tasks/TodaysTasks";
-import TaskNote, {PopDirection} from "@/components/TaskNote/TaskNote";
+import TaskNote from "@/components/TaskNote/TaskNote";
+import {PopDirection} from "@/components/TaskNote/enums/Popdirection";
 
 interface TaskNotCollectionProp {
   taskNotes: TaskNoteInterface[]
