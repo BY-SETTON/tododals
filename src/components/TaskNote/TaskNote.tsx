@@ -48,13 +48,8 @@ function TaskNote({taskNote, popDirection = PopDirection.LEFT, className}: TaskN
       <span className="absolute inset-0 border-2 border-dashed border-black"></span>
 
       <div
-        className={`relative flex h-full transform flex-col justify-between border-2 border-black bg-white transition-transform ${transformDirection()}`}
+        className={`relative flex h-full transform flex-col justify-end border-2 border-black bg-white transition-transform ${transformDirection()}`}
       >
-        <div className="flex w-full justify-end pr-4 pt-4 invisible group-hover:visible">
-          <TaskNoteButton
-            hoverColor="bg-red-400"
-            onClick={onDelete}>Done</TaskNoteButton>
-        </div>
         <div className="flex flex-row justify-between">
           <div>
             <div
@@ -86,10 +81,19 @@ function TaskNote({taskNote, popDirection = PopDirection.LEFT, className}: TaskN
               <p className="mt-4 text-sm sm:text-base">{taskNote.description}</p>
             </div>
           </div>
-          <div className="mt-auto mb-auto mr-4 invisible group-hover:visible">
-            <TaskNoteButton
-              hoverColor="bg-blue-400"
-              onClick={onEdit}>EDIT</TaskNoteButton>
+          <div className="mt-auto mb-auto mr-4 md:invisible group-hover:visible">
+            <div className="p-2 inline-flex">
+              <TaskNoteButton
+                className=""
+                hoverColor="bg-blue-400"
+                onClick={onEdit}>EDIT</TaskNoteButton>
+            </div>
+            <div className="p-2 inline-flex">
+              <TaskNoteButton
+                className=""
+                hoverColor="bg-red-400"
+                onClick={onDelete}>Done</TaskNoteButton>
+            </div>
           </div>
         </div>
       </div>
