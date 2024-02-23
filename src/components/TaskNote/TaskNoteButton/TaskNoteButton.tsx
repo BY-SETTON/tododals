@@ -1,7 +1,7 @@
-import React from "react";
+import React, {MouseEventHandler} from "react";
 
 interface TaskNoteButtonProp {
-  onClick: (event: any) => void;
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
   children: React.ReactNode;
   hoverColor: string;
 }

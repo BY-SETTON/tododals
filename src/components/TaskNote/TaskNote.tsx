@@ -4,6 +4,7 @@ import {TaskNoteInterface} from "@/app/todays-tasks/TodaysTasks";
 import {PopDirection} from "@/components/TaskNote/enums/Popdirection";
 import TaskNoteButton from "@/components/TaskNote/TaskNoteButton/TaskNoteButton";
 import {useRouter} from "next/navigation";
+import React from "react";
 
 interface TaskNotProp {
   taskNote: TaskNoteInterface
@@ -29,12 +30,12 @@ function TaskNote({taskNote, popDirection = PopDirection.LEFT, className}: TaskN
     return direction;
   }
 
-  const onDelete = (event) => {
+  const onDelete = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     console.log('----------DELETE');
   }
 
-  const onEdit = (event) => {
+  const onEdit = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
 
     console.log('----------EDIT');
