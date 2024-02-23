@@ -8,7 +8,6 @@ export default function SearchIcon() {
   const [selectedIconSvg, setSelectedIconSvg] = useState('');
   const emptyIcon = "Select icon"
   let icons = Object.keys(feather.icons);
-  // console.log(Icons);
 
   const onChange = (event: any | null) => {
     if (!event?.target?.value || event.target.value === emptyIcon) {

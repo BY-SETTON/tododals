@@ -16,7 +16,7 @@ export default function TaskNoteCollection({taskNotes}: TaskNotCollectionProp) {
   const getPopDirection = (index: number) => {
     const isMobile = windowWidth < 640
     if (isMobile) {
-      return PopDirection.UP;
+      return PopDirection.LEFT;
     } else {
       switch (index % 3) {
         case 0:
