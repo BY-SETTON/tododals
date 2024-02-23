@@ -26,10 +26,10 @@ export default function TaskNoteCollection({taskNotes}: TaskNotCollectionProp) {
   }
 
   return (
-    <div className={'grid grid-cols-3'}>
+    <div className={'grid grid-cols-3 gap-6'}>
       {
         orderTasks().map((note, index) => (
-          <TaskNote key={note.id} taskNote={note} popDirection={getPopDirection(index)} className={"m-4"}/>
+          <TaskNote key={note.id} taskNote={note} popDirection={getPopDirection(index)}/>
         ))
       }
     </div>
