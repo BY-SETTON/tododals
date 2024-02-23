@@ -6,6 +6,8 @@ export const metadata: Metadata = {
   description: "Edit your tasks here",
 };
 
-export default function EditLayout({children}: Readonly<{ children: React.ReactNode }>) {
-  return (<PageLayout className="bg-green-100">{children}</PageLayout>);
+export default function EditLayout({children}: Readonly<{
+  children: React.ReactNode
+}>) {
+  return (<PageLayout className="bg-blue-100">{children}</PageLayout>);
 }

@@ -37,8 +37,7 @@ function TaskNote({taskNote, popDirection = PopDirection.LEFT, className}: TaskN
 
   const onEdit = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
-
-    console.log('----------EDIT');
+    router.push(`/edit/${taskNote.id}`)
   }
 
   return (
