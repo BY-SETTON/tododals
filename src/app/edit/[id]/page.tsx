@@ -1,4 +1,12 @@
 import {kv} from "@vercel/kv";
+import {sql} from "@vercel/postgres";
+
+async function editTask() {
+  const {rows} = await sql`INSERT INTO tasks (id, Personid, Title, Description, Icon)
+                           VALUES ('1', '123', 'title-test', 'description-test', 'icon-test')`;
+  return rows;
+
+}
 
 export default async function EditTaskPage({params}: {
   params: {

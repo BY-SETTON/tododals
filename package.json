@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@vercel/kv": "^1.0.1",
+    "@vercel/postgres": "^0.7.2",
     "feather-icons": "^4.29.1",
     "next": "14.1.0",
     "react": "^18",

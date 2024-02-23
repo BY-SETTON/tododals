@@ -1,11 +1,11 @@
 import type {Metadata} from "next";
 
 export const metadata: Metadata = {
-  title: "Createa a task",
-  description: "Edit your tasks here",
+  title: "Create a task",
+  description: "Create your tasks here",
 };
 
-export default function TaskLayout({children}: Readonly<{
+export default function NewTaskLayout({children}: Readonly<{
   children: React.ReactNode
 }>) {
   return <>{children}</>
