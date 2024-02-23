@@ -1,8 +1,6 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import type {Metadata} from "next";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
+import Navbar, {NavItem} from "@/components/Navbar/Navbar";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -10,13 +8,27 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
-}: Readonly<{
+                                     children,
+                                   }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const navItem: NavItem[] = [
+    {title: 'Tasks', route: '/tasks'},
+    {title: 'Edit', route: '/edit'},
+    {title: 'Calender', route: '/calender'}
+  ]
+
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className="h-full">
+    <body className="p-8 h-full">
+    <div className="flex flex-col min-h-full">
+      <div className={"flex justify-center items-center mb-3 h-12"}>
+        <Navbar navItem={navItem}/>
+      </div>
+      {children}
+    </div>
+    </body>
     </html>
   );
 }
