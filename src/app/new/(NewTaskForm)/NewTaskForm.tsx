@@ -1,16 +1,23 @@
 "use client"
 
 import SearchIconFolder from "@/components/SearchIcon/SearchIconFolder";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useFormState} from "react-dom";
-import {createTodo} from "@/app/new/actions";
 import {TaskSize} from "@/app/todays-tasks/(enum)/task";
+import createTodo from "@/app/new/actions";
+import {ResponseInterface} from "@/app/new/(interfaces)/interface";
+import {ResponseTypes} from "@/app/new/(enums)/(enums)";
 
-const initialState = {
-  message: null
+const initialState: ResponseInterface = {
+  message: '',
+  type: ResponseTypes.ERROR,
 }
 
-export default function NewTaskForm() {
+interface Props {
+  onSubmitted: () => void;
+}
+
+export default function NewTaskForm({onSubmitted}: Props) {
 
   const [state, formAction] = useFormState(createTodo, initialState);
 
@@ -29,6 +36,15 @@ export default function NewTaskForm() {
   const onIconSelect = (icon: string) => {
     setSelectedIcon(icon);
   }
+
+  useEffect(() => {
+    if (!state.type) {
+      return;
+    }
+    if (state.type && state.type === ResponseTypes.SUCCESS) {
+      onSubmitted();
+    }
+  }, [state])
 
   return (
     <div className="flex justify-center w-full">
@@ -126,9 +142,10 @@ export default function NewTaskForm() {
             Send Enquiry
           </button>
         </div>
+
+        <p>
+          {state.message}
+        </p>
       </form>
-      <p>
-        {state.message}
-      </p>
     </div>);
 }

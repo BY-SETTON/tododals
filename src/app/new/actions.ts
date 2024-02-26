@@ -1,8 +1,11 @@
 "use server"
 
 import {sql} from "@vercel/postgres";
+import {ResponseTypes} from "@/app/new/(enums)/(enums)";
+import {ResponseInterface} from "@/app/new/(interfaces)/interface";
+import {revalidatePath} from "next/cache";
 
-export async function createTodo(prevState: any, formData: FormData): Promise<any> {
+async function createTodo(prevState: ResponseInterface, formData: FormData): Promise<ResponseInterface> {
 
   const rawFormData = {
     name: formData.get('name') as string,
@@ -12,8 +15,21 @@ export async function createTodo(prevState: any, formData: FormData): Promise<an
     icon: formData.get('icon') as string
   }
 
-  const resp = await sql`INSERT INTO TasksV3 (Personid, Name, Title, Description, Icon, Size)
-                         VALUES ('123', ${rawFormData.name}, ${rawFormData.title}, ${rawFormData.description},
-                                 ${rawFormData.icon}, ${rawFormData.size})`;
-  return resp;
+  let resp;
+
+  try {
+    resp = await sql`INSERT INTO TasksV3 (Personid, Name, Title, Description, Icon, Size)
+                     VALUES ('123', ${rawFormData.name}, ${rawFormData.title}, ${rawFormData.description},
+                             ${rawFormData.icon}, ${rawFormData.size})`;
+  } catch (error) {
+    console.log(error);
+  }
+  if (!resp) {
+    return {message: 'error', type: ResponseTypes.ERROR};
+  }
+  revalidatePath('/');
+
+  return {message: 'Success', type: ResponseTypes.SUCCESS};
 }
+
+export default createTodo;
