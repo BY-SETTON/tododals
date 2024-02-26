@@ -5,20 +5,24 @@ import {useRouter} from "next/navigation";
 import React from "react";
 import {TaskNoteInterface} from "@/app/todays-tasks/(interfaces)/task";
 import {TaskSize} from "@/app/todays-tasks/(enum)/task";
+import {deleteTodo} from "@/app/actions";
 
 const feather = require('feather-icons');
 
 interface TaskNotProp {
   taskNote: TaskNoteInterface
   className?: string,
+  onDelete?: (id: string) => void,
 }
 
-function TaskNote({taskNote, className}: TaskNotProp) {
+function TaskNote({taskNote, className, onDelete}: TaskNotProp) {
   const router = useRouter();
   const svgIcon = taskNote?.icon && feather.icons[taskNote.icon].toSvg({color: 'black', width: 30, height: 30});
 
-  const onDelete = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const onDeleteClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
+    deleteTodo(taskNote.id);
+    // onDelete(taskNote.id)
     console.log('----------DELETE');
   }
 
@@ -72,7 +76,7 @@ function TaskNote({taskNote, className}: TaskNotProp) {
           <div className="inline-flex">
             <TaskNoteButton
               hoverColor="bg-red-400"
-              onClick={onDelete}>Done</TaskNoteButton>
+              onClick={onDeleteClick}>Done</TaskNoteButton>
           </div>
         </div>
       </div>

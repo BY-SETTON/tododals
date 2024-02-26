@@ -5,7 +5,7 @@ import {ResponseTypes} from "@/app/new/(enums)/(enums)";
 import {ResponseInterface} from "@/app/new/(interfaces)/interface";
 import {revalidatePath} from "next/cache";
 
-async function createTodo(prevState: ResponseInterface, formData: FormData): Promise<ResponseInterface> {
+export async function createTodo(prevState: ResponseInterface, formData: FormData): Promise<ResponseInterface> {
 
   const rawFormData = {
     name: formData.get('name') as string,
@@ -31,5 +31,3 @@ async function createTodo(prevState: ResponseInterface, formData: FormData): Pro
 
   return {message: 'Success', type: ResponseTypes.SUCCESS};
 }
-
-export default createTodo;

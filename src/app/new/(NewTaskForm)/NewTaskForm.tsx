@@ -4,7 +4,7 @@ import SearchIconFolder from "@/components/SearchIcon/SearchIconFolder";
 import {useEffect, useState} from "react";
 import {useFormState} from "react-dom";
 import {TaskSize} from "@/app/todays-tasks/(enum)/task";
-import createTodo from "@/app/new/actions";
+import {createTodo} from "@/app/new/actions";
 import {ResponseInterface} from "@/app/new/(interfaces)/interface";
 import {ResponseTypes} from "@/app/new/(enums)/(enums)";
 

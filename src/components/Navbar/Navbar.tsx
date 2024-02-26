@@ -11,9 +11,18 @@ interface Props {
 }
 
 export default function Navbar({navItem}: Props) {
-  const initialRoute = '/'
   const router = useRouter()
   const pathname = usePathname()
+
+  const isActive = (item: NavItem) => {
+    console.log(pathname);
+    if (item.route === '/') {
+      console.log(item.route, '----------------------');
+      return pathname === '/';
+    } else {
+      return pathname.startsWith(item.route)
+    }
+  }
 
   return (
     <div className="flex flex-row w-full mb-14">
@@ -25,8 +34,9 @@ export default function Navbar({navItem}: Props) {
       <div className="basis-full justify-center flex">
         <div className="inline-flex rounded-lg border border-gray-100 bg-gray-100 p-1">
           {
-            navItem?.map((item, index) => {
-                const activeStyle = pathname === item.route ? 'bg-white text-blue-500 shadow-sm focus:relative' : ''
+            navItem?.map((item) => {
+                console.log(pathname);
+                const activeStyle = isActive(item) ? 'bg-white text-blue-500 shadow-sm focus:relative' : ''
                 return <button
                   key={item.title}
                   className={`inline-block rounded-md px-4 py-2 text-sm text-gray-500 hover:text-gray-700 focus:relative ${activeStyle}`}
