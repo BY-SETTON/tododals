@@ -11,9 +11,6 @@ export default function TaskNoteCollection({taskNotes}: TaskNotCollectionProp) {
   const mediumTasks = taskNotes.filter((task) => (task.size == TaskSize.MEDIUM))
   const smallTasks = taskNotes.filter((task) => (task.size == TaskSize.SMALL))
 
-  const onDelete = () => {
-  };
-
   return (
     <>
       <div className={'grid lg:grid-cols-3 lg:gap-6 sm:grid-cols-2 sm:gap-2 grid-cols-1 gap-1 mb-20'}>

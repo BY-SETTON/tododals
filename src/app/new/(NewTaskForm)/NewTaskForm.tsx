@@ -2,7 +2,7 @@
 
 import SearchIconFolder from "@/components/SearchIcon/SearchIconFolder";
 import {useEffect, useState} from "react";
-import {useFormState} from "react-dom";
+import {useFormState, useFormStatus} from "react-dom";
 import {TaskSize} from "@/app/todays-tasks/(enum)/task";
 import {createTodo} from "@/app/new/actions";
 import {ResponseInterface} from "@/app/new/(interfaces)/interface";
@@ -20,6 +20,7 @@ interface Props {
 export default function NewTaskForm({onSubmitted}: Props) {
 
   const [state, formAction] = useFormState(createTodo, initialState);
+  const {pending} = useFormStatus()
 
   const [selectedSize, setSelectedSize] = useState(TaskSize.SMALL);
   const [selectedIcon, setSelectedIcon] = useState('');
@@ -49,7 +50,7 @@ export default function NewTaskForm({onSubmitted}: Props) {
   return (
     <div className="flex justify-center w-full">
       <form action={formAction}
-            className="space-y-4 max-w-2xl w-full bg-green-900 p-10 rounded-lg shadow-lg transition mb-20">
+            className="space-y-2.5 max-w-2xl w-full bg-green-900 p-10 rounded-lg shadow-lg transition mb-20">
         <div>
           <label className="sr-only" htmlFor="name">Task name</label>
           <input
@@ -59,6 +60,7 @@ export default function NewTaskForm({onSubmitted}: Props) {
             id="name"
             name="name"
           />
+          <p className={'min-h-6 text-red-500'}>{state?.error?.name?._errors[0]}</p>
         </div>
         <div>
           <label className="sr-only" htmlFor="title">Task title</label>
@@ -69,6 +71,7 @@ export default function NewTaskForm({onSubmitted}: Props) {
             id="title"
             name="title"
           />
+          <p className={'min-h-6 text-red-500'}>{state?.error?.title?._errors[0]}</p>
         </div>
         <div>
           <label className="sr-only" htmlFor="description">Description</label>
@@ -79,6 +82,7 @@ export default function NewTaskForm({onSubmitted}: Props) {
             name="description"
             rows={4}
           />
+          <p className={'min-h-6 text-red-500'}>{state?.error?.description?._errors[0]}</p>
         </div>
 
         <div className="grid grid-cols-1 gap-4 text-center sm:grid-cols-3">
@@ -135,12 +139,13 @@ export default function NewTaskForm({onSubmitted}: Props) {
         <input id="icon" name="icon" type="hidden" value={selectedIcon}></input>
 
         <div className="mt-4">
-          <button
+          -{!!pending}-
+          {!pending && <button
             type="submit"
             className="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto"
-          >
+            aria-disabled={pending}>
             Send Enquiry
-          </button>
+          </button>}
         </div>
 
         <p>

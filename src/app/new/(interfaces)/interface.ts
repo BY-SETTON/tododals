@@ -1,6 +1,7 @@
 import {ResponseTypes} from "@/app/new/(enums)/(enums)";
 
 export interface ResponseInterface {
-  message: string,
+  message?: string,
   type: ResponseTypes,
+  error?: any,
 }

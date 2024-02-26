@@ -5,9 +5,14 @@ import {ResponseTypes} from "@/app/new/(enums)/(enums)";
 import {revalidatePath} from "next/cache";
 
 export async function getAllTask() {
-  const {rows} =
-    await sql`SELECT *
-              FROM Tasksv3`;
+  let rows;
+  try {
+    rows =
+      (await sql`SELECT *
+                 FROM Tasksv3`).rows;
+  } catch (error) {
+    console.log(error);
+  }
   return rows
 }
 

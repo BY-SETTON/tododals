@@ -15,9 +15,7 @@ export default function Navbar({navItem}: Props) {
   const pathname = usePathname()
 
   const isActive = (item: NavItem) => {
-    console.log(pathname);
     if (item.route === '/') {
-      console.log(item.route, '----------------------');
       return pathname === '/';
     } else {
       return pathname.startsWith(item.route)

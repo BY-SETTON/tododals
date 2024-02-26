@@ -12,18 +12,15 @@ const feather = require('feather-icons');
 interface TaskNotProp {
   taskNote: TaskNoteInterface
   className?: string,
-  onDelete?: (id: string) => void,
 }
 
-function TaskNote({taskNote, className, onDelete}: TaskNotProp) {
+function TaskNote({taskNote, className}: TaskNotProp) {
   const router = useRouter();
   const svgIcon = taskNote?.icon && feather.icons[taskNote.icon].toSvg({color: 'black', width: 30, height: 30});
 
   const onDeleteClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     deleteTodo(taskNote.id);
-    // onDelete(taskNote.id)
-    console.log('----------DELETE');
   }
 
   const onEdit = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -48,7 +45,7 @@ function TaskNote({taskNote, className, onDelete}: TaskNotProp) {
   }
 
   return (<a onClick={onTaskClick}
-             className={`group relative block h-64 sm:h-80 lg:h-96 ${sizeColor().bg}`}>
+             className={`group relative block h-40 sm:h-60 lg:h-52 ${sizeColor().bg}`}>
     <span className="absolute inset-0 border-2 border-dashed border-black"> </span>
 
     <div

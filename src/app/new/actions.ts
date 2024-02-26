@@ -1,11 +1,31 @@
 "use server"
 
+import {z} from 'zod'
+
 import {sql} from "@vercel/postgres";
 import {ResponseTypes} from "@/app/new/(enums)/(enums)";
 import {ResponseInterface} from "@/app/new/(interfaces)/interface";
 import {revalidatePath} from "next/cache";
 
+const schema = z.object({
+  name: z.string().min(1),
+  title: z.string().min(1),
+  description: z.string().min(1),
+});
+
 export async function createTodo(prevState: ResponseInterface, formData: FormData): Promise<ResponseInterface> {
+  const validatedFields = schema.safeParse({
+    name: formData.get('name'),
+    title: formData.get('title'),
+    description: formData.get('description'),
+    size: formData.get('size'),
+    icon: formData.get('icon')
+  })
+  if (!validatedFields.success) {
+    return {error: validatedFields.error.format(), type: ResponseTypes.ERROR};
+  }
+
+  console.log(validatedFields.data);
 
   const rawFormData = {
     name: formData.get('name') as string,
