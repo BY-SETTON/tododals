@@ -33,7 +33,7 @@ export default function NewTaskForm() {
   return (
     <div className="flex justify-center w-full">
       <form action={formAction}
-            className="space-y-4 max-w-2xl w-full bg-green-300 p-10 rounded-lg shadow-lg transition">
+            className="space-y-4 max-w-2xl w-full bg-green-900 p-10 rounded-lg shadow-lg transition mb-20">
         <div>
           <label className="sr-only" htmlFor="name">Task name</label>
           <input
@@ -69,7 +69,7 @@ export default function NewTaskForm() {
           <div>
             <label
               htmlFor="Option1"
-              className={`${selectedSize === 0 && 'bg-yellow-300'} block w-full cursor-pointer rounded-lg border p-3 text-white font-bold`}
+              className={`${selectedSize === 0 && 'bg-green-500'} block w-full cursor-pointer rounded-lg border p-3 text-white font-bold`}
               tabIndex={0}
               onClick={() => {
                 onSizeClick(0);
@@ -111,10 +111,10 @@ export default function NewTaskForm() {
         </div>
 
         <label className="sr-only" htmlFor="search">Description</label>
-        {showBox && <SearchIconFolder onSelected={onIconSelect}/>}
-        <button className="h-14 hover:bg-green-800 text-white rounded max-w-40 w-full bg-green-900"
-                onClick={onSelectIcon}>{showBox ? 'Cancel' : 'Select Icon'}
-        </button>
+        {showBox && <SearchIconFolder onSelected={onIconSelect} onClose={onSelectIcon}/>}
+        {!showBox && <button className="h-14 hover:bg-green-800 text-white rounded max-w-40 w-full bg-green-900"
+                             onClick={onSelectIcon}>{'Select Icon'}
+        </button>}
         <input id="size" name="size" type="hidden" value={selectedSize}></input>
         <input id="icon" name="icon" type="hidden" value={selectedIcon}></input>
 
