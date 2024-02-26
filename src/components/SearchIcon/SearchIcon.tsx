@@ -1,5 +1,5 @@
 "use client"
-import {useState} from "react";
+import React, {useState} from "react";
 
 const feather = require('feather-icons');
 
@@ -31,8 +31,9 @@ export default function SearchIcon() {
           </option>)
         })}
       </select>
-      {selectedIconSvg && <div className="ml-4 bg-green-900 p-3 rounded-full items-center flex"
-                               dangerouslySetInnerHTML={{__html: selectedIconSvg}}></div>}
+
+      {selectedIconSvg && <img className="ml-4 bg-green-900 p-3 rounded-full items-center flex"
+                               src={`data:image/svg+xml;utf8,${selectedIconSvg}`} alt=""/>}
     </div>
   )
 }
