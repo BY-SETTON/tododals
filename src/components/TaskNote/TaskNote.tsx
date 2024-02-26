@@ -45,7 +45,7 @@ function TaskNote({taskNote, className}: TaskNotProp) {
   }
 
   return (<a onClick={onTaskClick}
-             className={`group relative block h-40 sm:h-60 lg:h-52 ${sizeColor().bg}`}>
+             className={`cursor-pointer group relative block h-40 sm:h-60 lg:h-52 ${sizeColor().bg}`}>
     <span className="absolute inset-0 border-2 border-dashed border-black"> </span>
 
     <div
