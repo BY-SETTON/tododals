@@ -25,8 +25,6 @@ export async function createTodo(prevState: ResponseInterface, formData: FormDat
     return {error: validatedFields.error.format(), type: ResponseTypes.ERROR};
   }
 
-  console.log(validatedFields.data);
-
   const rawFormData = {
     name: formData.get('name') as string,
     title: formData.get('title') as string,

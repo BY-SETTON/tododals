@@ -33,7 +33,6 @@ export default function Navbar({navItem}: Props) {
         <div className="inline-flex rounded-lg border border-gray-100 bg-gray-100 p-1">
           {
             navItem?.map((item) => {
-                console.log(pathname);
                 const activeStyle = isActive(item) ? 'bg-white text-blue-500 shadow-sm focus:relative' : ''
                 return <button
                   key={item.title}
