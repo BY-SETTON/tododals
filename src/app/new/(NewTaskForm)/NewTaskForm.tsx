@@ -7,6 +7,7 @@ import {TaskSize} from "@/app/todays-tasks/(enum)/task";
 import {createTodo} from "@/app/new/actions";
 import {ResponseInterface} from "@/app/new/(interfaces)/interface";
 import {ResponseTypes} from "@/app/new/(enums)/(enums)";
+import Datepicker from "react-tailwindcss-datepicker";
 
 const initialState: ResponseInterface = {
   message: '',
@@ -18,6 +19,14 @@ interface Props {
 }
 
 export default function NewTaskForm({onSubmitted}: Props) {
+  const [value, setValue] = useState<any>({
+    startDate: new Date(),
+    endDate: new Date().setMonth(11)
+  });
+
+  const handleValueChange = (newValue: any) => {
+    setValue(newValue);
+  }
 
   const [state, formAction] = useFormState(createTodo, initialState);
   const {pending} = useFormStatus()
@@ -84,52 +93,67 @@ export default function NewTaskForm({onSubmitted}: Props) {
           />
           <p className={'min-h-6 text-red-500'}>{state?.error?.description?._errors[0]}</p>
         </div>
+        <div>
+          <div className="grid grid-cols-1 gap-4 text-center sm:grid-cols-3 mb-6">
+            <div>
+              <label
+                htmlFor="Option1"
+                className={`${selectedSize === 0 && 'bg-green-500'} block w-full cursor-pointer rounded-lg border p-3 text-white font-bold`}
+                tabIndex={0}
+                onClick={() => {
+                  onSizeClick(0);
+                }}
+              >
+                <input className="sr-only" id="small" type="radio" tabIndex={-1} name="option"/>
 
-        <div className="grid grid-cols-1 gap-4 text-center sm:grid-cols-3">
-          <div>
-            <label
-              htmlFor="Option1"
-              className={`${selectedSize === 0 && 'bg-green-500'} block w-full cursor-pointer rounded-lg border p-3 text-white font-bold`}
-              tabIndex={0}
-              onClick={() => {
-                onSizeClick(0);
-              }}
-            >
-              <input className="sr-only" id="small" type="radio" tabIndex={-1} name="option"/>
+                <span className="text-sm">Small</span>
+              </label>
+            </div>
+            <div>
+              <label
+                htmlFor="Option2"
+                className={`${selectedSize === 1 && 'bg-orange-500'} block w-full cursor-pointer rounded-lg border p-3  text-white font-bold`}
+                tabIndex={0}
+                onClick={() => {
+                  onSizeClick(1);
+                }}
+              >
+                <input className="sr-only" id="medium" type="radio" tabIndex={-1} name="option"/>
 
-              <span className="text-sm">Small</span>
-            </label>
-          </div>
-          <div>
-            <label
-              htmlFor="Option2"
-              className={`${selectedSize === 1 && 'bg-orange-500'} block w-full cursor-pointer rounded-lg border p-3  text-white font-bold`}
-              tabIndex={0}
-              onClick={() => {
-                onSizeClick(1);
-              }}
-            >
-              <input className="sr-only" id="medium" type="radio" tabIndex={-1} name="option"/>
+                <span className="text-sm">Medium</span>
+              </label>
+            </div>
+            <div>
+              <label
+                htmlFor="Option3"
+                className={`${selectedSize === 2 && 'bg-red-700'} block w-full cursor-pointer rounded-lg border border-gray-200 p-3  text-white font-bold`}
+                tabIndex={0}
+                onClick={() => {
+                  onSizeClick(2);
+                }}
+              >
+                <input className="sr-only" id="large" type="radio" tabIndex={-1} name="option"/>
 
-              <span className="text-sm">Medium</span>
-            </label>
-          </div>
-          <div>
-            <label
-              htmlFor="Option3"
-              className={`${selectedSize === 2 && 'bg-red-700'} block w-full cursor-pointer rounded-lg border border-gray-200 p-3  text-white font-bold`}
-              tabIndex={0}
-              onClick={() => {
-                onSizeClick(2);
-              }}
-            >
-              <input className="sr-only" id="large" type="radio" tabIndex={-1} name="option"/>
-
-              <span className="text-sm">Large</span>
-            </label>
+                <span className="text-sm">Large</span>
+              </label>
+            </div>
           </div>
         </div>
-
+        <div>
+          <Datepicker
+            inputClassName="bg-white p-4 w-full rounded  rounded-xl h-12 mb-6"
+            primaryColor={"green"}
+            asSingle={true}
+            useRange={false}
+            popoverDirection={"up"}
+            minDate={new Date()}
+            showShortcuts={true}
+            value={value}
+            onChange={handleValueChange}
+            inputName="date"
+            inputId="date"
+          />
+        </div>
         <label className="sr-only" htmlFor="search">Description</label>
         {showBox && <SearchIconFolder onSelected={onIconSelect} onClose={onSelectIcon}/>}
         {!showBox && <button className="h-14 hover:bg-green-800 text-white rounded max-w-40 w-full bg-green-900"
@@ -152,5 +176,6 @@ export default function NewTaskForm({onSubmitted}: Props) {
           {state.message}
         </p>
       </form>
-    </div>);
+    </div>
+  );
 }

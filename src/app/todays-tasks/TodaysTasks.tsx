@@ -4,7 +4,7 @@ import {TaskNoteInterface} from "@/app/todays-tasks/(interfaces)/task";
 
 export default async function TodaysTasks() {
   const data = await getAllTask();
-  const taskNotes: TaskNoteInterface[] = data.map((item) => {
+  const taskNotes: TaskNoteInterface[] = data?.map((item) => {
     return {
       id: item.id,
       name: item.name,
@@ -12,8 +12,9 @@ export default async function TodaysTasks() {
       description: item.description,
       icon: item.icon,
       size: item.size,
+      dueDate: item.duedate,
     }
-  })
+  }) || []
 
   return <TaskNoteCollection taskNotes={taskNotes}/>
 }

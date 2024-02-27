@@ -19,6 +19,7 @@ export async function createTodo(prevState: ResponseInterface, formData: FormDat
     title: formData.get('title'),
     description: formData.get('description'),
     size: formData.get('size'),
+    date: formData.get('date'),
     icon: formData.get('icon')
   })
   if (!validatedFields.success) {
@@ -30,15 +31,16 @@ export async function createTodo(prevState: ResponseInterface, formData: FormDat
     title: formData.get('title') as string,
     description: formData.get('description') as string,
     size: formData.get('size') as string,
+    date: formData.get('date') as string,
     icon: formData.get('icon') as string
   }
 
   let resp;
 
   try {
-    resp = await sql`INSERT INTO TasksV3 (Personid, Name, Title, Description, Icon, Size)
+    resp = await sql`INSERT INTO TasksV3 (Personid, Name, Title, Description, Icon, Size, DueDate)
                      VALUES ('123', ${rawFormData.name}, ${rawFormData.title}, ${rawFormData.description},
-                             ${rawFormData.icon}, ${rawFormData.size})`;
+                             ${rawFormData.icon}, ${rawFormData.size}, ${rawFormData.date})`;
   } catch (error) {
     console.log(error);
   }

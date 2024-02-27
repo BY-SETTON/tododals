@@ -5,7 +5,8 @@ export interface TaskNoteInterface {
   name: string,
   title: string,
   description: string,
-  size: TaskSize
+  size: TaskSize,
+  dueDate?: Date,
   icon?: string,
   primaryAction?: string,
 }

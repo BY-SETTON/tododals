@@ -44,41 +44,42 @@ function TaskNote({taskNote, className}: TaskNotProp) {
     }
   }
 
-  return (<a onClick={onTaskClick}
-             className={`cursor-pointer group relative block h-40 sm:h-60 lg:h-52 ${sizeColor().bg}`}>
-    <span className="absolute inset-0 border-2 border-dashed border-black"> </span>
-
-    <div
-      className={`relative flex h-full transform items-end border-2 ${sizeColor().border} bg-white transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2`}
-    >
+  return (
+    <a onClick={onTaskClick}
+       className={`cursor-pointer group relative block h-60 sm:h-80 lg:h-72 ${sizeColor().bg}`}>
+      <span className="absolute inset-0 border-2 border-dashed border-black"></span>
       <div
-        className="p-4 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 sm:p-6 lg:p-8"
+        className={`relative flex h-full transform items-end border-2 ${sizeColor().border} bg-white transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2`}
       >
-        <img src={`data:image/svg+xml;utf8,${svgIcon}`} alt=""/>
-        <h2 className="mt-4 text-xl font-medium sm:text-2xl">{taskNote.name}</h2>
-      </div>
+        <div
+          className="p-4 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 sm:p-6 lg:p-8"
+        >
+          {taskNote.dueDate && <p className="mb-4 mt-4 text-sm sm:text-base">{taskNote.dueDate.toDateString()}</p>}
+          <img src={`data:image/svg+xml;utf8,${svgIcon}`} alt=""/>
+          <h2 className="mt-4 text-xl font-medium sm:text-2xl">{taskNote.name}</h2>
+        </div>
 
-      <div
-        className="w-full absolute p-4 opacity-0 transition-opacity group-hover:relative group-hover:opacity-100 sm:p-6 lg:p-8"
-      >
-        <h3 className="mt-4 text-xl font-medium sm:text-2xl">{taskNote.title || taskNote.name}</h3>
+        <div
+          className="w-full absolute p-4 opacity-0 transition-opacity group-hover:relative group-hover:opacity-100 sm:p-6 lg:p-8"
+        >
+          <h3 className="mt-4 text-xl font-medium sm:text-2xl">{taskNote.title || taskNote.name}</h3>
 
-        <p className="mb-4 mt-4 text-sm sm:text-base">{taskNote.description}</p>
-        <div className="w-full flex justify-between">
-          <div className="mr-2 inline-flex">
-            <TaskNoteButton
-              hoverColor="bg-blue-400"
-              onClick={onEdit}>EDIT</TaskNoteButton>
-          </div>
-          <div className="inline-flex">
-            <TaskNoteButton
-              hoverColor="bg-red-400"
-              onClick={onDeleteClick}>Done</TaskNoteButton>
+          <p className="mb-4 mt-4 text-sm sm:text-base">{taskNote.description}</p>
+          <div className="w-full flex justify-between">
+            <div className="mr-2 inline-flex">
+              <TaskNoteButton
+                hoverColor="bg-blue-400"
+                onClick={onEdit}>EDIT</TaskNoteButton>
+            </div>
+            <div className="inline-flex">
+              <TaskNoteButton
+                hoverColor="bg-red-400"
+                onClick={onDeleteClick}>Done</TaskNoteButton>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </a>);
+    </a>);
 }
 
 export default TaskNote;
