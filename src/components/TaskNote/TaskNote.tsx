@@ -69,12 +69,12 @@ function TaskNote({taskNote, className}: TaskNotProp) {
           <div className="w-full flex justify-between">
             <div className="mr-2 inline-flex">
               <TaskNoteButton
-                hoverColor="bg-blue-400"
+                className="hover:bg-blue-400"
                 onClick={onEdit}>EDIT</TaskNoteButton>
             </div>
             <div className="inline-flex">
               <TaskNoteButton
-                hoverColor="bg-red-400"
+                className="hover:bg-red-400"
                 onClick={onDeleteClick}>Done</TaskNoteButton>
             </div>
           </div>
