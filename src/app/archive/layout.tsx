@@ -7,5 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function ArchiveLayout({children}: Readonly<{ children: React.ReactNode }>) {
-  return (<PageLayout className="bg-red-100">{children}</PageLayout>);
+  return (<PageLayout className="bg-gray-200">{children}</PageLayout>);
 }

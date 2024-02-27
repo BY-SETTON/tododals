@@ -48,8 +48,8 @@ export async function markAsDone(id: string): Promise<any> {
   let resp;
   try {
     resp = await sql`UPDATE tasksV3
-                     SET done = TRUE,
-                         WHERE id = ${id};`;
+                     SET done = TRUE
+                     WHERE id = ${id};`;
   } catch (error) {
     console.log(error);
   }
@@ -57,7 +57,26 @@ export async function markAsDone(id: string): Promise<any> {
     return {message: 'error', type: ResponseTypes.ERROR};
   }
   revalidatePath('/');
-  revalidatePath('/tasks');
+  revalidatePath('/archive');
+
+  return {message: 'Success', type: ResponseTypes.SUCCESS};
+}
+
+export async function markAsUnDone(id: string): Promise<any> {
+  console.log(id);
+  let resp;
+  try {
+    resp = await sql`UPDATE tasksV3
+                     SET done = FALSE
+                     WHERE id = ${id};`;
+  } catch (error) {
+    console.log(error);
+  }
+  if (!resp) {
+    return {message: 'error', type: ResponseTypes.ERROR};
+  }
+  revalidatePath('/');
+  revalidatePath('/archive');
 
   return {message: 'Success', type: ResponseTypes.SUCCESS};
 }
