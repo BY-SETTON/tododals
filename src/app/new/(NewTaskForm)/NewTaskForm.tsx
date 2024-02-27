@@ -8,17 +8,18 @@ import {createTodo} from "@/app/new/actions";
 import {ResponseInterface} from "@/app/new/(interfaces)/interface";
 import {ResponseTypes} from "@/app/new/(enums)/(enums)";
 import Datepicker from "react-tailwindcss-datepicker";
+import {useRouter} from "next/navigation";
 
 const initialState: ResponseInterface = {
   message: '',
   type: ResponseTypes.ERROR,
 }
 
-interface Props {
-  onSubmitted: () => void;
-}
-
-export default function NewTaskForm({onSubmitted}: Props) {
+export default function NewTaskForm() {
+  const router = useRouter();
+  const onSubmitted = () => {
+    router.push('/')
+  }
   const [value, setValue] = useState<any>({
     startDate: new Date(),
     endDate: new Date().setMonth(11)
