@@ -46,7 +46,7 @@ function TaskNote({taskNote, className}: TaskNotProp) {
 
   return (
     <a onClick={onTaskClick}
-       className={`cursor-pointer group relative block h-60 sm:h-80 lg:h-72 ${sizeColor().bg}`}>
+       className={`cursor-pointer group relative block h-52 sm:h-72 lg:h-64 ${sizeColor().bg}`}>
       <span className="absolute inset-0 border-2 border-dashed border-black"></span>
       <div
         className={`relative flex h-full transform items-end border-2 ${sizeColor().border} bg-white transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2`}
@@ -54,9 +54,10 @@ function TaskNote({taskNote, className}: TaskNotProp) {
         <div
           className="p-4 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 sm:p-6 lg:p-8"
         >
-          {taskNote.dueDate && <p className="mb-4 mt-4 text-sm sm:text-base">{taskNote.dueDate.toDateString()}</p>}
           <img src={`data:image/svg+xml;utf8,${svgIcon}`} alt=""/>
-          <h2 className="mt-4 text-xl font-medium sm:text-2xl">{taskNote.name}</h2>
+          <h2 className="my-4 text-xl font-medium sm:text-2xl">{taskNote.name}</h2>
+          {taskNote.dueDate && <p
+            className="text-sm sm:text-base">{taskNote.dueDate.toLocaleDateString('en-UK')}</p>}
         </div>
 
         <div
