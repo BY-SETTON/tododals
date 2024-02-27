@@ -4,4 +4,5 @@ export interface ResponseInterface {
   message?: string,
   type: ResponseTypes,
   error?: any,
+  response?: any
 }

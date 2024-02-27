@@ -1,5 +1,7 @@
 "use client"
+
 import {usePathname, useRouter} from 'next/navigation'
+import useSessionStorage from "@/hooks/useSessionStorage";
 
 export interface NavItem {
   title: string,
@@ -13,8 +15,13 @@ interface Props {
 }
 
 export default function Navbar({navItem, showBackButton = true, showAddButton = true}: Props) {
-  const router = useRouter()
-  const pathname = usePathname()
+  const router = useRouter();
+  const pathname = usePathname();
+  const username = useSessionStorage('username');
+  const isLoggedIn = !!username;
+  if (!isLoggedIn && !pathname.includes('/signup')) {
+    router.push('/login');
+  }
 
   const isActive = (item: NavItem) => {
     if (item.route === '/') {

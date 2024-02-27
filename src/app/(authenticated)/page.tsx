@@ -1,9 +1,9 @@
 import TodaysTasks from "@/app/(authenticated)/todays-tasks/TodaysTasks";
 import {getAllUnDoneTask} from "@/app/(authenticated)/actions";
 import {TaskNoteInterface} from "@/app/(authenticated)/todays-tasks/(interfaces)/task";
+import useSessionStorage from "@/hooks/useSessionStorage";
 
 export default async function Home() {
-
   const data = await getAllUnDoneTask();
   const taskNotes: TaskNoteInterface[] = data?.map((item) => {
     return {

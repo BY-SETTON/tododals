@@ -42,5 +42,5 @@ export async function login(prevState: ResponseInterface, formData: FormData): P
     return {message: 'username or password is incorrect', type: ResponseTypes.ERROR};
   }
 
-  return {message: 'Success', type: ResponseTypes.SUCCESS};
+  return {message: 'Success', type: ResponseTypes.SUCCESS, response: {username: rawFormData.username}};
 }

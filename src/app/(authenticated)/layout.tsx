@@ -12,7 +12,6 @@ export default function RootLayout({
                                    }: Readonly<{
   children: React.ReactNode,
 }>) {
-
   const navItem: NavItem[] = [
     {title: 'Tasks', route: '/'},
     {title: 'Archive', route: '/archive'},
