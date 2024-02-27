@@ -1,26 +1,28 @@
 'use client';
 
-import TaskNoteButton from "@/components/TaskNote/TaskNoteButton/TaskNoteButton";
+import Button from "@/components/Button/Button";
 import {useRouter} from "next/navigation";
 import React from "react";
 import {TaskNoteInterface} from "@/app/todays-tasks/(interfaces)/task";
 import {TaskSize} from "@/app/todays-tasks/(enum)/task";
-import {deleteTodo} from "@/app/actions";
+import {markAsDone} from "@/app/actions";
 
 const feather = require('feather-icons');
 
 interface TaskNotProp {
-  taskNote: TaskNoteInterface
+  taskNote: TaskNoteInterface,
+  onClicked: (taskId: string) => void,
   className?: string,
+  showCallToAction?: boolean,
 }
 
-function TaskNote({taskNote, className}: TaskNotProp) {
-  const router = useRouter();
+function TaskNote({taskNote, onClicked, showCallToAction = true}: TaskNotProp) {
   const svgIcon = taskNote?.icon && feather.icons[taskNote.icon].toSvg({color: 'black', width: 30, height: 30});
+  const router = useRouter();
 
   const onDeleteClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
-    deleteTodo(taskNote.id);
+    markAsDone(taskNote.id);
   }
 
   const onEdit = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -29,7 +31,7 @@ function TaskNote({taskNote, className}: TaskNotProp) {
   }
 
   const onTaskClick = () => {
-    router.push(`/task/${taskNote.id}`)
+    onClicked(taskNote.id);
   }
 
   const sizeColor = (): { bg: string, border: string } => {
@@ -66,18 +68,18 @@ function TaskNote({taskNote, className}: TaskNotProp) {
           <h3 className="mt-4 text-xl font-medium sm:text-2xl">{taskNote.title || taskNote.name}</h3>
 
           <p className="mb-4 mt-4 text-sm sm:text-base">{taskNote.description}</p>
-          <div className="w-full flex justify-between">
+          {showCallToAction && <div className="w-full flex justify-between">
             <div className="mr-2 inline-flex">
-              <TaskNoteButton
+              <Button
                 className="hover:bg-blue-400"
-                onClick={onEdit}>EDIT</TaskNoteButton>
+                onClick={onEdit}>EDIT</Button>
             </div>
             <div className="inline-flex">
-              <TaskNoteButton
+              <Button
                 className="hover:bg-red-400"
-                onClick={onDeleteClick}>Done</TaskNoteButton>
+                onClick={onDeleteClick}>Done</Button>
             </div>
-          </div>
+          </div>}
         </div>
       </div>
     </a>);

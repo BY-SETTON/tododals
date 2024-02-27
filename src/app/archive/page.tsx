@@ -1,10 +1,9 @@
-import TodaysTasks from "@/app/todays-tasks/TodaysTasks";
-import {getAllUnDoneTask} from "@/app/actions";
+import ArchiveTasks from "@/app/archive/ArchivedTasks";
+import {getAllDoneTask} from "@/app/actions";
 import {TaskNoteInterface} from "@/app/todays-tasks/(interfaces)/task";
 
-export default async function TodaysTasksPage() {
-
-  const data = await getAllUnDoneTask();
+export default async function Archive() {
+  const data = await getAllDoneTask();
   const taskNotes: TaskNoteInterface[] = data?.map((item) => {
     return {
       id: item.id,
@@ -16,6 +15,5 @@ export default async function TodaysTasksPage() {
       dueDate: item.duedate,
     }
   }) || []
-
-  return <TodaysTasks tasks={taskNotes}></TodaysTasks>
+  return (<ArchiveTasks tasks={taskNotes}/>);
 }

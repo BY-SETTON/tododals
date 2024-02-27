@@ -6,6 +6,6 @@ export const metadata: Metadata = {
   description: "View your tasks here",
 };
 
-export default function TasksLayout({children}: Readonly<{ children: React.ReactNode }>) {
+export default function ArchiveLayout({children}: Readonly<{ children: React.ReactNode }>) {
   return (<PageLayout className="bg-red-100">{children}</PageLayout>);
 }

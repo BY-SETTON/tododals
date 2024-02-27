@@ -1,20 +1,17 @@
+"use client"
+
 import TaskNoteCollection from "@/components/TaskNoteCollection/TaskNoteCollection";
-import {getAllTask} from "@/app/actions";
-import {TaskNoteInterface} from "@/app/todays-tasks/(interfaces)/task";
+import {useRouter} from "next/navigation";
 
-export default async function TodaysTasks() {
-  const data = await getAllTask();
-  const taskNotes: TaskNoteInterface[] = data?.map((item) => {
-    return {
-      id: item.id,
-      name: item.name,
-      title: item.title,
-      description: item.description,
-      icon: item.icon,
-      size: item.size,
-      dueDate: item.duedate,
-    }
-  }) || []
+interface Props {
+  tasks: any
+}
 
-  return <TaskNoteCollection taskNotes={taskNotes}/>
+export default function TodaysTasks({tasks}: Props) {
+  const router = useRouter();
+  const onClicked = (taskId: string) => {
+    router.push(`/task/${taskId}`)
+  }
+
+  return <TaskNoteCollection taskNotes={tasks} onClicked={onClicked}/>
 }
