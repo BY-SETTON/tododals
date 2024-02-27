@@ -3,7 +3,7 @@
 import TaskNoteCollection from "@/components/TaskNoteCollection/TaskNoteCollection";
 import Dialog from "@/components/dialog/Dialog";
 import {useState} from "react";
-import {markAsUnDone} from "@/app/actions";
+import {deleteTodo, markAsUnDone} from "@/app/actions";
 
 interface Props {
   tasks: any
@@ -17,7 +17,7 @@ export default function ArchiveTasks({tasks}: Props) {
     setSelectedTask(taskId)
   }
   const primaryAction = {
-    text: 'YES', onClick: () => {
+    text: 'UNARCHIVE', onClick: () => {
       if (!selectedTask) {
         return;
       }
@@ -27,7 +27,11 @@ export default function ArchiveTasks({tasks}: Props) {
   }
 
   const secondaryAction = {
-    text: 'NO', onClick: () => {
+    text: 'DELETE', onClick: () => {
+      if (!selectedTask) {
+        return;
+      }
+      deleteTodo(selectedTask);
       setShowDialog(false);
     }
   }
@@ -35,7 +39,7 @@ export default function ArchiveTasks({tasks}: Props) {
   return (
     <>
       {showDialog && <Dialog
-        title="Would you like to restore this task from archives?"
+        title="Would you like to restore or delete this task?"
         primaryAction={primaryAction}
         secondaryAction={secondaryAction}
         onClose={() => {
