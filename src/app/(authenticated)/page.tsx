@@ -1,8 +1,8 @@
-import TodaysTasks from "@/app/todays-tasks/TodaysTasks";
-import {getAllUnDoneTask} from "@/app/actions";
-import {TaskNoteInterface} from "@/app/todays-tasks/(interfaces)/task";
+import TodaysTasks from "@/app/(authenticated)/todays-tasks/TodaysTasks";
+import {getAllUnDoneTask} from "@/app/(authenticated)/actions";
+import {TaskNoteInterface} from "@/app/(authenticated)/todays-tasks/(interfaces)/task";
 
-export default async function TodaysTasksPage() {
+export default async function Home() {
 
   const data = await getAllUnDoneTask();
   const taskNotes: TaskNoteInterface[] = data?.map((item) => {
@@ -16,6 +16,5 @@ export default async function TodaysTasksPage() {
       dueDate: item.duedate,
     }
   }) || []
-
-  return <TodaysTasks tasks={taskNotes}></TodaysTasks>
+  return (<TodaysTasks tasks={taskNotes}/>);
 }

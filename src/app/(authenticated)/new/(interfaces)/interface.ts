@@ -1,4 +1,4 @@
-import {ResponseTypes} from "@/app/new/(enums)/(enums)";
+import {ResponseTypes} from "@/app/(authenticated)/new/(enums)/(enums)";
 
 export interface ResponseInterface {
   message?: string,

@@ -1,6 +1,6 @@
-import ArchiveTasks from "@/app/archive/ArchivedTasks";
-import {getAllDoneTask} from "@/app/actions";
-import {TaskNoteInterface} from "@/app/todays-tasks/(interfaces)/task";
+import ArchiveTasks from "@/app/(authenticated)/archive/ArchivedTasks";
+import {getAllDoneTask} from "@/app/(authenticated)/actions";
+import {TaskNoteInterface} from "@/app/(authenticated)/todays-tasks/(interfaces)/task";
 
 export default async function Archive() {
   const data = await getAllDoneTask();

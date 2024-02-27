@@ -3,9 +3,9 @@
 import Button from "@/components/Button/Button";
 import {useRouter} from "next/navigation";
 import React from "react";
-import {TaskNoteInterface} from "@/app/todays-tasks/(interfaces)/task";
-import {TaskSize} from "@/app/todays-tasks/(enum)/task";
-import {markAsDone} from "@/app/actions";
+import {TaskNoteInterface} from "@/app/(authenticated)/todays-tasks/(interfaces)/task";
+import {TaskSize} from "@/app/(authenticated)/todays-tasks/(enum)/task";
+import {markAsDone} from "@/app/(authenticated)/actions";
 
 const feather = require('feather-icons');
 

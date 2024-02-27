@@ -1,9 +1,9 @@
 "use client"
 import {Lock, User} from "react-feather";
 import {useFormState} from "react-dom";
-import {ResponseInterface} from "@/app/new/(interfaces)/interface";
-import {ResponseTypes} from "@/app/new/(enums)/(enums)";
-import {signup} from "@/app/signup/actions";
+import {ResponseInterface} from "@/app/(authenticated)/new/(interfaces)/interface";
+import {ResponseTypes} from "@/app/(authenticated)/new/(enums)/(enums)";
+import {signup} from "@/app/(auth)/signup/actions";
 
 const initialState: ResponseInterface = {
   message: '',

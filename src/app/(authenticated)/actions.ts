@@ -1,7 +1,7 @@
 'use server'
 
 import {sql} from "@vercel/postgres";
-import {ResponseTypes} from "@/app/new/(enums)/(enums)";
+import {ResponseTypes} from "@/app/(authenticated)/new/(enums)/(enums)";
 import {revalidatePath} from "next/cache";
 
 export async function getAllTask() {

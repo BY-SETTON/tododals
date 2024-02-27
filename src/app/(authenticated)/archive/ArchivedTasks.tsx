@@ -3,7 +3,7 @@
 import TaskNoteCollection from "@/components/TaskNoteCollection/TaskNoteCollection";
 import Dialog from "@/components/dialog/Dialog";
 import {useState} from "react";
-import {deleteTodo, markAsUnDone} from "@/app/actions";
+import {deleteTodo, markAsUnDone} from "@/app/(authenticated)/actions";
 
 interface Props {
   tasks: any

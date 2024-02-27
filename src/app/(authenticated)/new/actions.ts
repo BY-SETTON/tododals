@@ -3,8 +3,8 @@
 import {z} from 'zod'
 
 import {sql} from "@vercel/postgres";
-import {ResponseTypes} from "@/app/new/(enums)/(enums)";
-import {ResponseInterface} from "@/app/new/(interfaces)/interface";
+import {ResponseTypes} from "@/app/(authenticated)/new/(enums)/(enums)";
+import {ResponseInterface} from "@/app/(authenticated)/new/(interfaces)/interface";
 import {revalidatePath} from "next/cache";
 
 const schema = z.object({

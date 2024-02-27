@@ -8,9 +8,11 @@ export interface NavItem {
 
 interface Props {
   navItem: NavItem[],
+  showBackButton?: boolean,
+  showAddButton?: boolean,
 }
 
-export default function Navbar({navItem}: Props) {
+export default function Navbar({navItem, showBackButton = true, showAddButton = true}: Props) {
   const router = useRouter()
   const pathname = usePathname()
 
@@ -24,11 +26,11 @@ export default function Navbar({navItem}: Props) {
 
   return (
     <div className="flex flex-row w-full mb-14">
-      <div className="basis-full justify-start flex">
+      {showBackButton && <div className="basis-full justify-start flex">
         <button className="flex hover:underline items-center"
                 onClick={() => router.back()}>Back
         </button>
-      </div>
+      </div>}
       <div className="basis-full justify-center flex">
         <div className="inline-flex rounded-lg border border-gray-100 bg-gray-100 p-1">
           {
@@ -48,13 +50,13 @@ export default function Navbar({navItem}: Props) {
           }
         </div>
       </div>
-      <div className="basis-full justify-end flex">
+      {showAddButton && <div className="basis-full justify-end flex">
         <button className="bg-green-500 w-28 h-14 rounded text-l text-white hover:bg-green-600"
                 onClick={() => {
                   router.push('/new')
                 }}>ADD
         </button>
-      </div>
+      </div>}
     </div>
   )
 }

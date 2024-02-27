@@ -1,8 +1,8 @@
 "use server"
 
 import {z} from 'zod'
-import {ResponseTypes} from "@/app/new/(enums)/(enums)";
-import {ResponseInterface} from "@/app/new/(interfaces)/interface";
+import {ResponseTypes} from "@/app/(authenticated)/new/(enums)/(enums)";
+import {ResponseInterface} from "@/app/(authenticated)/new/(interfaces)/interface";
 import {sql} from "@vercel/postgres";
 
 const schema = z.object({
