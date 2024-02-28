@@ -4,6 +4,7 @@ import {z} from 'zod'
 import {ResponseTypes} from "@/app/(authenticated)/new/(enums)/(enums)";
 import {ResponseInterface} from "@/app/(authenticated)/new/(interfaces)/interface";
 import {sql} from "@vercel/postgres";
+import {createCookie} from "@/serverFunctions/cookies";
 
 const schema = z.object({
   username: z.string().min(1),
@@ -51,7 +52,7 @@ export async function signup(prevState: ResponseInterface, formData: FormData): 
     return {message: 'error', type: ResponseTypes.ERROR};
   }
 
-  console.log(resp);
+  await createCookie({name: 'username', value: rawFormData.username})
 
   return {message: 'Success', type: ResponseTypes.SUCCESS, response: {username: rawFormData.username}};
 }

@@ -63,7 +63,6 @@ export async function markAsDone(id: string): Promise<any> {
 }
 
 export async function markAsUnDone(id: string): Promise<any> {
-  console.log(id);
   let resp;
   try {
     resp = await sql`UPDATE tasksV3

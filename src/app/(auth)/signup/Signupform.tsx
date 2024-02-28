@@ -6,6 +6,7 @@ import {ResponseTypes} from "@/app/(authenticated)/new/(enums)/(enums)";
 import {signup} from "@/app/(auth)/signup/actions";
 import {useEffect} from "react";
 import {useRouter} from "next/navigation";
+import {createCookie} from "@/serverFunctions/cookies";
 
 const initialState: ResponseInterface = {
   message: '',
@@ -18,8 +19,6 @@ export default function SignupForm() {
   useEffect(() => {
     switch (state.type) {
       case ResponseTypes.SUCCESS:
-        console.log(state.response.username);
-        sessionStorage.setItem('username', state.response.username)
         router.push('/')
         break;
       case ResponseTypes.ERROR:

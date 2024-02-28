@@ -18,7 +18,6 @@ export default function LoginForm() {
   useEffect(() => {
     switch (state.type) {
       case ResponseTypes.SUCCESS:
-        sessionStorage.setItem('username', state.response.username)
         router.push('/')
         break;
       case ResponseTypes.ERROR:
