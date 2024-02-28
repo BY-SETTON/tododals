@@ -4,21 +4,32 @@ import {useFormState} from "react-dom";
 import {ResponseInterface} from "@/app/(authenticated)/new/(interfaces)/interface";
 import {ResponseTypes} from "@/app/(authenticated)/new/(enums)/(enums)";
 import {signup} from "@/app/(auth)/signup/actions";
+import {useEffect} from "react";
+import {useRouter} from "next/navigation";
 
 const initialState: ResponseInterface = {
   message: '',
   type: ResponseTypes.ERROR,
 }
 export default function SignupForm() {
-
+  const router = useRouter();
   const [state, formAction] = useFormState(signup, initialState);
 
-  const onSubmit = (event: any) => {
-    formAction(event);
-    localStorage.setItem('username', 'Anisha');
-  }
+  useEffect(() => {
+    switch (state.type) {
+      case ResponseTypes.SUCCESS:
+        console.log(state.response.username);
+        sessionStorage.setItem('username', state.response.username)
+        router.push('/')
+        break;
+      case ResponseTypes.ERROR:
+      default:
+        break;
+    }
+  }, [state, router])
+
   return <div className="flex justify-center">
-    <form action={onSubmit}
+    <form action={formAction}
           className="space-y-6 max-w-xl w-full bg-blue-100 p-10 rounded-lg shadow-lg transition mb-20 flex justify-center flex-col">
       <h1 className="text-center text-3xl">Signup</h1>
       <div className="flex flex-row justify-center items-center">

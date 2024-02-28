@@ -51,5 +51,7 @@ export async function signup(prevState: ResponseInterface, formData: FormData): 
     return {message: 'error', type: ResponseTypes.ERROR};
   }
 
-  return {message: 'Success', type: ResponseTypes.SUCCESS};
+  console.log(resp);
+
+  return {message: 'Success', type: ResponseTypes.SUCCESS, response: {username: rawFormData.username}};
 }
