@@ -44,7 +44,7 @@ export async function signup(prevState: ResponseInterface, formData: FormData): 
   try {
     resp = await sql`
         INSERT INTO auth(username, password)
-        VALUES (${rawFormData.username}, ${rawFormData.password});`
+        VALUES (${rawFormData.username}, ${rawFormData.password}) RETURNING person_id;`
   } catch (error) {
     console.log(error);
   }
@@ -53,6 +53,7 @@ export async function signup(prevState: ResponseInterface, formData: FormData): 
   }
 
   await createCookie({name: 'username', value: rawFormData.username})
+  await createCookie({name: 'person_id', value: resp.rows[0].person_id})
 
   return {message: 'Success', type: ResponseTypes.SUCCESS, response: {username: rawFormData.username}};
 }

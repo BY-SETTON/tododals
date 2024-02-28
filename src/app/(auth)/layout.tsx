@@ -23,7 +23,7 @@ export default function RootLayout({
     <body className="pt-12 pb-14 pl-14 pr-14 h-full">
     <div className="flex flex-col min-h-full">
       <div className={"flex justify-center items-center mb-3 h-12"}>
-        <Navbar navItem={navItem} showBackButton={false} showAddButton={false}/>
+        <Navbar navItem={navItem} loggedInState={false}/>
       </div>
       {children}
     </div>

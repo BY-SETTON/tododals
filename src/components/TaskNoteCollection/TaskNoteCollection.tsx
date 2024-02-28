@@ -1,8 +1,8 @@
 'use client';
 
 import TaskNote from "@/components/TaskNote/TaskNote";
-import {TaskNoteInterface} from "@/app/(authenticated)/todays-tasks/(interfaces)/task";
-import {TaskSize} from "@/app/(authenticated)/todays-tasks/(enum)/task";
+import {TaskNoteInterface} from "@/components/TodaysTasks/(interfaces)/task";
+import {TaskSize} from "@/components/TodaysTasks/(enum)/task";
 
 interface TaskNotCollectionProp {
   taskNotes: TaskNoteInterface[],

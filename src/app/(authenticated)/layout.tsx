@@ -1,6 +1,7 @@
 import type {Metadata} from "next";
 import "../globals.css";
 import Navbar, {NavItem} from "@/components/Navbar/Navbar";
+import {logout} from "@/app/(authenticated)/actions";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,7 +24,7 @@ export default function RootLayout({
     <body className="pt-12 pb-14 pl-14 pr-14 h-full">
     <div className="flex flex-col min-h-full">
       <div className={"flex justify-center items-center mb-3 h-12"}>
-        <Navbar navItem={navItem}/>
+        <Navbar navItem={navItem} onLogOut={logout} loggedInState={true}/>
       </div>
       {children}
     </div>

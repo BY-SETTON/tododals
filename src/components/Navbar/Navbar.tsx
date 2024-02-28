@@ -1,8 +1,6 @@
 "use client"
 
 import {usePathname, useRouter} from 'next/navigation'
-import useSessionStorage from "@/hooks/useSessionStorage";
-import {getCookie} from "@/serverFunctions/cookies";
 
 export interface NavItem {
   title: string,
@@ -11,11 +9,11 @@ export interface NavItem {
 
 interface Props {
   navItem: NavItem[],
-  showBackButton?: boolean,
-  showAddButton?: boolean,
+  onLogOut?: () => void,
+  loggedInState?: boolean,
 }
 
-export default function Navbar({navItem, showBackButton = true, showAddButton = true}: Props) {
+export default function Navbar({navItem, onLogOut, loggedInState = false}: Props) {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -29,7 +27,7 @@ export default function Navbar({navItem, showBackButton = true, showAddButton = 
 
   return (
     <div className="flex flex-row w-full mb-14">
-      {showBackButton && <div className="basis-full justify-start flex">
+      {loggedInState && <div className="basis-full justify-start flex">
         <button className="flex hover:underline items-center"
                 onClick={() => router.back()}>Back
         </button>
@@ -53,13 +51,23 @@ export default function Navbar({navItem, showBackButton = true, showAddButton = 
           }
         </div>
       </div>
-      {showAddButton && <div className="basis-full justify-end flex">
-        <button className="bg-green-500 w-28 h-14 rounded text-l text-white hover:bg-green-600"
-                onClick={() => {
-                  router.push('/new')
-                }}>ADD
-        </button>
-      </div>}
+      {loggedInState &&
+        <>
+          <div className="basis-full justify-end flex">
+            <button className="bg-green-500 w-28 h-14 rounded text-l text-white hover:bg-green-600 mr-10"
+                    onClick={() => {
+                      router.push('/new')
+                    }}>ADD
+            </button>
+            <button className="flex hover:underline items-center"
+                    onClick={() => {
+                      onLogOut?.();
+                    }}>
+              Logout
+            </button>
+          </div>
+        </>
+      }
     </div>
   )
 }

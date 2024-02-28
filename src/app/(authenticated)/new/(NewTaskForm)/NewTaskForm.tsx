@@ -3,7 +3,7 @@
 import SearchIconFolder from "@/components/SearchIcon/SearchIconFolder";
 import {useEffect, useState} from "react";
 import {useFormState, useFormStatus} from "react-dom";
-import {TaskSize} from "@/app/(authenticated)/todays-tasks/(enum)/task";
+import {TaskSize} from "@/components/TodaysTasks/(enum)/task";
 import {createTodo} from "@/app/(authenticated)/new/actions";
 import {ResponseInterface} from "@/app/(authenticated)/new/(interfaces)/interface";
 import {ResponseTypes} from "@/app/(authenticated)/new/(enums)/(enums)";

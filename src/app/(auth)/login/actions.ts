@@ -39,7 +39,9 @@ export async function login(prevState: ResponseInterface, formData: FormData): P
   if (resp.rows.length === 0) {
     return {message: 'username or password is incorrect', type: ResponseTypes.ERROR};
   }
-  await createCookie({name: 'username', value: rawFormData.username})
 
-  return {message: 'Success', type: ResponseTypes.SUCCESS, response: {username: rawFormData.username}};
+  await createCookie({name: 'username', value: rawFormData.username})
+  await createCookie({name: 'person_id', value: resp.rows[0].person_id})
+
+  return {message: 'Success', type: ResponseTypes.SUCCESS};
 }

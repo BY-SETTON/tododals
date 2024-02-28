@@ -1,4 +1,4 @@
-import {TaskSize} from "@/app/(authenticated)/todays-tasks/(enum)/task";
+import {TaskSize} from "@/components/TodaysTasks/(enum)/task";
 
 export interface TaskNoteInterface {
   id: string,
