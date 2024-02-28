@@ -53,12 +53,12 @@ export default function NewTaskForm() {
     if (!state.type) {
       return;
     }
-    setIsLoading(false);
 
     if (state.type && state.type === ResponseTypes.SUCCESS) {
       onSubmitted();
     }
-  }, [state])
+    setIsLoading(false);
+  }, [onSubmitted, state])
 
   const submit = () => {
     setIsLoading(true);

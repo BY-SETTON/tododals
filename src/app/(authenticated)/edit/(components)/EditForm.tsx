@@ -25,7 +25,7 @@ export default function EditTaskForm({task}: Props) {
 
   const router = useRouter();
   const onSubmitted = () => {
-    router.push('/')
+    router.push('/');
   }
 
   const date = (new Date(task?.dueDate || ''))
@@ -63,10 +63,10 @@ export default function EditTaskForm({task}: Props) {
     if (!state.type) {
       return;
     }
-    setIsLoading(false);
     if (state.type && state.type === ResponseTypes.SUCCESS) {
       onSubmitted();
     }
+    setIsLoading(false);
   }, [onSubmitted, state])
 
   const submit = () => {
