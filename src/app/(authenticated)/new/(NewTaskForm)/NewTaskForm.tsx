@@ -68,7 +68,8 @@ export default function NewTaskForm() {
     <div className="flex justify-center w-full">
       <form action={formAction}
             onSubmit={submit}
-            className="space-y-2.5 max-w-2xl w-full bg-green-900 p-10 rounded-lg shadow-lg transition mb-20">
+            className="space-y-2.5 max-w-2xl w-full bg-blue-100 px-10 pb-10 pt-6 rounded-lg shadow-lg transition mb-20">
+        <h1 className="text-center text-3xl mb-6">CREATE</h1>
         <div>
           <label className="sr-only" htmlFor="name">Task name</label>
           <input
@@ -107,7 +108,7 @@ export default function NewTaskForm() {
             <div>
               <label
                 htmlFor="Option1"
-                className={`${selectedSize === 0 && 'bg-green-500'} block w-full cursor-pointer rounded-lg border p-3 text-white font-bold`}
+                className={`${selectedSize === 0 && 'bg-green-500 text-white border-green-500'} block w-full cursor-pointer rounded-lg border p-3 border-blue-500 text-blue-500 font-bold`}
                 tabIndex={0}
                 onClick={() => {
                   onSizeClick(0);
@@ -121,7 +122,7 @@ export default function NewTaskForm() {
             <div>
               <label
                 htmlFor="Option2"
-                className={`${selectedSize === 1 && 'bg-orange-500'} block w-full cursor-pointer rounded-lg border p-3  text-white font-bold`}
+                className={`${selectedSize === 1 && 'bg-orange-500 text-white border-orange-500'} block w-full cursor-pointer rounded-lg border p-3 border-blue-500 text-blue-500 font-bold`}
                 tabIndex={0}
                 onClick={() => {
                   onSizeClick(1);
@@ -135,7 +136,7 @@ export default function NewTaskForm() {
             <div>
               <label
                 htmlFor="Option3"
-                className={`${selectedSize === 2 && 'bg-red-700'} block w-full cursor-pointer rounded-lg border border-gray-200 p-3  text-white font-bold`}
+                className={`${selectedSize === 2 && 'bg-red-700 text-white border-red-700'} block w-full cursor-pointer rounded-lg border p-3 border-blue-500 text-blue-500 font-bold`}
                 tabIndex={0}
                 onClick={() => {
                   onSizeClick(2);
@@ -165,7 +166,7 @@ export default function NewTaskForm() {
         </div>
         <label className="sr-only" htmlFor="search">Description</label>
         {showBox && <SearchIconFolder onSelected={onIconSelect} onClose={onSelectIcon}/>}
-        {!showBox && <button className="h-14 hover:bg-green-800 text-white rounded max-w-40 w-full bg-green-900"
+        {!showBox && <button className="h-14 bg-blue-300 hover:bg-blue-400 text-white rounded max-w-40 w-full"
                              onClick={onSelectIcon}>{'Select Icon'}
         </button>}
         <input id="size" name="size" type="hidden" value={selectedSize}></input>
@@ -174,7 +175,7 @@ export default function NewTaskForm() {
         <div className="mt-4">
           <button
             type="submit"
-            className="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto"
+            className="inline-block w-full rounded-lg bg-blue-300 hover:bg-blue-400 px-5 py-3 font-medium text-white sm:w-auto"
             aria-disabled={isLoading}
             disabled={isLoading}>
             {isLoading ? 'LOADING' : 'CREATE'}

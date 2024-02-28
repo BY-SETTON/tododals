@@ -9,5 +9,5 @@ export const metadata: Metadata = {
 export default function EditLayout({children}: Readonly<{
   children: React.ReactNode
 }>) {
-  return (<PageLayout className="bg-blue-100">{children}</PageLayout>);
+  return (<PageLayout>{children}</PageLayout>);
 }
