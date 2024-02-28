@@ -21,6 +21,8 @@ interface Props {
 }
 
 export default function EditTaskForm({task}: Props) {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const router = useRouter();
   const onSubmitted = () => {
     router.push('/')
@@ -61,14 +63,20 @@ export default function EditTaskForm({task}: Props) {
     if (!state.type) {
       return;
     }
+    setIsLoading(false);
     if (state.type && state.type === ResponseTypes.SUCCESS) {
       onSubmitted();
     }
   }, [onSubmitted, state])
 
+  const submit = () => {
+    setIsLoading(true);
+  }
+
   return (
     <div className="flex justify-center w-full">
       <form action={formAction}
+            onSubmit={submit}
             className="space-y-2.5 max-w-2xl w-full bg-green-900 p-10 rounded-lg shadow-lg transition mb-20">
         <div>
           <label className="sr-only" htmlFor="name">Task name</label>
@@ -180,8 +188,9 @@ export default function EditTaskForm({task}: Props) {
           {!pending && <button
             type="submit"
             className="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto"
-            aria-disabled={pending}>
-            UPDATE
+            aria-disabled={pending}
+            disabled={isLoading}>
+            {isLoading ? 'LOADING' : 'UPDATE'}
           </button>}
         </div>
 

@@ -30,8 +30,6 @@ export async function getAllUnDoneTask(personId: string) {
     console.log(error);
   }
 
-  console.log(rows);
-
   return rows;
 }
 

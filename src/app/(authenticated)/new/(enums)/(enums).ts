@@ -1,4 +1,5 @@
 export enum ResponseTypes {
   SUCCESS = "SUCCESS",
-  ERROR = "ERROR"
+  ERROR = "ERROR",
+  DONE = "DONE"
 }

@@ -12,7 +12,7 @@ import {useRouter} from "next/navigation";
 
 const initialState: ResponseInterface = {
   message: '',
-  type: ResponseTypes.ERROR,
+  type: ResponseTypes.DONE,
 }
 
 export default function NewTaskForm() {
@@ -32,6 +32,7 @@ export default function NewTaskForm() {
   const [state, formAction] = useFormState(createTodo, initialState);
   const {pending} = useFormStatus()
 
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [selectedSize, setSelectedSize] = useState(TaskSize.SMALL);
   const [selectedIcon, setSelectedIcon] = useState('');
   const [showBox, setShowBoxBox] = useState(false);
@@ -52,14 +53,21 @@ export default function NewTaskForm() {
     if (!state.type) {
       return;
     }
+    setIsLoading(false);
+
     if (state.type && state.type === ResponseTypes.SUCCESS) {
       onSubmitted();
     }
   }, [state])
 
+  const submit = () => {
+    setIsLoading(true);
+  }
+
   return (
     <div className="flex justify-center w-full">
       <form action={formAction}
+            onSubmit={submit}
             className="space-y-2.5 max-w-2xl w-full bg-green-900 p-10 rounded-lg shadow-lg transition mb-20">
         <div>
           <label className="sr-only" htmlFor="name">Task name</label>
@@ -164,18 +172,14 @@ export default function NewTaskForm() {
         <input id="icon" name="icon" type="hidden" value={selectedIcon}></input>
 
         <div className="mt-4">
-          -{!!pending}-
-          {!pending && <button
+          <button
             type="submit"
             className="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto"
-            aria-disabled={pending}>
-            CREATE
-          </button>}
+            aria-disabled={isLoading}
+            disabled={isLoading}>
+            {isLoading ? 'LOADING' : 'CREATE'}
+          </button>
         </div>
-
-        <p>
-          {state.message}
-        </p>
       </form>
     </div>
   );
