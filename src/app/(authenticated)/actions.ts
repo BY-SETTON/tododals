@@ -50,6 +50,20 @@ export async function getAllDoneTask(personId: string) {
   return rows;
 }
 
+export async function getTaskById(taskId: string) {
+  let rows;
+  try {
+    rows =
+      (await sql`SELECT *
+                 FROM Tasksv3
+                 WHERE id = ${taskId}`).rows;
+  } catch (error) {
+    console.log(error);
+  }
+
+  return rows?.[0];
+}
+
 export async function markAsDone(id: string): Promise<any> {
   let resp;
   try {

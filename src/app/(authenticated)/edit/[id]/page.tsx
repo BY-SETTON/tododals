@@ -1,22 +1,22 @@
-import {kv} from "@vercel/kv";
-import {sql} from "@vercel/postgres";
-
-async function editTask() {
-  const {rows} = await sql`INSERT INTO tasks (id, Personid, Title, Description, Icon)
-                           VALUES ('1', '123', 'title-test', 'description-test', 'icon-test')`;
-  return rows;
-
-}
+import EditTaskForm from "@/app/(authenticated)/edit/(components)/EditForm";
+import {getTaskById} from "@/app/(authenticated)/actions";
+import {TaskNoteInterface} from "@/components/TodaysTasks/(interfaces)/task";
 
 export default async function EditTaskPage({params}: {
   params: {
     id: string
   }
 }) {
-  const cart = await kv.get<{
-    id: string;
-    quantity: number
-  }[]>(params.id);
 
-  return <div>Edit Task {params.id}</div>
+  const task = await getTaskById(params.id);
+  const taskMapped: TaskNoteInterface = {
+    id: task?.id,
+    dueDate: task?.duedate,
+    name: task?.name,
+    title: task?.title,
+    description: task?.description,
+    size: task?.size,
+    icon: task?.icon,
+  }
+  return <EditTaskForm task={taskMapped}/>
 }

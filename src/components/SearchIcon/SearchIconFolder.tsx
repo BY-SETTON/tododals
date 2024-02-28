@@ -5,13 +5,14 @@ import {XCircle} from "react-feather";
 const feather = require('feather-icons');
 
 interface Props {
+  defaultValue?: string,
   onClose?: (event: any) => void;
   onSelected: (icon: string) => void;
 }
 
-export default function SearchIconFolder({onSelected, onClose}: Props) {
+export default function SearchIconFolder({onSelected, onClose, defaultValue}: Props) {
 
-  const [selectedIcon, setSelectedIcon] = useState('');
+  const [selectedIcon, setSelectedIcon] = useState(defaultValue);
   const [searchValue, setSearchValue] = useState('');
   let icons = Object.keys(feather.icons);
 
