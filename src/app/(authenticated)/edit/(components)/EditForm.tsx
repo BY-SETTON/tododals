@@ -138,7 +138,7 @@ export default function EditTaskForm({task, onTaskChange}: Props) {
           />
           <div className="flex flex-row justify-between">
             <p className={'min-h-6 text-red-500'}>{state?.error?.description?._errors[0]}</p>
-            <div>
+            <div className={editedTask.description.length > 255 ? 'text-red-500' : ''}>
               count {editedTask.description.length}
             </div>
           </div>
