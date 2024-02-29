@@ -1,4 +1,4 @@
-import {sql} from "@vercel/postgres";
+import {getTask} from "@/app/(authenticated)/task/actions";
 
 export default async function TaskPage({params}: {
   params: {
@@ -6,16 +6,7 @@ export default async function TaskPage({params}: {
   }
 }) {
 
-  async function getTask() {
-    'use server'
-    const {rows} =
-      await sql`SELECT *
-                FROM tasks
-                WHERE id = '1'`;
-    return rows[0]
-  }
-
-  const data = await getTask();
+  const data = await getTask(params.id);
 
   return <>
     <div>Task id - {data.id}</div>

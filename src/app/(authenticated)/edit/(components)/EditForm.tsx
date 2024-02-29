@@ -39,7 +39,7 @@ export default function EditTaskForm({task, onTaskChange}: Props) {
   });
 
   const handleValueChange = (newValue: any) => {
-    handleTaskChange(newValue.startDate, 'date')
+    handleTaskChange(newValue.startDate, 'dueDate')
     setValue(newValue);
   }
 
@@ -77,15 +77,14 @@ export default function EditTaskForm({task, onTaskChange}: Props) {
     setIsLoading(true);
   }
 
-  const handleTaskChange = (value: any, name: keyof TaskNoteInterface,) => {
-    if (!value) {
-      return
-    }
-    const editedTaskNew: TaskNoteInterface = {...editedTask};
-    (editedTaskNew[name] as (string | Date | TaskSize)) = value;
+  const handleTaskChange = (value: string | Date | TaskSize, name: keyof TaskNoteInterface,) => {
+    if (value || value === 0 || value === '') {
+      const editedTaskNew: TaskNoteInterface = {...editedTask};
+      (editedTaskNew[name] as (string | Date | TaskSize)) = value;
 
-    setEditedTask(editedTaskNew);
-    onTaskChange(editedTaskNew);
+      setEditedTask(editedTaskNew);
+      onTaskChange(editedTaskNew);
+    }
   }
 
   return (
