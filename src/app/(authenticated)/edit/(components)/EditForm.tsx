@@ -77,12 +77,12 @@ export default function EditTaskForm({task, onTaskChange}: Props) {
     setIsLoading(true);
   }
 
-  const handleTaskChange = (value: any, name: string) => {
+  const handleTaskChange = (value: string | Date | TaskSize, name: keyof TaskNoteInterface,) => {
+    if (!value) {
+      return
+    }
     const editedTaskNew: TaskNoteInterface = {...editedTask};
-    // @ts-ignore
-    editedTaskNew[name] = value;
-    setEditedTask(editedTaskNew)
-    onTaskChange(editedTaskNew);
+    (editedTaskNew[name] as (string | Date | TaskSize)) = value;
   }
 
   return (
