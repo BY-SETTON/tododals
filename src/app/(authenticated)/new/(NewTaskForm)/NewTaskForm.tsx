@@ -58,7 +58,7 @@ export default function NewTaskForm() {
       onSubmitted();
     }
     setIsLoading(false);
-  }, [onSubmitted, state])
+  }, [state])
 
   const submit = () => {
     setIsLoading(true);

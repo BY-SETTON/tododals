@@ -1,23 +1,16 @@
 "use server"
 
-import {z} from 'zod'
-
 import {sql} from "@vercel/postgres";
 import {ResponseTypes} from "@/app/(authenticated)/new/(enums)/(enums)";
 import {ResponseInterface} from "@/app/(authenticated)/new/(interfaces)/interface";
 import {revalidatePath} from "next/cache";
 import {getCookie} from "@/serverFunctions/cookies";
-
-const schema = z.object({
-  name: z.string().min(1, { message: 'Name must be at least 1 characters' }),
-  title: z.string().min(1,{ message: 'Title must be at least 1 characters' }),
-  description: z.string().min(1,{ message: 'Description must be at least 1 characters' }),
-});
+import {taskFormSchema} from "@/utils/taskFormScheme";
 
 export async function createTodo(prevState: ResponseInterface, formData: FormData): Promise<ResponseInterface> {
 
   const personId = (await getCookie('person_id')).value;
-  const validatedFields = schema.safeParse({
+  const validatedFields = taskFormSchema.safeParse({
     name: formData.get('name'),
     title: formData.get('title'),
     description: formData.get('description'),

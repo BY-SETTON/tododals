@@ -71,7 +71,7 @@ export default function EditTaskForm({task, onTaskChange}: Props) {
       onSubmitted();
     }
     setIsLoading(false);
-  }, [onSubmitted, state])
+  }, [state])
 
   const submit = () => {
     setIsLoading(true);
@@ -106,6 +106,7 @@ export default function EditTaskForm({task, onTaskChange}: Props) {
               handleTaskChange(value.target.value, 'name')
             }}
           />
+          count {editedTask.name.length}
           <p className={'min-h-6 text-red-500'}>{state?.error?.name?._errors[0]}</p>
         </div>
         <div>

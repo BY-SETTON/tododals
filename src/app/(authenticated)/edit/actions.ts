@@ -1,20 +1,13 @@
 "use server"
 
-import {z} from 'zod'
-
 import {sql} from "@vercel/postgres";
 import {ResponseTypes} from "@/app/(authenticated)/new/(enums)/(enums)";
 import {ResponseInterface} from "@/app/(authenticated)/new/(interfaces)/interface";
 import {revalidatePath} from "next/cache";
-
-const schema = z.object({
-  name: z.string().min(1, {message: 'Name must be at least 1 characters'}),
-  title: z.string().min(1, {message: 'Title must be at least 1 characters'}),
-  description: z.string().min(1, {message: 'Description must be at least 1 characters'}).max(255, {message: 'Description must be less than 255 characters long'}),
-});
+import {taskFormSchema} from "@/utils/taskFormScheme";
 
 export async function editTodo(prevState: ResponseInterface, formData: FormData): Promise<ResponseInterface> {
-  const validatedFields = schema.safeParse({
+  const validatedFields = taskFormSchema.safeParse({
     name: formData.get('name'),
     title: formData.get('title'),
     description: formData.get('description'),

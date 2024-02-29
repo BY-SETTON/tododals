@@ -57,7 +57,7 @@ function TaskNote({taskNote, onClicked, showCallToAction = true, isHoverState = 
         className={`relative flex h-full transform items-start border-2 ${sizeColor().border} bg-white transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2 ${isHoverState && '-translate-x-2 -translate-y-2'}`}
       >
         <div
-          className={`mt-4 p-4 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 sm:p-6 lg:p-8 ${isHoverState && 'absolute opacity-0'}`}
+          className={`mt-4 p-4 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 sm:p-6 lg:p-8 w-full break-words ${isHoverState && 'absolute opacity-0'}`}
         >
           <img src={`data:image/svg+xml;utf8,${svgIcon}`} alt=""/>
           <h2 className=" text-xl font-medium sm:text-2xl">{taskNote.name}</h2>
@@ -66,24 +66,25 @@ function TaskNote({taskNote, onClicked, showCallToAction = true, isHoverState = 
         </div>
 
         <div
-          className={`overflow-auto w-full h-full opacity-0 transition-opacity group-hover:relative group-hover:opacity-100 ${isHoverState && 'relative opacity-100'}`}>
+          className={`absolute overflow-auto w-full h-full opacity-0 transition-opacity group-hover:relative group-hover:opacity-100 ${isHoverState && 'relative opacity-100'}`}>
           <div
             className={`w-full p-4 sm:p-6 lg:px-8 lg:pb-6 lg:pt-4 `}
           >
-            {showCallToAction && <div className="w-full flex justify-end absolute right-4">
-              <div className="mr-2 inline-flex">
-                <Button
-                  className="hover:bg-blue-400"
-                  onClick={onEdit}>EDIT</Button>
-              </div>
-              <div className="inline-flex">
-                <Button
-                  className="hover:bg-red-400"
-                  onClick={onDeleteClick}>Done</Button>
-              </div>
-            </div>}
-            <h3 className="mt-4 text-xl font-medium sm:text-2xl">{taskNote.title || taskNote.name}</h3>
-
+            <div className="flex justify-between items-start">
+              <h3 className="mt-4 text-xl font-medium sm:text-2xl mb-4">{taskNote.title || taskNote.name}</h3>
+              {showCallToAction && <div className="flex">
+                <div className="mr-2 inline-flex">
+                  <Button
+                    className="hover:bg-blue-400"
+                    onClick={onEdit}>EDIT</Button>
+                </div>
+                <div className="inline-flex">
+                  <Button
+                    className="hover:bg-red-400"
+                    onClick={onDeleteClick}>Done</Button>
+                </div>
+              </div>}
+            </div>
             <div className="text-container" dangerouslySetInnerHTML={{__html: markDownDescription}}/>
             <p className="mb-4 mt-4 text-sm sm:text-base">
             </p>
