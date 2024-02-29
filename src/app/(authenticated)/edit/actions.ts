@@ -10,7 +10,7 @@ import {revalidatePath} from "next/cache";
 const schema = z.object({
   name: z.string().min(1, {message: 'Name must be at least 1 characters'}),
   title: z.string().min(1, {message: 'Title must be at least 1 characters'}),
-  description: z.string().min(1, {message: 'Description must be at least 1 characters'}),
+  description: z.string().min(1, {message: 'Description must be at least 1 characters'}).max(255, {message: 'Description must be less than 255 characters long'}),
 });
 
 export async function editTodo(prevState: ResponseInterface, formData: FormData): Promise<ResponseInterface> {
@@ -23,7 +23,6 @@ export async function editTodo(prevState: ResponseInterface, formData: FormData)
     icon: formData.get('icon')
   })
   if (!validatedFields.success) {
-    console.log(validatedFields.error);
     return {error: validatedFields.error.format(), type: ResponseTypes.ERROR};
   }
 

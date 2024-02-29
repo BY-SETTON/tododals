@@ -136,7 +136,12 @@ export default function EditTaskForm({task, onTaskChange}: Props) {
             }}
             rows={4}
           />
-          <p className={'min-h-6 text-red-500'}>{state?.error?.description?._errors[0]}</p>
+          <div className="flex flex-row justify-between">
+            <p className={'min-h-6 text-red-500'}>{state?.error?.description?._errors[0]}</p>
+            <div>
+              count {editedTask.description.length}
+            </div>
+          </div>
         </div>
         <div>
           <div className="grid grid-cols-1 gap-4 text-center sm:grid-cols-3 mb-6">
