@@ -14,9 +14,10 @@ interface TaskNotProp {
   onClicked?: (taskId: string) => void,
   className?: string,
   showCallToAction?: boolean,
+  isHoverState?: boolean,
 }
 
-function TaskNote({taskNote, onClicked, showCallToAction = true}: TaskNotProp) {
+function TaskNote({taskNote, onClicked, showCallToAction = true, isHoverState = false}: TaskNotProp) {
   const svgIcon = taskNote?.icon && feather.icons[taskNote.icon].toSvg({color: 'black', width: 30, height: 30});
   const router = useRouter();
 
@@ -31,7 +32,7 @@ function TaskNote({taskNote, onClicked, showCallToAction = true}: TaskNotProp) {
   }
 
   const onTaskClick = () => {
-    onClicked(taskNote.id);
+    onClicked?.(taskNote.id);
   }
 
   const sizeColor = (): { bg: string, border: string } => {
@@ -51,10 +52,10 @@ function TaskNote({taskNote, onClicked, showCallToAction = true}: TaskNotProp) {
        className={`cursor-pointer group relative block h-52 sm:h-72 lg:h-64 ${sizeColor().bg}`}>
       <span className="absolute inset-0 border-2 border-dashed border-black"></span>
       <div
-        className={`relative flex h-full transform items-end border-2 ${sizeColor().border} bg-white transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2`}
+        className={`relative flex h-full transform items-end border-2 ${sizeColor().border} bg-white transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2 ${isHoverState && '-translate-x-2 -translate-y-2'}`}
       >
         <div
-          className="p-4 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 sm:p-6 lg:p-8"
+          className={`p-4 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 sm:p-6 lg:p-8 ${isHoverState && 'absolute opacity-0'}`}
         >
           <img src={`data:image/svg+xml;utf8,${svgIcon}`} alt=""/>
           <h2 className="my-4 text-xl font-medium sm:text-2xl">{taskNote.name}</h2>
@@ -63,7 +64,7 @@ function TaskNote({taskNote, onClicked, showCallToAction = true}: TaskNotProp) {
         </div>
 
         <div
-          className="w-full absolute p-4 opacity-0 transition-opacity group-hover:relative group-hover:opacity-100 sm:p-6 lg:p-8"
+          className={`w-full absolute p-4 opacity-0 transition-opacity group-hover:relative group-hover:opacity-100 sm:p-6 lg:p-8 ${isHoverState && 'relative opacity-100'}`}
         >
           <h3 className="mt-4 text-xl font-medium sm:text-2xl">{taskNote.title || taskNote.name}</h3>
 

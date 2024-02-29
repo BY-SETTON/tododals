@@ -11,11 +11,23 @@ interface Props {
 
 export default function EditTaskLayout({task}: Props) {
   const [editedTask, setEditedTask] = useState<TaskNoteInterface>(task);
+  const [isHover, setIsHover] = useState<boolean>(false);
   const onTaskChange = (task: TaskNoteInterface) => {
     setEditedTask(task)
   }
+  const onHoverClick = (value: any) => {
+    console.log(value);
+    setIsHover(value.target.checked);
+  }
+
   return (<div className="grid grid-cols-2">
     <EditTaskForm task={task} onTaskChange={onTaskChange}/>
-    <TaskNote taskNote={editedTask} showCallToAction={false}></TaskNote>
+    <div>
+      <TaskNote taskNote={editedTask} showCallToAction={false} isHoverState={isHover}></TaskNote>
+      <div className="flex flex-row">
+        <input type="checkbox" onChange={onHoverClick}/>
+        <h2>Hover</h2>
+      </div>
+    </div>
   </div>)
 }
