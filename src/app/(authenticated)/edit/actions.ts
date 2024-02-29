@@ -51,4 +51,3 @@ export async function editTodo(prevState: ResponseInterface, formData: FormData)
 
   return {message: 'Success', type: ResponseTypes.SUCCESS};
 }
-

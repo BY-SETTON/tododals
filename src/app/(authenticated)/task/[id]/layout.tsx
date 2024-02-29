@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 export default function TaskLayout({children}: Readonly<{
   children: React.ReactNode
 }>) {
-  return <>{children}</>
+  return <div className="mt-8">{children}</div>
 }
