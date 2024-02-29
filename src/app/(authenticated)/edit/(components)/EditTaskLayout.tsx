@@ -16,16 +16,15 @@ export default function EditTaskLayout({task}: Props) {
     setEditedTask(task)
   }
   const onHoverClick = (value: any) => {
-    console.log(value);
     setIsHover(value.target.checked);
   }
 
   return (<div className="grid grid-cols-2">
     <EditTaskForm task={task} onTaskChange={onTaskChange}/>
     <div>
-      <TaskNote taskNote={editedTask} showCallToAction={false} isHoverState={isHover}></TaskNote>
+      <TaskNote taskNote={editedTask} showCallToAction={false} isHoverState={isHover} className="mb-4"></TaskNote>
       <div className="flex flex-row">
-        <input type="checkbox" onChange={onHoverClick}/>
+        <input type="checkbox" onChange={onHoverClick} className="mr-4 cursor-pointer"/>
         <h2>Hover</h2>
       </div>
     </div>

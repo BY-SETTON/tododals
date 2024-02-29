@@ -17,7 +17,7 @@ interface TaskNotProp {
   isHoverState?: boolean,
 }
 
-function TaskNote({taskNote, onClicked, showCallToAction = true, isHoverState = false}: TaskNotProp) {
+function TaskNote({taskNote, onClicked, showCallToAction = true, isHoverState = false, className}: TaskNotProp) {
   const svgIcon = taskNote?.icon && feather.icons[taskNote.icon].toSvg({color: 'black', width: 30, height: 30});
   const router = useRouter();
 
@@ -49,7 +49,7 @@ function TaskNote({taskNote, onClicked, showCallToAction = true, isHoverState = 
 
   return (
     <a onClick={onTaskClick}
-       className={`cursor-pointer group relative block h-52 sm:h-72 lg:h-64 ${sizeColor().bg}`}>
+       className={`cursor-pointer group relative block h-52 sm:h-72 lg:h-64 ${sizeColor().bg} ${className}`}>
       <span className="absolute inset-0 border-2 border-dashed border-black"></span>
       <div
         className={`relative flex h-full transform items-end border-2 ${sizeColor().border} bg-white transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2 ${isHoverState && '-translate-x-2 -translate-y-2'}`}
