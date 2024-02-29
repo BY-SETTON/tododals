@@ -3,6 +3,7 @@ export default function convertMarkDownToHTML(markDown: string) {
     return '';
   }
   let isBoldOpen = false;
+
   let isLinkOpen = false;
   let finishedURLProcessing = true;
   let processingLink = true;
@@ -35,11 +36,6 @@ export default function convertMarkDownToHTML(markDown: string) {
         continue;
     }
 
-    console.log(!finishedURLProcessing, '!finishedURLProcessing');
-    console.log(processingLinkText, 'processingLinkText');
-    console.log(linkText, 'linkText');
-    console.log(linkUrl, 'linkUrl');
-
     if (!finishedURLProcessing) {
       if (isLinkOpen || !finishedURLProcessing) {
         if (processingLink) {
@@ -49,7 +45,6 @@ export default function convertMarkDownToHTML(markDown: string) {
             linkText = `${linkText}${markDown[i]}`
           } else {
             linkUrl = `${linkUrl}">${linkText}</a>`;
-            console.log(linkUrl, '-------------------------------------linkUrl');
             finishedURLProcessing = true;
           }
         }
@@ -60,7 +55,6 @@ export default function convertMarkDownToHTML(markDown: string) {
     } else {
       newString = `${newString}${markDown[i] || ''}`
     }
-    console.log(newString);
   }
   return newString;
 }
