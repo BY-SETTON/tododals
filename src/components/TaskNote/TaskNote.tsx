@@ -57,7 +57,7 @@ function TaskNote({taskNote, onClicked, showCallToAction = true, isHoverState = 
         className={`relative flex h-full transform items-start border-2 ${sizeColor().border} bg-white transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2 ${isHoverState && '-translate-x-2 -translate-y-2'}`}
       >
         <div
-          className={`mt-4 p-4 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 sm:p-6 lg:p-8 w-full break-words ${isHoverState && 'absolute opacity-0'}`}
+          className={`mt-10 p-4 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 sm:p-6 lg:p-8 w-full break-words ${isHoverState && 'absolute opacity-0'}`}
         >
           <img src={`data:image/svg+xml;utf8,${svgIcon}`} alt=""/>
           <h2 className=" text-xl font-medium sm:text-2xl">{taskNote.name}</h2>

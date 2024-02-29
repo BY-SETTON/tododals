@@ -13,7 +13,7 @@ export default function convertMarkDownToHTML(markDown: string) {
   let linkUrl = '<a style="color: blue; text-decoration: underline;" target="_blank" href="';
 
   let newString = ''
-  for (let i = 0; i < markDown.length + 2; i++) {
+  for (let i = 0; i < markDown.length; i++) {
     switch (markDown[i]) {
       case '*':
         isBoldOpen = !isBoldOpen;
