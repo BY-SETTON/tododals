@@ -2,7 +2,7 @@
 
 import SearchIconFolder from "@/components/SearchIcon/SearchIconFolder";
 import {useEffect, useState} from "react";
-import {useFormState, useFormStatus} from "react-dom";
+import {useFormState} from "react-dom";
 import {ResponseInterface} from "@/app/(authenticated)/new/(interfaces)/interface";
 import {ResponseTypes} from "@/app/(authenticated)/new/(enums)/(enums)";
 import Datepicker from "react-tailwindcss-datepicker";
@@ -18,9 +18,11 @@ const initialState: ResponseInterface = {
 
 interface Props {
   task: TaskNoteInterface,
+  onTaskChange: (task: TaskNoteInterface) => void
 }
 
-export default function EditTaskForm({task}: Props) {
+export default function EditTaskForm({task, onTaskChange}: Props) {
+  const [editedTask, setEditedTask] = useState<TaskNoteInterface>(task);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const router = useRouter();
@@ -37,11 +39,11 @@ export default function EditTaskForm({task}: Props) {
   });
 
   const handleValueChange = (newValue: any) => {
+    handleTaskChange(newValue.startDate, 'date')
     setValue(newValue);
   }
 
   const [state, formAction] = useFormState(editTodo, initialState);
-  const {pending} = useFormStatus()
 
   const [selectedSize, setSelectedSize] = useState<TaskSize>(task.size);
   const [selectedIcon, setSelectedIcon] = useState<string>(task.icon || '');
@@ -52,10 +54,12 @@ export default function EditTaskForm({task}: Props) {
     setShowBoxBox(!showBox);
   }
   const onSizeClick = (index: number) => {
+    handleTaskChange(index, 'size')
     setSelectedSize(index);
   }
 
   const onIconSelect = (icon: string) => {
+    handleTaskChange(icon, 'icon')
     setSelectedIcon(icon);
   }
 
@@ -73,6 +77,14 @@ export default function EditTaskForm({task}: Props) {
     setIsLoading(true);
   }
 
+  const handleTaskChange = (value: any, name: string) => {
+    const editedTaskNew: TaskNoteInterface = {...editedTask};
+    // @ts-ignore
+    editedTaskNew[name] = value;
+    setEditedTask(editedTaskNew)
+    onTaskChange(editedTaskNew);
+  }
+
   return (
     <div className="flex justify-center w-full">
       <form action={formAction}
@@ -88,6 +100,9 @@ export default function EditTaskForm({task}: Props) {
             type="text"
             id="name"
             name="name"
+            onChange={(value) => {
+              handleTaskChange(value.target.value, 'name')
+            }}
           />
           <p className={'min-h-6 text-red-500'}>{state?.error?.name?._errors[0]}</p>
         </div>
@@ -100,6 +115,9 @@ export default function EditTaskForm({task}: Props) {
             type="text"
             id="title"
             name="title"
+            onChange={(value) => {
+              handleTaskChange(value.target.value, 'title')
+            }}
           />
           <p className={'min-h-6 text-red-500'}>{state?.error?.title?._errors[0]}</p>
         </div>
@@ -111,6 +129,9 @@ export default function EditTaskForm({task}: Props) {
             defaultValue={task.description}
             id="description"
             name="description"
+            onChange={(value) => {
+              handleTaskChange(value.target.value, 'description')
+            }}
             rows={4}
           />
           <p className={'min-h-6 text-red-500'}>{state?.error?.description?._errors[0]}</p>

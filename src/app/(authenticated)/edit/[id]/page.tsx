@@ -1,6 +1,6 @@
-import EditTaskForm from "@/app/(authenticated)/edit/(components)/EditForm";
 import {getTaskById} from "@/app/(authenticated)/actions";
 import {TaskNoteInterface} from "@/components/TodaysTasks/(interfaces)/task";
+import EditTaskLayout from "@/app/(authenticated)/edit/(components)/EditTaskLayout";
 
 export default async function EditTaskPage({params}: {
   params: {
@@ -18,5 +18,5 @@ export default async function EditTaskPage({params}: {
     size: task?.size,
     icon: task?.icon,
   }
-  return <EditTaskForm task={taskMapped}/>
+  return <EditTaskLayout task={taskMapped}></EditTaskLayout>
 }

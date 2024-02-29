@@ -9,9 +9,9 @@ import {revalidatePath} from "next/cache";
 import {getCookie} from "@/serverFunctions/cookies";
 
 const schema = z.object({
-  name: z.string().min(1),
-  title: z.string().min(1),
-  description: z.string().min(1),
+  name: z.string().min(1, { message: 'Name must be at least 1 characters' }),
+  title: z.string().min(1,{ message: 'Title must be at least 1 characters' }),
+  description: z.string().min(1,{ message: 'Description must be at least 1 characters' }),
 });
 
 export async function createTodo(prevState: ResponseInterface, formData: FormData): Promise<ResponseInterface> {
@@ -25,6 +25,7 @@ export async function createTodo(prevState: ResponseInterface, formData: FormDat
     date: formData.get('date'),
     icon: formData.get('icon')
   })
+
   if (!validatedFields.success) {
     return {error: validatedFields.error.format(), type: ResponseTypes.ERROR};
   }

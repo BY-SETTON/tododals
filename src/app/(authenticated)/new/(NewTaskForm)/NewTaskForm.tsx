@@ -165,17 +165,23 @@ export default function NewTaskForm() {
           />
         </div>
         <label className="sr-only" htmlFor="search">Description</label>
-        {showBox && <SearchIconFolder onSelected={onIconSelect} onClose={onSelectIcon}/>}
-        {!showBox && <button className="h-14 bg-blue-300 hover:bg-blue-400 text-white rounded max-w-40 w-full"
-                             onClick={onSelectIcon}>{'Select Icon'}
-        </button>}
+
+        <div className="flex">
+          {/*<button className="bg-blue-300 hover:bg-blue-400 text-white rounded-lg h-10 mr-4 w-1/6"*/}
+          {/*        onClick={onSelectIcon}>{'Select Icon'}*/}
+          {/*</button>*/}
+          {true &&
+            <div className="w-full mb-4">
+              <SearchIconFolder onSelected={onIconSelect} onClose={onSelectIcon}/>
+            </div>
+          }
+        </div>
         <input id="size" name="size" type="hidden" value={selectedSize}></input>
         <input id="icon" name="icon" type="hidden" value={selectedIcon}></input>
-
-        <div className="mt-4">
+        <div className="mt-4 flex justify-center">
           <button
             type="submit"
-            className="inline-block w-full rounded-lg bg-blue-300 hover:bg-blue-400 px-5 py-3 font-medium text-white sm:w-auto"
+            className="inline-block max-w-64 h-14 w-full rounded-lg bg-blue-300 hover:bg-blue-400 px-5 py-3 font-medium text-white"
             aria-disabled={isLoading}
             disabled={isLoading}>
             {isLoading ? 'LOADING' : 'CREATE'}

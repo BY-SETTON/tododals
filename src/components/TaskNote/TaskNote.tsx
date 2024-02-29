@@ -11,7 +11,7 @@ const feather = require('feather-icons');
 
 interface TaskNotProp {
   taskNote: TaskNoteInterface,
-  onClicked: (taskId: string) => void,
+  onClicked?: (taskId: string) => void,
   className?: string,
   showCallToAction?: boolean,
 }
