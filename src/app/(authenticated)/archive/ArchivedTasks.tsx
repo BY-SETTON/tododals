@@ -39,7 +39,7 @@ export default function ArchiveTasks({tasks}: Props) {
 
   return (
     <>
-      <PopUp show={true} onClose={() => setShowDialog(false)}>
+      <PopUp show={showDialog} onClose={() => setShowDialog(false)}>
         <h2 className="text-lg font-bold">Would you like to restore or delete this task?</h2>
         <p className="mt-2 text-sm text-gray-500"></p>
         <div className="mt-4 flex gap-2">

@@ -32,7 +32,7 @@ export default function LoginForm() {
   return <Card className={"bg-neutral-100"}>
     <form action={formAction} className="space-y-6">
       <div className="flex flex-row justify-center items-center">
-        <label htmlFor="username" className="sr-only">Username</label>
+        <label htmlFor="login-username" className="sr-only">Username</label>
         <div className={" rounded-full mr-4 bg-neutral-500"}>
           <User className="w-6 h-6 m-2 text-neutral-50"/>
         </div>
@@ -40,8 +40,8 @@ export default function LoginForm() {
           className="rounded-lg border-gray-200 p-3 text-sm min-w-72"
           placeholder="Username"
           type="text"
-          id="username"
-          name="username"
+          id="login-username"
+          name="login-username"
         />
       </div>
       <div className="flex flex-row justify-center items-center">
@@ -51,15 +51,18 @@ export default function LoginForm() {
         </div>
         <input
           className="rounded-lg border-gray-200 p-3 text-sm min-w-72"
-          placeholder="Password"
+          placeholder="login-Password"
           type="password"
-          id="password"
-          name="password"
+          autoComplete="on"
+          id="login-password"
+          name="login-password"
         />
       </div>
       <p>-{state.message}-</p>
       <div className="flex flex-row justify-center">
-        <Button type="submit" className={"bg-neutral-500 min-w-36 text-neutral-50 hover:bg-neutral-400"}>Login</Button>
+        <button type="submit"
+                className={"bg-neutral-500 min-w-36 text-neutral-50 hover:bg-neutral-400 bg-primary-500-50  rounded-full p-3 transition-colors duration-300 ease-in-out"}>Login
+        </button>
       </div>
     </form>
   </Card>

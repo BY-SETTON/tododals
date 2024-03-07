@@ -15,8 +15,8 @@ const schemaLogin = z.object({
 export async function login(prevState: ResponseInterface, formData: FormData): Promise<ResponseInterface> {
 
   const rawFormData = {
-    username: formData.get('username') as string,
-    password: formData.get('password') as string,
+    username: formData.get('login-username') as string,
+    password: formData.get('login-password') as string,
   }
   const validatedFields = schemaLogin.safeParse(rawFormData)
   if (!validatedFields.success) {
@@ -52,14 +52,13 @@ const schemaSignup = z.object({
 });
 
 export async function signup(prevState: ResponseInterface, formData: FormData): Promise<ResponseInterface> {
-
   const rawFormData = {
-    username: formData.get('username') as string,
-    password: formData.get('password') as string,
+    username: formData.get('signup-username') as string,
+    password: formData.get('signup-password') as string,
   }
   const validatedFields = schemaSignup.safeParse({
-    username: formData.get('username') as string,
-    password: formData.get('password') as string,
+    username: formData.get('signup-username') as string,
+    password: formData.get('signup-password') as string,
   })
   if (!validatedFields.success) {
     return {error: validatedFields.error.format(), type: ResponseTypes.ERROR};
