@@ -9,7 +9,7 @@ interface ButtonProp extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'clas
 export default function Button({onClick, children, className, ...props}: ButtonProp) {
   return (<button
     {...props}
-    className={`bg-primary-500-50  hover:bg-primary-600 rounded-full p-3 transition-colors duration-300 ease-in-out min-w-20 ${className}`}
+    className={`bg-primary-500-50  rounded-full p-3 transition-colors duration-300 ease-in-out min-w-20 ${className}`}
     onClick={(event) => {
       event.preventDefault();
       onClick?.(event);

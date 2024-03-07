@@ -27,6 +27,7 @@ export default async function Home() {
   }) || []
   return (
     <>
+      <div id="modal-root"></div>
       {!!taskNotes.length ?
         <TodaysTasks tasks={taskNotes}/>
         :

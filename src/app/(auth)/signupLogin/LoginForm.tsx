@@ -8,6 +8,7 @@ import {useRouter} from "next/navigation";
 import Card from "@/components/Card/Card";
 import Button from "@/components/Button/Button";
 import {login} from "@/app/(auth)/signupLogin/actions";
+import PopUp from "@/components/PopUp/PopUp";
 
 const initialState: ResponseInterface = {
   message: '',
@@ -58,7 +59,7 @@ export default function LoginForm() {
       </div>
       <p>-{state.message}-</p>
       <div className="flex flex-row justify-center">
-        <Button type="submit" className={"bg-neutral-500 min-w-36 text-neutral-50"}>Login</Button>
+        <Button type="submit" className={"bg-neutral-500 min-w-36 text-neutral-50 hover:bg-neutral-400"}>Login</Button>
       </div>
     </form>
   </Card>

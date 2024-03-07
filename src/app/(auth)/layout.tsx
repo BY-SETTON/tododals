@@ -21,8 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
     <body className=" pb-14 h-full bg-base-100">
+    <div id="modal-root"></div>
     <div className="flex flex-col min-h-full">
-      <div className={"flex justify-center items-center mb-3 h-12"}>
+      <div className={"flex justify-center items-center mb-3 h-12 z-10"}>
         <Navbar navItem={navItem} loggedInState={false}/>
       </div>
       {children}

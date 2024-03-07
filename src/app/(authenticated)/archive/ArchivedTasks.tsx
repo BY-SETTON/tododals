@@ -1,9 +1,10 @@
 'use client';
 
 import TaskNoteCollection from "@/components/TaskNoteCollection/TaskNoteCollection";
-import Dialog from "@/components/dialog/Dialog";
-import {useState} from "react";
+import React, {useState} from "react";
 import {deleteTodo, markAsUnDone} from "@/app/(authenticated)/actions";
+import PopUp from "@/components/PopUp/PopUp";
+import Button from "@/components/Button/Button";
 
 interface Props {
   tasks: any
@@ -38,13 +39,28 @@ export default function ArchiveTasks({tasks}: Props) {
 
   return (
     <>
-      {showDialog && <Dialog
-        title="Would you like to restore or delete this task?"
-        primaryAction={primaryAction}
-        secondaryAction={secondaryAction}
-        onClose={() => {
-          setShowDialog(false)
-        }}/>}
+      <PopUp show={true} onClose={() => setShowDialog(false)}>
+        <h2 className="text-lg font-bold">Would you like to restore or delete this task?</h2>
+        <p className="mt-2 text-sm text-gray-500"></p>
+        <div className="mt-4 flex gap-2">
+          <Button
+            onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+              event.stopPropagation();
+              primaryAction.onClick();
+            }}
+            className="hover:bg-primary-400"
+          >{primaryAction.text}</Button>
+          <Button
+            onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+              event.stopPropagation();
+              secondaryAction.onClick();
+            }}
+            className="hover:bg-red-400">
+            {secondaryAction.text}
+          </Button>
+        </div>
+      </PopUp>
+
       <TaskNoteCollection taskNotes={tasks} showCallToAction={false} onClicked={onClicked}/>
     </>
   );

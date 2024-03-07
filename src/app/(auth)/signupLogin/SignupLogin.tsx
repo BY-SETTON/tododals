@@ -12,7 +12,7 @@ export default function SignupLogin() {
 
   return <>
     <div
-      className={`absolute -z-10 left-0 bg-neutral-100  w-1/2 h-full overflow-auto`}>
+      className={`absolute left-0 bg-neutral-100  w-1/2 h-full overflow-auto`}>
       <div
         className={`absolute z-10 w-full h-96 transition-transform ease-in-out duration-700 ${isLogin() ? '-translate-y-full delay-0' : 'translate-y-[50%] delay-[750ms]'}`}>
         <div className={"flex w-full h-full justify-center items-center flex-col"}>
@@ -30,7 +30,7 @@ export default function SignupLogin() {
       </div>
     </div>
     <div
-      className={`absolute -z-10 right-0 bg-primary-500 w-1/2 h-full overflow-auto`}>
+      className={`absolute right-0 bg-primary-500 w-1/2 h-full overflow-auto`}>
       <div
         className={`absolute z-10 w-full h-96 transition-transform ease-in-out duration-700 bottom-0  ${isLogin() ? '-translate-y-[35vh] delay-[750ms]' : 'translate-y-full delay-250'}`}>
         <div className={"flex w-full h-full justify-center items-center flex-col"}>

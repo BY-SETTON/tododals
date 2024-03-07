@@ -59,7 +59,7 @@ export default function SignupForm() {
       </div>
       <p>-{state.message}-</p>
       <div className="flex flex-row justify-center">
-        <Button type="submit" className={"bg-primary-100 min-w-36 text-primary-700"}>Signup</Button>
+        <Button type="submit" className={"bg-primary-100 min-w-36 text-primary-700 hover:bg-primary-50"}>Signup</Button>
       </div>
     </form>
   </Card>;
