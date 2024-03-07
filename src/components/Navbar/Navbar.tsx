@@ -33,7 +33,7 @@ export default function Navbar({navItem, onLogOut, loggedInState = false}: Props
         </button>
       </div>}
       <div className="basis-full justify-center flex">
-        <div className="inline-flex rounded-lg bg-primary-900 p-1">
+        <div className="inline-flex rounded-lg bg-primary-900 p-2 mt-2  min-w-52 justify-between">
           {
             navItem?.map((item) => {
                 const activeStyle = isActive(item) ? 'bg-primary-700 text-neutral-50 shadow-sm focus:relative' : ''

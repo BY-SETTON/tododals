@@ -15,8 +15,13 @@ export default function SignupLogin() {
       className={`absolute -z-10 left-0 bg-neutral-100  w-1/2 h-full overflow-auto`}>
       <div
         className={`absolute z-10 w-full h-96 transition-transform ease-in-out duration-700 ${isLogin() ? '-translate-y-full delay-0' : 'translate-y-[50%] delay-[750ms]'}`}>
-        <div className={"flex w-full h-full justify-center items-center text-9xl"}>
-          LOGIN
+        <div className={"flex w-full h-full justify-center items-center flex-col"}>
+          <div className={"text-9xl text-neutral-500 mb-2"}>
+            LOGIN
+          </div>
+          <div className={"text-xl text-neutral-400"}>
+            :)
+          </div>
         </div>
       </div>
       <div
@@ -28,8 +33,13 @@ export default function SignupLogin() {
       className={`absolute -z-10 right-0 bg-primary-500 w-1/2 h-full overflow-auto`}>
       <div
         className={`absolute z-10 w-full h-96 transition-transform ease-in-out duration-700 bottom-0  ${isLogin() ? '-translate-y-[35vh] delay-[750ms]' : 'translate-y-full delay-250'}`}>
-        <div className={"flex w-full h-full justify-center items-center text-9xl"}>
-          SIGNUP
+        <div className={"flex w-full h-full justify-center items-center flex-col"}>
+          <div className={"text-9xl text-primary-100 mb-2"}>
+            SIGNUP
+          </div>
+          <div className={"text-xl text-primary-300"}>
+            Its free
+          </div>
         </div>
       </div>
       <div

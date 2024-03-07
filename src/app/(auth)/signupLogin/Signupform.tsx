@@ -33,7 +33,9 @@ export default function SignupForm() {
           className="space-y-6">
       <div className="flex flex-row justify-center items-center">
         <label htmlFor="username" className="sr-only">Username</label>
-        <User className="mr-4"/>
+        <div className={" rounded-full mr-4 bg-primary-100"}>
+          <User className="w-6 h-6 m-2 text-primary-800"/>
+        </div>
         <input
           className="rounded-lg border-gray-200 p-3 text-sm min-w-72"
           placeholder="Username"
@@ -44,7 +46,9 @@ export default function SignupForm() {
       </div>
       <div className="flex flex-row justify-center items-center">
         <label htmlFor="password" className="sr-only">Password</label>
-        <Lock className="mr-4"/>
+        <div className={" rounded-full mr-4 bg-primary-100"}>
+          <Lock className="w-6 h-6 m-2 text-primary-800"/>
+        </div>
         <input
           className="rounded-lg border-gray-200 p-3 text-sm min-w-72"
           placeholder="Password"
@@ -55,7 +59,7 @@ export default function SignupForm() {
       </div>
       <p>-{state.message}-</p>
       <div className="flex flex-row justify-center">
-        <Button type="submit" className={"bg-neutral-100 min-w-36 text-primary-700"}>Signup</Button>
+        <Button type="submit" className={"bg-primary-100 min-w-36 text-primary-700"}>Signup</Button>
       </div>
     </form>
   </Card>;

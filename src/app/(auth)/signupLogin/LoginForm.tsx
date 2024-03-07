@@ -32,7 +32,9 @@ export default function LoginForm() {
     <form action={formAction} className="space-y-6">
       <div className="flex flex-row justify-center items-center">
         <label htmlFor="username" className="sr-only">Username</label>
-        <User className="mr-4"/>
+        <div className={" rounded-full mr-4 bg-neutral-500"}>
+          <User className="w-6 h-6 m-2 text-neutral-50"/>
+        </div>
         <input
           className="rounded-lg border-gray-200 p-3 text-sm min-w-72"
           placeholder="Username"
@@ -43,7 +45,9 @@ export default function LoginForm() {
       </div>
       <div className="flex flex-row justify-center items-center">
         <label htmlFor="password" className="sr-only">Password</label>
-        <Lock className="mr-4"/>
+        <div className={" rounded-full mr-4 bg-neutral-500"}>
+          <Lock className="w-6 h-6 m-2 text-neutral-50"/>
+        </div>
         <input
           className="rounded-lg border-gray-200 p-3 text-sm min-w-72"
           placeholder="Password"
@@ -54,7 +58,7 @@ export default function LoginForm() {
       </div>
       <p>-{state.message}-</p>
       <div className="flex flex-row justify-center">
-        <Button type="submit" className={"bg-primary-500 min-w-36 text-neutral-50"}>Login</Button>
+        <Button type="submit" className={"bg-neutral-500 min-w-36 text-neutral-50"}>Login</Button>
       </div>
     </form>
   </Card>
