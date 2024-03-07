@@ -1,19 +1,21 @@
 "use client"
 import {Lock, User} from "react-feather";
 import {useFormState} from "react-dom";
-import {login} from "@/app/(auth)/login/actions";
 import {ResponseInterface} from "@/app/(authenticated)/new/(interfaces)/interface";
 import {ResponseTypes} from "@/app/(authenticated)/new/(enums)/(enums)";
 import {useEffect} from "react";
 import {useRouter} from "next/navigation";
+import Card from "@/components/Card/Card";
+import Button from "@/components/Button/Button";
+import {signup} from "@/app/(auth)/signupLogin/actions";
 
 const initialState: ResponseInterface = {
   message: '',
   type: ResponseTypes.ERROR,
 }
-export default function LoginForm() {
+export default function SignupForm() {
   const router = useRouter();
-  const [state, formAction] = useFormState(login, initialState);
+  const [state, formAction] = useFormState(signup, initialState);
 
   useEffect(() => {
     switch (state.type) {
@@ -26,10 +28,9 @@ export default function LoginForm() {
     }
   }, [state, router])
 
-  return <div className="flex justify-center">
+  return <Card className={"bg-primary-500"}>
     <form action={formAction}
-          className="space-y-6 max-w-xl w-full bg-blue-100 p-10 rounded-lg shadow-lg transition mb-20 flex justify-center flex-col">
-      <h1 className="text-center text-3xl">Login</h1>
+          className="space-y-6">
       <div className="flex flex-row justify-center items-center">
         <label htmlFor="username" className="sr-only">Username</label>
         <User className="mr-4"/>
@@ -47,16 +48,15 @@ export default function LoginForm() {
         <input
           className="rounded-lg border-gray-200 p-3 text-sm min-w-72"
           placeholder="Password"
-          type="password"
+          type="text"
           id="password"
           name="password"
         />
       </div>
       <p>-{state.message}-</p>
       <div className="flex flex-row justify-center">
-        <button type="submit" className="bg-blue-300 hover:bg-blue-400 rounded-full min-w-36 p-4">submit</button>
+        <Button type="submit" className={"bg-neutral-100 min-w-36 text-primary-700"}>Signup</Button>
       </div>
     </form>
-  </div>
-
+  </Card>;
 }

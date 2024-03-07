@@ -35,7 +35,7 @@ export default function Dialog({title, primaryAction, secondaryAction, onClose}:
                 event.stopPropagation();
                 primaryAction.onClick();
               }}
-              className="hover:bg-blue-400"
+              className="hover:bg-primary-400"
             >{primaryAction.text}</Button>
             <Button
               onClick={(event: React.MouseEvent<HTMLButtonElement>) => {

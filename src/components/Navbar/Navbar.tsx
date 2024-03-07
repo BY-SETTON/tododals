@@ -26,20 +26,20 @@ export default function Navbar({navItem, onLogOut, loggedInState = false}: Props
   }
 
   return (
-    <div className="flex flex-row w-full mb-14">
+    <div className="flex flex-row w-full">
       {loggedInState && <div className="basis-full justify-start flex">
         <button className="flex hover:underline items-center"
                 onClick={() => router.back()}>Back
         </button>
       </div>}
       <div className="basis-full justify-center flex">
-        <div className="inline-flex rounded-lg border border-gray-100 bg-gray-100 p-1">
+        <div className="inline-flex rounded-lg bg-primary-900 p-1">
           {
             navItem?.map((item) => {
-                const activeStyle = isActive(item) ? 'bg-white text-blue-500 shadow-sm focus:relative' : ''
+                const activeStyle = isActive(item) ? 'bg-primary-700 text-neutral-50 shadow-sm focus:relative' : ''
                 return <button
                   key={item.title}
-                  className={`inline-block rounded-md px-4 py-2 text-sm text-gray-500 hover:text-gray-700 focus:relative ${activeStyle}`}
+                  className={`inline-block rounded-md px-4 py-2 text-sm text-neutral-50 hover:text-primary-50 focus:relative ${activeStyle}`}
                   onClick={() => {
                     router.push(item.route)
                   }}

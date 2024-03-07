@@ -14,13 +14,13 @@ export default function RootLayout({
 }>) {
 
   const navItem: NavItem[] = [
+    {title: 'Signup', route: '/signup'},
     {title: 'Login', route: '/login'},
-    {title: 'Signup', route: '/signup'}
   ]
 
   return (
     <html lang="en" className="h-full">
-    <body className="pt-12 pb-14 pl-14 pr-14 h-full">
+    <body className=" pb-14 h-full bg-base-100">
     <div className="flex flex-col min-h-full">
       <div className={"flex justify-center items-center mb-3 h-12"}>
         <Navbar navItem={navItem} loggedInState={false}/>

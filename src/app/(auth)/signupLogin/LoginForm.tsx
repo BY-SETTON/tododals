@@ -3,18 +3,19 @@ import {Lock, User} from "react-feather";
 import {useFormState} from "react-dom";
 import {ResponseInterface} from "@/app/(authenticated)/new/(interfaces)/interface";
 import {ResponseTypes} from "@/app/(authenticated)/new/(enums)/(enums)";
-import {signup} from "@/app/(auth)/signup/actions";
 import {useEffect} from "react";
 import {useRouter} from "next/navigation";
-import {createCookie} from "@/serverFunctions/cookies";
+import Card from "@/components/Card/Card";
+import Button from "@/components/Button/Button";
+import {login} from "@/app/(auth)/signupLogin/actions";
 
 const initialState: ResponseInterface = {
   message: '',
   type: ResponseTypes.ERROR,
 }
-export default function SignupForm() {
+export default function LoginForm() {
   const router = useRouter();
-  const [state, formAction] = useFormState(signup, initialState);
+  const [state, formAction] = useFormState(login, initialState);
 
   useEffect(() => {
     switch (state.type) {
@@ -27,10 +28,8 @@ export default function SignupForm() {
     }
   }, [state, router])
 
-  return <div className="flex justify-center">
-    <form action={formAction}
-          className="space-y-6 max-w-xl w-full bg-blue-100 p-10 rounded-lg shadow-lg transition mb-20 flex justify-center flex-col">
-      <h1 className="text-center text-3xl">Signup</h1>
+  return <Card className={"bg-neutral-100"}>
+    <form action={formAction} className="space-y-6">
       <div className="flex flex-row justify-center items-center">
         <label htmlFor="username" className="sr-only">Username</label>
         <User className="mr-4"/>
@@ -48,15 +47,16 @@ export default function SignupForm() {
         <input
           className="rounded-lg border-gray-200 p-3 text-sm min-w-72"
           placeholder="Password"
-          type="text"
+          type="password"
           id="password"
           name="password"
         />
       </div>
       <p>-{state.message}-</p>
       <div className="flex flex-row justify-center">
-        <button type="submit" className="bg-blue-300 hover:bg-blue-400 rounded-full min-w-36 p-4">submit</button>
+        <Button type="submit" className={"bg-primary-500 min-w-36 text-neutral-50"}>Login</Button>
       </div>
     </form>
-  </div>;
+  </Card>
+
 }
