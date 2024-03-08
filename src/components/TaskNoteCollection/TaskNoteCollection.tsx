@@ -18,7 +18,7 @@ export default function TaskNoteCollection({taskNotes, onClicked, showCallToActi
   return (
     <>
       {!!largeTasks.length &&
-        <div className={'grid lg:grid-cols-3 lg:gap-6 sm:grid-cols-2 sm:gap-2 grid-cols-1 gap-1 mb-20'}>
+        <div className={'grid lg:grid-cols-3 lg:gap-6 sm:grid-cols-2 sm:gap-2 grid-cols-1 gap-1 mb-4 sm:mb-20'}>
           {
             largeTasks.map((note, index) => (
               <TaskNote key={note.id} taskNote={note} onClicked={onClicked} showCallToAction={showCallToAction}/>

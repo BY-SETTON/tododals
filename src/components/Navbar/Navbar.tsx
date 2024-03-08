@@ -4,9 +4,10 @@ import {usePathname, useRouter} from 'next/navigation'
 import React, {ReactElement} from "react";
 
 export interface NavItem {
-  title: string,
+  title?: string,
   route: string,
   svgIcon?: ReactElement,
+  className?: string,
 }
 
 interface Props {
@@ -44,7 +45,7 @@ export default function Navbar({navItem, onLogOut, loggedInState = false}: Props
                   const activeStyle = isActive(item) ? 'bg-primary-700 text-neutral-50 shadow-sm focus:relative' : ''
                   return <button
                     key={item.title}
-                    className={`flex w-full justify-center sm:inline-block rounded-md px-4 py-2 text-sm text-neutral-50 hover:text-primary-50 focus:relative items-center ${activeStyle}`}
+                    className={`flex w-full justify-center sm:inline-block rounded-md px-4 py-2 text-sm text-neutral-50 hover:text-primary-50 focus:relative items-center ${activeStyle} ${item.className}`}
                     onClick={() => {
                       router.push(item.route)
                     }}

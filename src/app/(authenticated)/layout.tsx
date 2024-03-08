@@ -2,7 +2,7 @@ import type {Metadata} from "next";
 import "../globals.css";
 import Navbar, {NavItem} from "@/components/Navbar/Navbar";
 import {logout} from "@/app/(authenticated)/actions";
-import {Archive, Calendar, CheckSquare} from "react-feather";
+import {Archive, Calendar, CheckSquare, Plus} from "react-feather";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,6 +16,7 @@ export default function RootLayout({
 }>) {
   const navItem: NavItem[] = [
     {title: 'Tasks', svgIcon: <CheckSquare/>, route: '/'},
+    {svgIcon: <Plus/>, route: '/new', className: 'sm:hidden'},
     {title: 'Archive', svgIcon: <Archive/>, route: '/archive'},
     {title: 'Calender', svgIcon: <Calendar/>, route: '/calender'}
   ]
