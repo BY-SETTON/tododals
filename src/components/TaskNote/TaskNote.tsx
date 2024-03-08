@@ -2,11 +2,12 @@
 
 import Button from "@/components/Button/Button";
 import {useRouter} from "next/navigation";
-import React from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {TaskNoteInterface} from "@/components/TodaysTasks/(interfaces)/task";
 import {TaskSize} from "@/components/TodaysTasks/(enum)/task";
 import {markAsDone} from "@/app/(authenticated)/actions";
 import convertMarkDownToHTML from "@/utils/markDown";
+import {Maximize2} from "react-feather";
 
 const feather = require('feather-icons');
 
@@ -19,6 +20,24 @@ interface TaskNotProp {
 }
 
 function TaskNote({taskNote, onClicked, showCallToAction = true, isHoverState = false, className}: TaskNotProp) {
+  const [hoverState, setHoverState] = useState<boolean>(isHoverState);
+  const ref = useRef<any>(null);
+
+  useEffect(() => {
+    const handleOutSideClick = (event: Event) => {
+      if (!ref.current?.contains(event.target)) {
+        console.log("Outside Clicked. ");
+        setHoverState(false);
+      }
+    };
+
+    window.addEventListener("mousedown", handleOutSideClick);
+
+    return () => {
+      window.removeEventListener("mousedown", handleOutSideClick);
+    };
+  }, [ref]);
+
   const svgIcon = taskNote?.icon && feather.icons[taskNote.icon].toSvg({color: 'black', width: 30, height: 30});
   const router = useRouter();
   const markDownDescription = convertMarkDownToHTML(taskNote.description);
@@ -37,6 +56,12 @@ function TaskNote({taskNote, onClicked, showCallToAction = true, isHoverState = 
     onClicked?.(taskNote.id);
   }
 
+  const onExpandClick = (event: React.MouseEvent<Element>) => {
+    event.stopPropagation();
+    console.log('expand clicked');
+    setHoverState(true);
+  }
+
   const sizeColor = (): { bg: string, border: string } => {
     switch (Number(taskNote.size)) {
       case TaskSize.LARGE:
@@ -50,23 +75,27 @@ function TaskNote({taskNote, onClicked, showCallToAction = true, isHoverState = 
   }
 
   return (
-    <a onClick={onTaskClick}
+    <a ref={ref}
+       onClick={onTaskClick}
        className={`cursor-pointer group relative block h-52 sm:h-72 lg:h-64 ${sizeColor().bg} ${className}`}>
       <span className="absolute inset-0 border-2 border-dashed border-black"></span>
+
       <div
-        className={`relative flex h-full transform items-start border-2 ${sizeColor().border} bg-white transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2 ${isHoverState && '-translate-x-2 -translate-y-2'}`}
+        className={`relative flex h-full transform items-start border-2 ${sizeColor().border} bg-white transition-transform md:group-hover:-translate-x-2 md:group-hover:-translate-y-2 ${hoverState && '-translate-x-2 -translate-y-2'}`}
       >
         <div
-          className={`mt-10 p-4 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 sm:p-6 lg:p-8 w-full break-words ${isHoverState && 'absolute opacity-0'}`}
+          className={`mt-10 p-4 !pt-0 transition-opacity md:group-hover:absolute md:group-hover:opacity-0 sm:p-6 lg:p-8 w-full break-words ${hoverState && 'absolute opacity-0'}`}
         >
           <img src={`data:image/svg+xml;utf8,${svgIcon}`} alt=""/>
           <h2 className=" text-xl font-medium sm:text-2xl">{taskNote.name}</h2>
           {taskNote.dueDate && <p
             className="text-sm sm:text-base">{taskNote.dueDate.toLocaleDateString('en-UK')}</p>}
         </div>
-
+        <div onClick={onExpandClick}
+             className={`z-30 self-end mb-4 mr-4 sm:hidden ${hoverState && 'absolute opacity-0'}`}>
+          <Maximize2/></div>
         <div
-          className={`absolute overflow-auto w-full h-full opacity-0 transition-opacity group-hover:relative group-hover:opacity-100 ${isHoverState && 'relative opacity-100'}`}>
+          className={`absolute overflow-auto w-full h-full opacity-0 transition-opacity md:group-hover:relative md:group-hover:opacity-100 ${hoverState && 'relative opacity-100'}`}>
           <div
             className={`w-full p-4 sm:p-6 lg:px-8 lg:pb-6 lg:pt-4 `}
           >
@@ -86,12 +115,11 @@ function TaskNote({taskNote, onClicked, showCallToAction = true, isHoverState = 
               </div>}
             </div>
             <div className="text-container" dangerouslySetInnerHTML={{__html: markDownDescription}}/>
-            <p className="mb-4 mt-4 text-sm sm:text-base">
-            </p>
           </div>
         </div>
       </div>
-    </a>);
+    </a>
+  );
 }
 
 export default TaskNote;
