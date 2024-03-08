@@ -38,7 +38,7 @@ export default function SignupLogin() {
             SIGNUP
           </div>
           <div className={"text-xl text-primary-300"}>
-            It's free
+            It&apos;s free
           </div>
         </div>
       </div>
