@@ -208,8 +208,7 @@ export default function EditTaskForm({task, onTaskChange}: Props) {
         <label className="sr-only" htmlFor="search">Description</label>
         {showBox && <SearchIconFolder onSelected={onIconSelect} onClose={onSelectIcon} defaultValue={task.icon}/>}
         {!showBox && <button className="h-14 bg-blue-300 hover:bg-blue-400 text-white rounded max-w-40 w-full"
-                             onClick={onSelectIcon}>{'Select Icon'}
-        </button>}
+                             onClick={onSelectIcon}>Select Icon</button>}
         <input id="size" name="size" type="hidden" value={selectedSize}></input>
         <input id="icon" name="icon" type="hidden" value={selectedIcon}></input>
         <input id="taskId" name="taskId" type="hidden" value={task.id}></input>

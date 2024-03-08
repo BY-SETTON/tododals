@@ -39,7 +39,7 @@ export default function SignupForm() {
           <User className="w-6 h-6 m-2 text-primary-800"/>
         </div>
         <input
-          className="rounded-lg p-3 text-sm min-w-72"
+          className="rounded-lg p-3 text-sm min-w-72 outline-0"
           placeholder="Username"
           type="text"
           id="signup-username"
@@ -52,7 +52,7 @@ export default function SignupForm() {
           <Lock className="w-6 h-6 m-2 text-primary-800"/>
         </div>
         <input
-          className="rounded-lg p-3 text-sm min-w-72"
+          className="rounded-lg p-3 text-sm min-w-72 outline-0"
           placeholder="Password"
           type="text"
           id="signup-password"
@@ -62,7 +62,7 @@ export default function SignupForm() {
       {/*<p>-{state.message}-</p>*/}
       <div className="flex flex-row justify-center">
         <button type={loading ? "button" : "submit"}
-                className={"bg-primary-500-50  rounded-full p-3 transition-colors duration-300 ease-in-out bg-primary-100 min-w-36 text-primary-700 hover:bg-primary-50"}>
+                className={"rounded-full p-3 transition-colors duration-300 ease-in-out bg-primary-100 min-w-36 text-primary-700 hover:bg-neutral-50"}>
           {loading ? 'Submitted' : 'Signup'}
         </button>
 

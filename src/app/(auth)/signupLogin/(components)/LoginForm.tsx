@@ -42,7 +42,7 @@ export default function LoginForm() {
           <User className="w-6 h-6 m-2 text-neutral-500"/>
         </div>
         <input
-          className="rounded-lg p-3 text-sm min-w-72 "
+          className="rounded-lg p-3 text-sm min-w-72 outline-0"
           placeholder="Username"
           type="text"
           id="login-username"
@@ -55,7 +55,7 @@ export default function LoginForm() {
           <Lock className="w-6 h-6 m-2 text-neutral-500"/>
         </div>
         <input
-          className="rounded-lg  p-3 text-sm min-w-72  bg-neutral-50"
+          className="rounded-lg  p-3 text-sm min-w-72  bg-neutral-50 outline-0"
           placeholder="password"
           type="password"
           autoComplete="on"
@@ -66,7 +66,7 @@ export default function LoginForm() {
       {/*<p>-{state.message}-</p>*/}
       <div className="flex flex-row justify-center">
         <button type={loading ? "button" : "submit"}
-                className={"bg-neutral-200 min-w-36 text-neutral-500 hover:bg-neutral-500 rounded-full p-3 transition-colors duration-300 ease-in-out"}>
+                className={"bg-neutral-200 min-w-36 text-neutral-500 hover:bg-neutral-50 rounded-full p-3 transition-colors duration-300 ease-in-out"}>
           {loading ? 'Logging in' : 'Login'}
         </button>
       </div>

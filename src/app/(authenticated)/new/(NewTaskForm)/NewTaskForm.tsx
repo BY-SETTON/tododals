@@ -149,9 +149,10 @@ export default function NewTaskForm() {
             </div>
           </div>
         </div>
-        <div>
+
+        <div className={"mb-64"}>
           <Datepicker
-            inputClassName="bg-white p-4 w-full rounded  rounded-xl h-12"
+            inputClassName="bg-white p-4 w-full rounded  rounded-xl"
             primaryColor={"green"}
             asSingle={true}
             useRange={false}
@@ -164,21 +165,22 @@ export default function NewTaskForm() {
             inputId="date"
           />
         </div>
-        <label className="sr-only" htmlFor="search">Description</label>
-
-        <div className="flex">
-          <button className="bg-blue-300 hover:bg-blue-400 text-white rounded-lg h-10 mr-4 w-1/6 sm:hidden"
-                  onClick={onSelectIcon}>{'Select Icon'}
-          </button>
-
-          <div className={`w-full mb-4 ${showBox ? 'block' : 'hidden'}`}>
+        {!showBox &&
+          <div className="flex justify-center sm:hidden">
+            <button
+              className="inline-block w-full h-14 rounded-lg bg-blue-300 hover:bg-blue-400 px-5 py-3 font-medium text-white"
+              onClick={onSelectIcon}>Select Icon
+            </button>
+          </div>
+        }
+        <div className={`flex mb- ${showBox ? 'block' : 'hidden'} sm:block`}>
+          <div className={`w-full`}>
             <SearchIconFolder onSelected={onIconSelect} onClose={onSelectIcon}/>
           </div>
-
         </div>
         <input id="size" name="size" type="hidden" value={selectedSize}></input>
         <input id="icon" name="icon" type="hidden" value={selectedIcon}></input>
-        <div className="mt-4 flex justify-center">
+        <div className="mb-6 flex justify-center">
           <button
             type="submit"
             className="inline-block max-w-64 h-14 w-full rounded-lg bg-blue-300 hover:bg-blue-400 px-5 py-3 font-medium text-white"
