@@ -45,7 +45,7 @@ export default function Navbar({navItem, onLogOut, loggedInState = false}: Props
                   const activeStyle = isActive(item) ? 'bg-neutral-200 text-neutral-500 shadow-sm focus:relative' : ''
                   return <button
                     key={item.title}
-                    className={`flex w-full justify-center sm:inline-block rounded-md px-4 py-2 text-sm text-neutral-50 hover:text-neutral-500 focus:relative items-center ${activeStyle} ${item.className}`}
+                    className={`flex w-full justify-center sm:inline-block rounded-md px-4 py-2 text-sm text-neutral-50 ${isActive(item) ? 'hover:text-neutral-500' : 'hover:text-neutral-100'} focus:relative items-center ${activeStyle} ${item.className}`}
                     onClick={() => {
                       router.push(item.route)
                     }}
