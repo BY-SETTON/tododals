@@ -1,6 +1,6 @@
 "use client"
-import LoginForm from "@/app/(auth)/signupLogin/LoginForm";
-import SignupForm from "@/app/(auth)/signupLogin/Signupform";
+import LoginForm from "@/app/(auth)/signupLogin/(components)/LoginForm";
+import SignupForm from "@/app/(auth)/signupLogin/(components)/Signupform";
 import {usePathname} from "next/navigation";
 
 export default function SignupLogin() {
@@ -12,7 +12,7 @@ export default function SignupLogin() {
 
   return <>
     <div
-      className={`absolute left-0 bg-neutral-100  w-1/2 h-full overflow-auto`}>
+      className={`absolute left-0 bg-neutral-100 w-1/2 h-full overflow-auto`}>
       <div
         className={`absolute z-10 w-full h-96 transition-transform ease-in-out duration-700 ${isLogin() ? '-translate-y-full delay-0' : 'translate-y-[50%] delay-[750ms]'}`}>
         <div className={"flex w-full h-full justify-center items-center flex-col"}>
@@ -25,7 +25,7 @@ export default function SignupLogin() {
         </div>
       </div>
       <div
-        className={`absolute mt-48 transition-transform ease-in-out duration-[2000ms] ${isLogin() ? 'translate-x-[calc(25vw-204px)]  delay-250' : 'translate-x-[calc(75vw-204px)] delay-250'}`}>
+        className={`absolute mt-72 transition-transform ease-in-out duration-[2000ms] ${isLogin() ? 'translate-x-[calc(25vw-204px)]  delay-250' : 'translate-x-[calc(75vw-204px)] delay-250'}`}>
         <SignupForm/>
       </div>
     </div>
@@ -38,12 +38,12 @@ export default function SignupLogin() {
             SIGNUP
           </div>
           <div className={"text-xl text-primary-300"}>
-            Its free
+            It's free
           </div>
         </div>
       </div>
       <div
-        className={`absolute mt-48 transition-transform ease-in-out delay-50 duration-[2000ms] ${isLogin() ? '-translate-x-[calc(25vw+204px)]  delay-250' : 'translate-x-[calc(25vw-204px)] delay-250'}`}>
+        className={`absolute mt-72 transition-transform ease-in-out delay-50 duration-[2000ms] ${isLogin() ? '-translate-x-[calc(25vw+204px)]  delay-250' : 'translate-x-[calc(25vw-204px)] delay-250'}`}>
         <LoginForm/>
       </div>
     </div>

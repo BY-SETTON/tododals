@@ -37,10 +37,10 @@ export default function SearchIconFolder({onSelected, onClose, defaultValue}: Pr
 
   return <div>
     <div
-      className="rounded-2xl border border-blue-100 bg-white px-4 pb-4 shadow-lg sm:px-6 lg:px-4 sm:pb-6 lg:pb-8 sm:pt-2 lg:pt-4 max-h-60 overflow-auto"
+      className="rounded-2xl border border-blue-100 bg-white px-4 py-4 shadow-lg sm:px-6 lg:px-4 sm:pb-6 lg:pb-8 sm:pt-2 lg:pt-4 max-h-60 overflow-auto"
       role="alert">
       <div className="flex flex-row items-center mb-2">
-        <XCircle className="mr-2 w-14 cursor-pointer" width={30} height={30} onClick={onClose}/>
+        <XCircle className="mr-2 w-14 cursor-pointer sm:hidden" width={30} height={30} onClick={onClose}/>
         <div className="w-full">
           <label className="sr-only" htmlFor="name">Search</label>
           <input
@@ -52,7 +52,7 @@ export default function SearchIconFolder({onSelected, onClose, defaultValue}: Pr
           />
         </div>
       </div>
-      <div className="grid grid-cols-8">
+      <div className="grid grid-cols-5 sm:grid-cols-8">
         {getSearchedIcons(icons).map((icon: string) => {
           if (!feather.icons[icon]) {
             return

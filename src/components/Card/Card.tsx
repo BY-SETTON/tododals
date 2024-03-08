@@ -8,7 +8,7 @@ interface Props {
 export default function Card({children, className}: Props) {
   return (
     <div
-      className={`w-xl py-8 px-12 rounded-lg shadow-lg transition mb-20 flex justify-center flex-col ${className}`}>
+      className={`w-xl py-12 px-12 rounded-lg shadow-lg transition mb-20 flex justify-center flex-col ${className}`}>
       {children}
     </div>
   )

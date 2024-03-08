@@ -38,11 +38,11 @@ export default function LoginForm() {
           className="space-y-6">
       <div className="flex flex-row justify-center items-center">
         <label htmlFor="login-username" className="sr-only">Username</label>
-        <div className={" rounded-full mr-4 bg-neutral-500"}>
-          <User className="w-6 h-6 m-2 text-neutral-50"/>
+        <div className={" rounded-full mr-4 bg-neutral-200"}>
+          <User className="w-6 h-6 m-2 text-neutral-500"/>
         </div>
         <input
-          className="rounded-lg border-gray-200 p-3 text-sm min-w-72"
+          className="rounded-lg p-3 text-sm min-w-72 "
           placeholder="Username"
           type="text"
           id="login-username"
@@ -51,22 +51,22 @@ export default function LoginForm() {
       </div>
       <div className="flex flex-row justify-center items-center">
         <label htmlFor="login-password" className="sr-only">Password</label>
-        <div className={" rounded-full mr-4 bg-neutral-500"}>
-          <Lock className="w-6 h-6 m-2 text-neutral-50"/>
+        <div className={" rounded-full mr-4 bg-neutral-200"}>
+          <Lock className="w-6 h-6 m-2 text-neutral-500"/>
         </div>
         <input
-          className="rounded-lg border-gray-200 p-3 text-sm min-w-72"
-          placeholder="login-Password"
+          className="rounded-lg  p-3 text-sm min-w-72  bg-neutral-50"
+          placeholder="password"
           type="password"
           autoComplete="on"
           id="login-password"
           name="login-password"
         />
       </div>
-      <p>-{state.message}-</p>
+      {/*<p>-{state.message}-</p>*/}
       <div className="flex flex-row justify-center">
         <button type={loading ? "button" : "submit"}
-                className={"bg-neutral-500 min-w-36 text-neutral-50 hover:bg-neutral-400 bg-primary-500-50  rounded-full p-3 transition-colors duration-300 ease-in-out"}>
+                className={"bg-neutral-200 min-w-36 text-neutral-500 hover:bg-neutral-500 rounded-full p-3 transition-colors duration-300 ease-in-out"}>
           {loading ? 'Logging in' : 'Login'}
         </button>
       </div>

@@ -68,7 +68,7 @@ export default function NewTaskForm() {
     <div className="flex justify-center w-full">
       <form action={formAction}
             onSubmit={submit}
-            className="space-y-2.5 max-w-2xl w-full bg-blue-100 px-10 pb-10 pt-6 rounded-lg shadow-lg transition mb-20">
+            className="space-y-2.5 max-w-2xl w-full bg-blue-100 px-5 pb-5 pt-3 sm:px-10 sm:pb-10 sm:pt-6 rounded-lg shadow-lg transition sm:mb-20">
         <h1 className="text-center text-3xl mb-6">CREATE</h1>
         <div>
           <label className="sr-only" htmlFor="name">Task name</label>
@@ -151,7 +151,7 @@ export default function NewTaskForm() {
         </div>
         <div>
           <Datepicker
-            inputClassName="bg-white p-4 w-full rounded  rounded-xl h-12 mb-6"
+            inputClassName="bg-white p-4 w-full rounded  rounded-xl h-12"
             primaryColor={"green"}
             asSingle={true}
             useRange={false}
@@ -167,14 +167,14 @@ export default function NewTaskForm() {
         <label className="sr-only" htmlFor="search">Description</label>
 
         <div className="flex">
-          {/*<button className="bg-blue-300 hover:bg-blue-400 text-white rounded-lg h-10 mr-4 w-1/6"*/}
-          {/*        onClick={onSelectIcon}>{'Select Icon'}*/}
-          {/*</button>*/}
-          {true &&
-            <div className="w-full mb-4">
-              <SearchIconFolder onSelected={onIconSelect} onClose={onSelectIcon}/>
-            </div>
-          }
+          <button className="bg-blue-300 hover:bg-blue-400 text-white rounded-lg h-10 mr-4 w-1/6 sm:hidden"
+                  onClick={onSelectIcon}>{'Select Icon'}
+          </button>
+
+          <div className={`w-full mb-4 ${showBox ? 'block' : 'hidden'}`}>
+            <SearchIconFolder onSelected={onIconSelect} onClose={onSelectIcon}/>
+          </div>
+
         </div>
         <input id="size" name="size" type="hidden" value={selectedSize}></input>
         <input id="icon" name="icon" type="hidden" value={selectedIcon}></input>

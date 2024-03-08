@@ -26,7 +26,7 @@ export default function RootLayout({
     <body className="sm:pt-12 sm:pb-14 sm:px-14 px-4 pt-4 h-full">
     <div id="modal-root"></div>
     <Navbar navItem={navItem} onLogOut={logout} loggedInState={true}/>
-    <div className="flex flex-col min-h-full mb-36 sm:16">
+    <div className="flex flex-col min-h-full mb-24 sm:16">
       {children}
     </div>
     </body>
