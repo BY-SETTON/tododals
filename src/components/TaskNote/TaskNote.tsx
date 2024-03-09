@@ -22,7 +22,6 @@ interface TaskNotProp {
 function TaskNote({taskNote, onClicked, showCallToAction = true, isHoverState = false, className}: TaskNotProp) {
   const [hoverState, setHoverState] = useState<boolean>(isHoverState);
   const ref = useRef<any>(null);
-
   useEffect(() => {
     const handleOutSideClick = (event: Event) => {
       if (!ref.current?.contains(event.target)) {
@@ -36,6 +35,10 @@ function TaskNote({taskNote, onClicked, showCallToAction = true, isHoverState = 
       window.removeEventListener("mousedown", handleOutSideClick);
     };
   }, [ref]);
+
+  useEffect(() => {
+    setHoverState(isHoverState);
+  }, [isHoverState]);
 
   const svgIcon = taskNote?.icon && feather.icons[taskNote.icon].toSvg({color: 'black', width: 30, height: 30});
   const router = useRouter();
