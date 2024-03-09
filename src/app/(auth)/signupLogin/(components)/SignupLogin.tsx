@@ -1,16 +1,26 @@
 "use client"
+
 import LoginForm from "@/app/(auth)/signupLogin/(components)/LoginForm";
 import SignupForm from "@/app/(auth)/signupLogin/(components)/Signupform";
 import {usePathname} from "next/navigation";
 import {useEffect, useState} from "react";
 
-export default function SignupLogin() {
-  const pathname = usePathname();
+interface Props {
+  path?: string,
+}
+
+export default function SignupLogin({path}: Props) {
+  const pathnameUse = usePathname();
+  const [pathname, setPathname] = useState<string>(path || pathnameUse);
   const [isSignup, setIsSignup] = useState<boolean>(!pathname.includes('/login'));
 
   useEffect(() => {
     setIsSignup(!pathname.includes('/login'));
   }, [pathname])
+
+  useEffect(() => {
+    setPathname(pathnameUse);
+  }, [pathnameUse]);
 
   return <>
     <div
