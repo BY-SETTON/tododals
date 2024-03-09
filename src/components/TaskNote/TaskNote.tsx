@@ -26,7 +26,6 @@ function TaskNote({taskNote, onClicked, showCallToAction = true, isHoverState = 
   useEffect(() => {
     const handleOutSideClick = (event: Event) => {
       if (!ref.current?.contains(event.target)) {
-        console.log("Outside Clicked. ");
         setHoverState(false);
       }
     };
@@ -58,7 +57,6 @@ function TaskNote({taskNote, onClicked, showCallToAction = true, isHoverState = 
 
   const onExpandClick = (event: React.MouseEvent<Element>) => {
     event.stopPropagation();
-    console.log('expand clicked');
     setHoverState(true);
   }
 

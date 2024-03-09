@@ -6,7 +6,5 @@ export default function SignupLoginPage() {
   const host = headersList.get('x-forwarded-proto') + '://' + headersList.get('host');
   const referer = headersList.get('referer');
   const path = referer?.split(host)
-  console.log(path?.[1]);
-  // console.log(JSON.stringify(headersList, false, 2));
   return (<SignupLogin/>);
 }

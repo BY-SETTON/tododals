@@ -38,8 +38,6 @@ export async function addFootnote(prevState: ResponseInterface, formData: FormDa
     taskId: formData.get('taskId') as string,
   }
 
-  console.log(rawFormData);
-
   let resp;
 
   try {
