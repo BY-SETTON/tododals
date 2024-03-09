@@ -70,11 +70,6 @@ export default function Navbar({navItem, onLogOut, loggedInState = false}: Props
         {loggedInState &&
           <>
             <div className="basis-full justify-end hidden sm:flex">
-              <button className="bg-green-500 w-28 h-14 rounded text-l text-white hover:bg-green-600 mr-10"
-                      onClick={() => {
-                        router.push('/new')
-                      }}>ADD
-              </button>
               <button className="flex hover:underline items-center"
                       onClick={() => {
                         onLogOut?.();
