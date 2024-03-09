@@ -33,14 +33,14 @@ export default function EditTaskForm({task, onTaskChange}: Props) {
   const date = (new Date(task?.dueDate || ''))
   date.setDate(date.getDate() + 1);
   const isoDate = date.toISOString().split('T')[0];
-  const [value, setValue] = useState<any>({
+  const [dateValue, setDateValue] = useState<any>({
     startDate: isoDate,
     endDate: isoDate,
   });
 
   const handleValueChange = (newValue: any) => {
-    handleTaskChange(newValue.startDate, 'dueDate')
-    setValue(newValue);
+    handleTaskChange(new Date(newValue.startDate), 'dueDate');
+    setDateValue(newValue);
   }
 
   const [state, formAction] = useFormState(editTodo, initialState);
@@ -199,7 +199,7 @@ export default function EditTaskForm({task, onTaskChange}: Props) {
             popoverDirection={"up"}
             minDate={new Date()}
             showShortcuts={true}
-            value={value}
+            value={dateValue}
             onChange={handleValueChange}
             inputName="date"
             inputId="date"

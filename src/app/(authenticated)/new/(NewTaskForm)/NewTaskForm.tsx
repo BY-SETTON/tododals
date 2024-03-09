@@ -20,13 +20,13 @@ export default function NewTaskForm() {
   const onSubmitted = () => {
     router.push('/')
   }
-  const [value, setValue] = useState<any>({
+  const [dateValue, setDateValue] = useState<any>({
     startDate: new Date(),
     endDate: new Date().setMonth(11)
   });
 
   const handleValueChange = (newValue: any) => {
-    setValue(newValue);
+    setDateValue(newValue);
   }
 
   const [state, formAction] = useFormState(createTodo, initialState);
@@ -159,7 +159,7 @@ export default function NewTaskForm() {
             popoverDirection={"up"}
             minDate={new Date()}
             showShortcuts={true}
-            value={value}
+            value={dateValue}
             onChange={handleValueChange}
             inputName="date"
             inputId="date"
