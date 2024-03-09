@@ -30,7 +30,7 @@ export default function SignupLogin() {
       </div>
       <div
         className={`absolute mt-72 transition-transform ease-in-out duration-[2000ms] ${isSignup ? 'translate-x-[calc(25vw-204px)]  delay-250' : 'translate-x-[calc(75vw-204px)] delay-250'}`}>
-        <SignupForm/> {isSignup}
+        <SignupForm/> {isSignup.toString()}
       </div>
     </div>
     <div
