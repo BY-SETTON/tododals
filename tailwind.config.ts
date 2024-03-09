@@ -9,6 +9,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        rubikBubbles: 'var(--font-rubik_bubbles)',
+        roboto: 'var(--font-roboto)',
+      },
       colors: {
         transparent: 'transparent',
         current: 'currentColor',
