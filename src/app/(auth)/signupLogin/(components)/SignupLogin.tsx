@@ -13,6 +13,8 @@ export default function SignupLogin() {
   // }
 
   useEffect(() => {
+    console.log(pathname);
+    console.log(!pathname.includes('/login'));
     setIsLogin(!pathname.includes('/login'));
   }, [pathname])
 
