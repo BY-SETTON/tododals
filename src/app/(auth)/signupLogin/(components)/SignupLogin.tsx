@@ -21,7 +21,7 @@ export default function SignupLogin() {
         className={`absolute z-10 w-full h-96 transition-transform ease-in-out duration-700 ${isSignup ? '-translate-y-full delay-0' : 'translate-y-[50%] delay-[750ms]'}`}>
         <div className={"flex w-full h-full justify-center items-center flex-col"}>
           <div className={"text-9xl text-neutral-500 mb-2"}>
-            LOGIN  {isSignup.toString()}
+            LOGIN
           </div>
           <div className={"text-xl text-neutral-400"}>
             :)
@@ -39,7 +39,7 @@ export default function SignupLogin() {
         className={`absolute z-10 w-full h-96 transition-transform ease-in-out duration-700 bottom-0  ${isSignup ? '-translate-y-[35vh] delay-[750ms]' : 'translate-y-full delay-250'}`}>
         <div className={"flex w-full h-full justify-center items-center flex-col"}>
           <div className={"text-9xl text-primary-100 mb-2"}>
-            SIGNUP  {isSignup.toString()}
+            SIGNUP
           </div>
           <div className={"text-xl text-primary-300"}>
             It&apos;s free
