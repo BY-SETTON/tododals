@@ -15,10 +15,10 @@ export default function RootLayout({
   children: React.ReactNode,
 }>) {
   const navItem: NavItem[] = [
-    {title: 'Tasks', svgIcon: <CheckSquare/>, route: '/'},
-    {svgIcon: <Plus/>, route: '/new', className: 'sm:hidden'},
-    {title: 'Archive', svgIcon: <Archive/>, route: '/archive'},
-    {title: 'Calender', svgIcon: <Calendar/>, route: '/calender'}
+    {id: 'tasks', title: 'Tasks', svgIcon: <CheckSquare/>, route: '/'},
+    {id: 'new', svgIcon: <Plus/>, route: '/new', className: 'sm:hidden'},
+    {id: 'archive', title: 'Archive', svgIcon: <Archive/>, route: '/archive'},
+    {id: 'calender', title: 'Calender', svgIcon: <Calendar/>, route: '/calender'}
   ]
 
   return (
