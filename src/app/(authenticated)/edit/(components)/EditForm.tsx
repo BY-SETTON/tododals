@@ -205,10 +205,19 @@ export default function EditTaskForm({task, onTaskChange}: Props) {
             inputId="date"
           />
         </div>
-        <label className="sr-only" htmlFor="search">Description</label>
-        {showBox && <SearchIconFolder onSelected={onIconSelect} onClose={onSelectIcon} defaultValue={task.icon}/>}
-        {!showBox && <button className="h-14 bg-blue-300 hover:bg-blue-400 text-white rounded max-w-40 w-full"
-                             onClick={onSelectIcon}>Select Icon</button>}
+        {!showBox &&
+          <div className="flex justify-center sm:hidden">
+            <button
+              className="inline-block w-full h-14 rounded-lg bg-blue-300 hover:bg-blue-400 px-5 py-3 font-medium text-white"
+              onClick={onSelectIcon}>Select Icon
+            </button>
+          </div>
+        }
+        <div className={`flex mb- ${showBox ? 'block' : 'hidden'} sm:block`}>
+          <div className={`w-full`}>
+            <SearchIconFolder onSelected={onIconSelect} onClose={onSelectIcon}/>
+          </div>
+        </div>
         <input id="size" name="size" type="hidden" value={selectedSize}></input>
         <input id="icon" name="icon" type="hidden" value={selectedIcon}></input>
         <input id="taskId" name="taskId" type="hidden" value={task.id}></input>
