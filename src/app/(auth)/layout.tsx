@@ -14,8 +14,8 @@ export default function RootLayout({
 }>) {
 
   const navItem: NavItem[] = [
-    {title: 'Signup', route: '/signup'},
-    {title: 'Login', route: '/login'},
+    {title: 'Signup', route: '/signup', svgIcon: <div>Signup</div>},
+    {title: 'Login', route: '/login', svgIcon: <div>Login</div>},
   ]
 
   return (

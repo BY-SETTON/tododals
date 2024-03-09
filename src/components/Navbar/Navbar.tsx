@@ -39,10 +39,10 @@ export default function Navbar({navItem, onLogOut, loggedInState = false}: Props
         </div>}
         <div className="basis-full justify-center flex h-full">
           <div
-            className="inline-flex bg-neutral-400 justify-around sm:justify-between min-w-full sm:mt-2 sm:min-w-52 sm:rounded-lg p-2">
+            className="flex gap-2 bg-neutral-400 justify-around sm:justify-between min-w-full sm:mt-2 sm:min-w-52 sm:rounded-lg p-2">
             {
               navItem?.map((item) => {
-                  const activeStyle = isActive(item) ? 'bg-neutral-200 text-neutral-500 shadow-sm focus:relative' : ''
+                const activeStyle = isActive(item) ? 'bg-neutral-200 text-neutral-500 shadow-sm focus:relative' : ''
                   return <button
                     key={item.title}
                     className={`flex w-full justify-center sm:inline-block rounded-md px-4 py-2 text-sm text-neutral-50 ${isActive(item) ? 'hover:text-neutral-500' : 'hover:text-neutral-100'} focus:relative items-center ${activeStyle} ${item.className}`}
