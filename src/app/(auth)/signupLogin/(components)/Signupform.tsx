@@ -39,7 +39,7 @@ export default function SignupForm() {
           <User className="w-6 h-6 m-2 text-primary-800"/>
         </div>
         <input
-          className="rounded-lg p-3 text-sm min-w-72 outline-0"
+          className="rounded-lg p-3 text-sm min-w-60 outline-0"
           placeholder="Username"
           type="text"
           id="signup-username"
@@ -52,7 +52,7 @@ export default function SignupForm() {
           <Lock className="w-6 h-6 m-2 text-primary-800"/>
         </div>
         <input
-          className="rounded-lg p-3 text-sm min-w-72 outline-0"
+          className="rounded-lg p-3 text-sm min-w-60 outline-0"
           placeholder="Password"
           type="text"
           id="signup-password"

@@ -42,7 +42,7 @@ export default function LoginForm() {
           <User className="w-6 h-6 m-2 text-neutral-500"/>
         </div>
         <input
-          className="rounded-lg p-3 text-sm min-w-72 outline-0"
+          className="rounded-lg p-3 text-sm min-w-60 outline-0"
           placeholder="Username"
           type="text"
           id="login-username"
@@ -55,8 +55,8 @@ export default function LoginForm() {
           <Lock className="w-6 h-6 m-2 text-neutral-500"/>
         </div>
         <input
-          className="rounded-lg  p-3 text-sm min-w-72  bg-neutral-50 outline-0"
-          placeholder="password"
+          className="rounded-lg  p-3 text-sm min-w-60  bg-neutral-50 outline-0"
+          placeholder="Password"
           type="password"
           autoComplete="on"
           id="login-password"

@@ -21,14 +21,6 @@ export default function Navbar({navItem, onLogOut, loggedInState = false}: Props
   const pathname = usePathname();
   const [activeItem, setActiveItem] = useState<any>(null);
 
-  // const isActive = (item: NavItem) => {
-  //   if (item.route === '/') {
-  //     return pathname === '/';
-  //   } else {
-  //     return pathname.startsWith(item.route)
-  //   }
-  // }
-
   useEffect(() => {
     navItem.forEach((item) => {
       if (item.route === '/' && pathname === '/') {
