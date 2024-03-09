@@ -24,6 +24,8 @@ export default function Navbar({navItem, onLogOut, loggedInState = false}: Props
     if (item.route === '/') {
       return pathname === '/';
     } else {
+      console.log(item.route);
+      console.log(pathname.startsWith(item.route));
       return pathname.startsWith(item.route)
     }
   }

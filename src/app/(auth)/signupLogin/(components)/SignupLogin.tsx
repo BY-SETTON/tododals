@@ -8,14 +8,7 @@ export default function SignupLogin() {
   const pathname = usePathname();
   const [isLogin, setIsLogin] = useState<boolean>(!pathname.includes('/login'));
 
-  // const isLogin = (): boolean => {
-  //   return !pathname.includes('/login');
-  // }
-
   useEffect(() => {
-    console.log(pathname);
-    console.log(!pathname.includes('/login'));
-    setIsLogin(!pathname.includes('/login'));
   }, [pathname])
 
   return <>
