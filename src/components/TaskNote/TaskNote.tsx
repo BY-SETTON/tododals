@@ -11,7 +11,7 @@ import {Maximize2} from "react-feather";
 
 const feather = require('feather-icons');
 
-interface TaskNotProp {
+export interface TaskNotProp {
   taskNote: TaskNoteInterface,
   onClicked?: (taskId: string) => void,
   className?: string,

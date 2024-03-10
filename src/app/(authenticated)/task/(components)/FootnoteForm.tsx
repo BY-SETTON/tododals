@@ -15,21 +15,21 @@ interface Prop {
 }
 
 export default function FootnoteForm({taskId}: Prop) {
-  const [state, formAction] = useFormState(addFootnote, initialState);
+  const [_, formAction] = useFormState(addFootnote, initialState);
 
   return <form action={formAction}
                className="max-w-xl w-full transition flex flex-row">
-    <div className="flex flex-row justify-center">
-      <button type="submit" className="bg-blue-300 hover:bg-blue-400 rounded-full p-4 mr-4">ADD</button>
-    </div>
     <label htmlFor="footnote" className="sr-only">Add footnote</label>
     <textarea
-      className="rounded-lg border-gray-200 p-3 text-sm w-full bg-blue-100"
+      className="border-gray-200 p-3 text-sm w-full bg-blue-100 mr-4"
       placeholder="footnote"
       id="footnote"
       name="footnote"
     />
     <input id="taskId" name="taskId" type="hidden" value={taskId}></input>
+    <div className="flex flex-row justify-center">
+      <button type="submit" className="bg-blue-300 hover:bg-blue-400 rounded-2xl p-4 ">ADD</button>
+    </div>
 
   </form>
 }
