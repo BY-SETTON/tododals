@@ -5,17 +5,25 @@ import {ResponseTypes} from "@/app/(authenticated)/new/(enums)/(enums)";
 import {revalidatePath} from "next/cache";
 import {cookies} from "next/headers";
 import {redirect} from "next/navigation";
+import {getCookie} from "@/serverFunctions/cookies";
+import {ResponseInterface} from "@/app/(authenticated)/new/(interfaces)/interface";
 
-export async function getAllTask() {
-  let rows;
+export async function getAllTaskByPersonId(): Promise<ResponseInterface> {
+  const personId = (await getCookie('person_id')).value;
+
+  let resp;
   try {
-    rows =
+    resp =
       (await sql`SELECT *
-                 FROM Tasksv3`).rows;
+                 FROM Tasksv3
+                 WHERE PersonId = ${personId}`);
   } catch (error) {
     console.log(error);
   }
-  return rows
+  if (!resp) {
+    return {message: 'error', type: ResponseTypes.ERROR};
+  }
+  return {message: 'Success', type: ResponseTypes.SUCCESS, response: resp};
 }
 
 export async function getAllUnDoneTask(personId: string) {

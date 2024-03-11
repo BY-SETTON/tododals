@@ -68,13 +68,13 @@ export default function NewTaskForm() {
     <div className="flex justify-center w-full">
       <form action={formAction}
             onSubmit={submit}
-            className="space-y-2.5 max-w-2xl w-full bg-blue-100 px-5 pb-5 pt-3 sm:px-10 sm:pb-10 sm:pt-6 rounded-lg shadow-lg transition sm:mb-20">
+            className="space-y-2.5 max-w-2xl w-full bg-blue-100 px-5 pb-5 pt-3 sm:px-10 sm:pb-10 sm:pt-7 rounded-lg shadow-lg transition sm:mb-20">
         <h1 className="text-center text-3xl mb-6">CREATE</h1>
         <div>
           <label className="sr-only" htmlFor="name">Task name</label>
           <input
             className="w-full rounded-lg border-gray-200 p-3 text-sm"
-            placeholder="Grocery"
+            placeholder="Name"
             type="text"
             id="name"
             name="name"
@@ -85,7 +85,7 @@ export default function NewTaskForm() {
           <label className="sr-only" htmlFor="title">Task title</label>
           <input
             className="w-full rounded-lg border-gray-200 p-3 text-sm"
-            placeholder="Pnp Shop"
+            placeholder="Title"
             type="text"
             id="title"
             name="title"
@@ -96,7 +96,7 @@ export default function NewTaskForm() {
           <label className="sr-only" htmlFor="description">Description</label>
           <textarea
             className="w-full rounded-lg border-gray-200 p-3 text-sm"
-            placeholder="Buy stuff for three meals. Do it before 5pm today"
+            placeholder="Description"
             id="description"
             name="description"
             rows={4}

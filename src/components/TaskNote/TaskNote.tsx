@@ -101,7 +101,7 @@ function TaskNote({taskNote, onClicked, showCallToAction = true, isHoverState = 
             className={`w-full p-4 sm:p-6 lg:px-8 lg:pb-6 lg:pt-4 `}
           >
             <div className="flex justify-between items-start">
-              <h3 className="mt-4 text-xl font-medium sm:text-2xl mb-4">{taskNote.title || taskNote.name}</h3>
+              <h3 className="mt-4 text-xl font-medium sm:text-2xl mb-4">{taskNote.name || taskNote.name}</h3>
               {showCallToAction && <div className="flex">
                 <div className="mr-2 inline-flex">
                   <Button
