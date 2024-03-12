@@ -2,36 +2,38 @@ import {DayInterface} from "@/app/(authenticated)/calender/(components)/Calender
 import Chip from "@/components/Chip/Chip";
 import React from "react";
 import {TaskNoteInterface} from "@/components/TodaysTasks/(interfaces)/task";
-import {useRouter} from "next/navigation";
+import getActiveColor from "@/utils/getActiveColor";
 
 interface Props {
   day: DayInterface;
   onClick: () => void;
+  onChipClick: (event: React.MouseEvent<HTMLElement>, task: TaskNoteInterface) => void;
 }
 
-export default function WeekDay({day, onClick}: Props) {
-  const router = useRouter();
+export default function WeekDay({day, onClick, onChipClick}: Props) {
 
-  const onChipClick = (event: React.MouseEvent<HTMLElement>, taskNote: TaskNoteInterface) => {
-    event.stopPropagation();
-    router.push(`/task/${taskNote.id}`);
+  const handleChipClick = (event: React.MouseEvent<HTMLElement>, taskNote: TaskNoteInterface) => {
+    onChipClick(event, taskNote);
   }
 
   return (
-    <div className={"bg-neutral-100 h-32 flex flex-col"} onClick={onClick}>
-      <div className={" flex justify-between p-2 text-neutral-400"}>
-        <div>{day.name} &nbsp;</div>
+    <div className={"bg-neutral-100 h-24 sm:h-32 flex flex-col p-1"} onClick={onClick}>
+      <div className={" flex justify-between sm:p-2 text-neutral-400"}>
+        <div className={"hidden sm:block"}>{day.name} &nbsp;</div>
         <div>{day.number}</div>
       </div>
       {day.tasks?.map((task: any) => {
-        let bg = task.size == 0 ? 'bg-green-400' : task.size == 1 ? 'bg-amber-400' : 'bg-red-400'
+        let bg = getActiveColor(task.size);
+        console.log(bg);
         let hover = task.size == 0 ? 'hover:border-green-500' : task.size == 1 ? 'hover:border-amber-500' : 'hover:border-red-500'
         return <Chip
           key={task.id}
-          className={`transition-all duration-300 ${bg} border-2 border-neutral-100 hover:cursor-pointer ${hover}`}
+          className={`transition-all duration-300 bg-${bg} border-2 border-neutral-100 hover:cursor-pointer ${hover} h-2 sm:h-5`}
           onClick={(event) => {
-            onChipClick(event, task)
-          }}>{task.name}</Chip>
+            handleChipClick(event, task)
+          }}>
+          <div className={"hidden sm:block"}>{task.name}</div>
+        </Chip>
       })}
     </div>
   )

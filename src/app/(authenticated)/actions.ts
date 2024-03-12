@@ -26,6 +26,25 @@ export async function getAllTaskByPersonId(): Promise<ResponseInterface> {
   return {message: 'Success', type: ResponseTypes.SUCCESS, response: resp};
 }
 
+export async function getAllDoneTaskByPersonId(): Promise<ResponseInterface> {
+  const personId = (await getCookie('person_id')).value;
+
+  let resp;
+  try {
+    resp =
+      (await sql`SELECT *
+                 FROM Tasksv3
+                 WHERE PersonId = ${personId}
+                   AND done = FALSE`);
+  } catch (error) {
+    console.log(error);
+  }
+  if (!resp) {
+    return {message: 'error', type: ResponseTypes.ERROR};
+  }
+  return {message: 'Success', type: ResponseTypes.SUCCESS, response: resp};
+}
+
 export async function getAllUnDoneTask(personId: string) {
   let rows;
   try {

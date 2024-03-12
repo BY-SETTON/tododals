@@ -6,6 +6,10 @@ import PopUp from "@/components/PopUp/PopUp";
 import React, {useState} from "react";
 import {onlyDate} from "@/utils/formatDate";
 import {TaskNoteInterface} from "@/components/TodaysTasks/(interfaces)/task";
+import useCheckMobileScreen from "@/hooks/useCheckMobileScreen";
+import {useRouter} from "next/navigation";
+import CalenderPopUpItem from "@/app/(authenticated)/calender/(components)/CalenderPopUpItem";
+import {deleteTodo} from "@/app/(authenticated)/actions";
 
 interface Props {
   tasks: TaskNoteInterface[]
@@ -21,6 +25,9 @@ export interface DayInterface {
 const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
 
 export default function Calender({tasks}: Props) {
+  const mobileScreen = useCheckMobileScreen();
+  const router = useRouter();
+
   const [showDialog, setShowDialog] = useState<boolean>(false);
   const [selectedDaysTasks, setSelectedDaysTasks] = useState<TaskNoteInterface[] | undefined>([]);
 
@@ -42,26 +49,59 @@ export default function Calender({tasks}: Props) {
   for (let i = 0; i < days; i++) {
     todaysDate.setDate(i + 1);
     const daysTasks = tasks.filter((task: any) => {
-      return onlyDate(task?.duedate) == onlyDate(todaysDate)
+      return onlyDate(task?.duedate) == onlyDate(todaysDate);
     });
     const weekDay = weekDays[todaysDate.getDay()];
     dayList[i] = {name: weekDay, number: i + 1, id: i, tasks: daysTasks};
   }
 
+  if (!dayList[dayList.length - 7].number) {
+    dayList.splice(-7)
+  }
+
   const onWeekDayClick = async (day: DayInterface) => {
-    const date = `${todaysDate.getMonth() + 1}/${day.number}/${todaysDate.getFullYear()}`
+    // const date = `${todaysDate.getMonth() + 1}/${day.number}/${todaysDate.getFullYear()}`
     // const daysTasks = await getDaysTasks(date);
-    console.log(day);
+    if (!mobileScreen) {
+      return;
+    }
     setSelectedDaysTasks(day.tasks);
     setShowDialog(true);
   }
 
-  return <div
-    className={"grid grid-cols-7 h-full gap-1 bg-neutral-500 border-4 border-neutral-500 rid-rows-subgrid"}>
+  const onChipClick = (event: React.MouseEvent<HTMLElement>, taskNote: TaskNoteInterface) => {
+    if (mobileScreen) {
+      return;
+    }
+    event.stopPropagation();
+    router.push(`/task/${taskNote.id}`);
+  }
 
+  const handlePopUpItemClick = (event: React.MouseEvent<HTMLElement>, task: TaskNoteInterface) => {
+    event.stopPropagation();
+    router.push(`/task/${task.id}`);
+  }
+
+  const onPopUpItemDelete = async (event: React.MouseEvent<HTMLElement>, task: TaskNoteInterface) => {
+    event.stopPropagation();
+    await deleteTodo(task.id);
+  }
+
+  return <div
+    className={"grid grid-cols-7 gap-0.5 sm:gap-1 bg-neutral-500 border-2 sm:border-4 border-neutral-500"}>
     <PopUp show={showDialog} onClose={() => setShowDialog(false)}>
       <div>{selectedDaysTasks?.map((task) => {
-        return <div key={task.id}>{task.name}</div>
+        return <
+          CalenderPopUpItem
+          key={task.id}
+          task={task}
+          onClick={(event) => {
+            handlePopUpItemClick(event, task)
+          }}
+          onDelete={async (event) => {
+            await onPopUpItemDelete(event, task);
+            setShowDialog(false);
+          }}/>
       })}</div>
     </PopUp>
     {firstDaysOffset.map((day) => {
@@ -71,6 +111,7 @@ export default function Calender({tasks}: Props) {
     {dayList.map((day: DayInterface) => {
       return (<WeekDay key={day.id} day={day} onClick={() => {
         onWeekDayClick(day)
-      }}/>)
+      }}
+                       onChipClick={onChipClick}/>)
     })}</div>
 }

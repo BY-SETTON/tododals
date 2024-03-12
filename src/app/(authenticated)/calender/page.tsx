@@ -1,7 +1,7 @@
 import Calender from "@/app/(authenticated)/calender/(components)/Calender";
-import {getAllTaskByPersonId} from "@/app/(authenticated)/actions";
+import {getAllDoneTaskByPersonId} from "@/app/(authenticated)/actions";
 
 export default async function CalenderPage() {
-  const calenderTaskData = await getAllTaskByPersonId();
+  const calenderTaskData = await getAllDoneTaskByPersonId();
   return (<Calender tasks={calenderTaskData.response.rows}/>);
 }

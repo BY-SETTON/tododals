@@ -9,5 +9,5 @@ interface Props {
 export default function Chip({children, className, onClick}: Props) {
   return <div
     onClick={onClick}
-    className={`rounded-full mx-1.5 my-0.5 pl-1.5 h-5 flex items-center text-sm ${className}`}>{children}</div>;
+    className={`rounded-full mx-1.5 my-0.5 pl-1.5 flex items-center text-sm ${className}`}>{children}</div>;
 }
