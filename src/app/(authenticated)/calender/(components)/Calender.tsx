@@ -9,7 +9,7 @@ import {TaskNoteInterface} from "@/components/TodaysTasks/(interfaces)/task";
 import useCheckMobileScreen from "@/hooks/useCheckMobileScreen";
 import {useRouter} from "next/navigation";
 import CalenderPopUpItem from "@/app/(authenticated)/calender/(components)/CalenderPopUpItem";
-import {deleteTodo} from "@/app/(authenticated)/actions";
+import {markAsDone} from "@/app/(authenticated)/actions";
 
 interface Props {
   tasks: TaskNoteInterface[]
@@ -82,9 +82,13 @@ export default function Calender({tasks}: Props) {
     router.push(`/task/${task.id}`);
   }
 
-  const onPopUpItemDelete = async (event: React.MouseEvent<HTMLElement>, task: TaskNoteInterface) => {
+  const onTaskDone = async (task: TaskNoteInterface) => {
+    await markAsDone(task.id);
+  }
+
+  const onPopUpItemDone = async (event: React.MouseEvent<HTMLElement>, task: TaskNoteInterface) => {
     event.stopPropagation();
-    await deleteTodo(task.id);
+    await onTaskDone(task);
   }
 
   return <div
@@ -98,8 +102,8 @@ export default function Calender({tasks}: Props) {
           onClick={(event) => {
             handlePopUpItemClick(event, task)
           }}
-          onDelete={async (event) => {
-            await onPopUpItemDelete(event, task);
+          onDone={async (event) => {
+            await onPopUpItemDone(event, task);
             setShowDialog(false);
           }}/>
       })}</div>
@@ -109,9 +113,15 @@ export default function Calender({tasks}: Props) {
     })}
 
     {dayList.map((day: DayInterface) => {
-      return (<WeekDay key={day.id} day={day} onClick={() => {
-        onWeekDayClick(day)
-      }}
-                       onChipClick={onChipClick}/>)
+      return (<
+        WeekDay
+        key={day.id}
+        day={day}
+        onClick={async () => {
+          await onWeekDayClick(day)
+        }}
+        onChipClick={onChipClick}
+        onTaskDone={onTaskDone}
+      />)
     })}</div>
 }

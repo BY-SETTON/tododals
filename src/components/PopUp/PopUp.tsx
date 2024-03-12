@@ -19,15 +19,13 @@ export default function PopUp({children, onClose, show}: Props) {
                onClose?.()
              }}>
           <div
-            className="rounded-lg  p-8 shadow-2xl min-h-72 sm:min-h-40 min-w-72 sm:min-w-96 bg-neutral-50">
+            className="rounded-lg  p-8 shadow-2xl h-72 min-h-72 sm:min-h-40 min-w-72 sm:min-w-96 bg-neutral-50">
             <div className="-mt-4 ml-4 mr-4 mb-2 flex justify-end w-full cursor-pointer" onClick={onClose}>
               <XCircle size={20}/>
             </div>
-            <div>{children}
-            </div>
+            {children}
           </div>
         </div>
-
       </div> : <></>
   );
 

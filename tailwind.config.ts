@@ -64,5 +64,26 @@ const config: Config = {
     },
   },
   plugins: [],
+  safelist: [
+    {
+      pattern:
+        /(bg|text|border)-(transparent|current|white|purple|midnight|metal|tahiti|silver|bermuda)/,
+    },
+    {
+      pattern: /(bg|text|border)-(neutral)-(100|200|300|400|500|600|700|800|900)/,
+    },
+    {
+      pattern: /(bg|text|border)-(primary)-(100|200|300|400|500|600|700|800|900)/,
+    },
+    {
+      pattern: /(bg|text|border)-(red)-(100|200|300|400|500|600|700|800|900)/,
+    },
+    {
+      pattern: /(bg|text|border)-(green)-(100|200|300|400|500|600|700|800|900)/,
+    },
+    {
+      pattern: /(bg|text|border)-(amber)-(100|200|300|400|500|600|700|800|900)/,
+    },
+  ],
 };
 export default config;

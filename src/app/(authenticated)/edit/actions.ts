@@ -47,7 +47,7 @@ export async function editTodo(prevState: ResponseInterface, formData: FormData)
     return {message: 'error', type: ResponseTypes.ERROR};
   }
   revalidatePath('/');
-  revalidatePath('/edit/[id]');
+  revalidatePath(`/edit/${rawFormData.taskId}`);
 
   return {message: 'Success', type: ResponseTypes.SUCCESS};
 }

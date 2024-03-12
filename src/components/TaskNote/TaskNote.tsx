@@ -78,7 +78,7 @@ function TaskNote({taskNote, onClicked, showCallToAction = true, isHoverState = 
   return (
     <a ref={ref}
        onClick={onTaskClick}
-       className={`cursor-pointer group relative block h-52 sm:h-72 lg:h-64 ${sizeColor().bg} ${className}`}>
+       className={`cursor-pointer group relative block ${sizeColor().bg} ${className}`}>
       <span className="absolute inset-0 border-2 border-dashed border-black"></span>
 
       <div
@@ -98,7 +98,7 @@ function TaskNote({taskNote, onClicked, showCallToAction = true, isHoverState = 
         <div
           className={`absolute overflow-auto w-full h-full opacity-0 transition-opacity md:group-hover:relative md:group-hover:opacity-100 ${hoverState && 'relative opacity-100'}`}>
           <div
-            className={`w-full p-4 sm:p-6 lg:px-8 lg:pb-6 lg:pt-4 `}
+            className={`w-full p-4 sm:p-6 lg:px-8 lg:pb-6 lg:pt-4`}
           >
             <div className="flex justify-between items-start">
               <h3 className="mt-4 text-xl font-medium sm:text-2xl mb-4">{taskNote.name || taskNote.name}</h3>

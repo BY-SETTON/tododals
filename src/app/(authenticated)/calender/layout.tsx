@@ -7,5 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function CalenderLayout({children}: Readonly<{ children: React.ReactNode }>) {
-  return (<PageLayout className="bg-purple-100">{children}</PageLayout>);
+  return (<PageLayout>{children}</PageLayout>);
 }

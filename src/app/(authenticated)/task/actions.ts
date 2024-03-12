@@ -26,7 +26,7 @@ export async function getFootnotes(taskId: string) {
     return {message: 'error', type: ResponseTypes.ERROR};
   }
   revalidatePath('/');
-  revalidatePath('/edit/[id]');
+  revalidatePath(`/edit/${taskId}`);
 
   return {message: 'Success', type: ResponseTypes.SUCCESS, response: resp.rows};
 }
