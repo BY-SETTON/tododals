@@ -26,7 +26,7 @@ export default function TaskNoteCollection({taskNotes, onClicked, showCallToActi
           }
         </div>}
       {!!mediumTasks.length &&
-        <div className={'grid lg:grid-cols-3 lg:gap-6 sm:grid-cols-2 sm:gap-2 grid-cols-1 gap-1 mb-20'}>
+        <div className={'grid lg:grid-cols-3 lg:gap-6 sm:grid-cols-2 sm:gap-2 grid-cols-1 gap-1 mb-4 sm:mb-20'}>
 
           {
             mediumTasks.map((note, index) => (
@@ -35,7 +35,7 @@ export default function TaskNoteCollection({taskNotes, onClicked, showCallToActi
           }
         </div>}
       {!!smallTasks.length &&
-        <div className={'grid lg:grid-cols-3 lg:gap-6 sm:grid-cols-2 sm:gap-2 grid-cols-1 gap-1 mb-20'}>
+        <div className={'grid lg:grid-cols-3 lg:gap-6 sm:grid-cols-2 sm:gap-2 grid-cols-1 gap-1 mb-4 sm:mb-20'}>
 
           {
             smallTasks.map((note, index) => (

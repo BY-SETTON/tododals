@@ -78,7 +78,7 @@ function TaskNote({taskNote, onClicked, showCallToAction = true, isHoverState = 
   return (
     <a ref={ref}
        onClick={onTaskClick}
-       className={`cursor-pointer group relative block ${sizeColor().bg} ${className} h-32`}>
+       className={`cursor-pointer group relative block ${sizeColor().bg} ${className} h-48`}>
       <span className="absolute inset-0 border-2 border-dashed border-black"></span>
       <div
         className={`relative flex h-full transform items-start border-2 ${sizeColor().border} bg-white transition-transform md:group-hover:-translate-x-2 md:group-hover:-translate-y-2 ${hoverState && '-translate-x-2 -translate-y-2'}`}

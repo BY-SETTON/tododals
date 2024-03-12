@@ -31,12 +31,18 @@ export default function RootLayout({
     {id: 'tasks', title: 'Tasks', svgIcon: <CheckSquare/>, route: '/'},
     {id: 'archive', title: 'Archive', svgIcon: <Archive/>, route: '/archive'},
     {id: 'calender', title: 'Calender', svgIcon: <Calendar/>, route: '/calender'},
-    {id: 'add', title: 'Add', svgIcon: <Plus/>, route: '/new', className: 'bg-neutral-600 hover:scale-150 transition-all ease-in-out duration-200'}
+    {
+      id: 'add',
+      title: 'Add',
+      svgIcon: <Plus/>,
+      route: '/new',
+      className: 'bg-neutral-600 hover:scale-150 transition-all ease-in-out duration-200'
+    }
   ]
 
   return (
-    <html lang="en" className={`h-full ${rubik_bubbles.variable} ${roboto.variable} `}>
-    <body className="sm:pt-12 sm:pb-14 sm:px-14 px-4 pt-4 h-full font-roboto bg-neutral-50">
+    <html lang="en" className={` ${rubik_bubbles.variable} ${roboto.variable} mb-20`}>
+    <body className="sm:pt-12 sm:px-14 px-4 pt-4 h-full font-roboto bg-neutral-50">
     <div id="modal-root"></div>
     <Navbar navItem={navItem} onLogOut={logout} loggedInState={true}/>
     <div className="flex flex-col min-h-full mb-24 sm:16">

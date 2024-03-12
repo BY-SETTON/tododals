@@ -53,18 +53,18 @@ export default function WeekDay({day, onClick, onChipClick, onTaskDone}: Props) 
           <div>{day.number}</div>
         </div>
         {day.tasks?.map((task: any) => {
-          let bg = getActiveColor(task.size, 'bg');
-          console.log(bg);
-          let hover = task.size == 0 ? 'hover:bg-green-500' : task.size == 1 ? 'hover:bg-amber-500' : 'hover:bg-red-500'
+          let bg400 = getActiveColor(task.size, 'bg', 400);
+          let bg500 = getActiveColor(task.size, 'bg', 500);
           return <Chip
             key={task.id}
-            className={`transition-all duration-300 ${bg} hover:cursor-pointer ${hover} h-2 sm:h-5 overflow-hidden`}
+            className={` hover:cursor-pointer h-2 sm:h-5 overflow-hidden`}
             onClick={(event) => {
               handleChipClick(event, task)
             }}>
-            <div className={"hidden sm:flex sm:justify-between sm:w-full "}>
-              <div>{task.name}</div>
-              <div className={`bg-red-600 flex justify-center w-5 hover:bg-red-700`} onClick={(event) => {
+            <div className={"hidden sm:flex sm:justify-between sm:w-full"}>
+              <div
+                className={`${bg400} hover:${bg500} pl-1.5 w-full flex transition-all duration-300 `}>{task.name}</div>
+              <div className={`${bg400} hover:${bg500} flex justify-center w-5 `} onClick={(event) => {
                 setShowDialog(true)
                 setSelectedTask(task);
                 event.stopPropagation();

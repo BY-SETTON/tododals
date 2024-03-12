@@ -71,18 +71,23 @@ const config: Config = {
     },
     {
       pattern: /(bg|text|border)-(neutral)-(100|200|300|400|500|600|700|800|900)/,
+      variants: ['lg', 'hover', 'focus', 'lg:hover'],
     },
     {
       pattern: /(bg|text|border)-(primary)-(100|200|300|400|500|600|700|800|900)/,
+      variants: ['lg', 'hover', 'focus', 'lg:hover'],
     },
     {
       pattern: /(bg|text|border)-(red)-(100|200|300|400|500|600|700|800|900)/,
+      variants: ['lg', 'hover', 'focus', 'lg:hover'],
     },
     {
       pattern: /(bg|text|border)-(green)-(100|200|300|400|500|600|700|800|900)/,
+      variants: ['lg', 'hover', 'focus', 'lg:hover'],
     },
     {
       pattern: /(bg|text|border)-(amber)-(100|200|300|400|500|600|700|800|900)/,
+      variants: ['lg', 'hover', 'focus', 'lg:hover'],
     },
   ],
 };
