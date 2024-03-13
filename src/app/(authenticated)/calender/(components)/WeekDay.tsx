@@ -57,7 +57,7 @@ export default function WeekDay({day, onClick, onChipClick, onTaskDone}: Props) 
           let bg500 = getActiveColor(task.size, 'bg', 500);
           return <Chip
             key={task.id}
-            className={` hover:cursor-pointer h-2 sm:h-5 overflow-hidden`}
+            className={`${bg400} hover:cursor-pointer h-2 sm:h-5 overflow-hidden`}
             onClick={(event) => {
               handleChipClick(event, task)
             }}>

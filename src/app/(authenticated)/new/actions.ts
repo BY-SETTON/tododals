@@ -1,11 +1,12 @@
 "use server"
 
-import {sql} from "@vercel/postgres";
 import {ResponseTypes} from "@/app/(authenticated)/new/(enums)/(enums)";
 import {ResponseInterface} from "@/app/(authenticated)/new/(interfaces)/interface";
 import {revalidatePath} from "next/cache";
 import {getCookie} from "@/serverFunctions/cookies";
 import {taskFormSchema} from "@/utils/taskFormScheme";
+import dayjs from "dayjs";
+import {sql} from "@vercel/postgres";
 
 export async function createTodo(prevState: ResponseInterface, formData: FormData): Promise<ResponseInterface> {
 
@@ -28,7 +29,7 @@ export async function createTodo(prevState: ResponseInterface, formData: FormDat
     title: formData.get('title') as string,
     description: formData.get('description') as string,
     size: formData.get('size') as string,
-    date: formData.get('date') as string,
+    date: dayjs(formData.get('date') as string).format('YYYY-MM-DD'),
     icon: formData.get('icon') as string
   }
 

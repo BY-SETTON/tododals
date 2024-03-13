@@ -11,12 +11,12 @@ interface Props {
 
 export default function CalenderPopUpItem({task, onClick,onDone}: Props) {
 
-  const bg = getActiveColor(task.size);
+  const bg = getActiveColor(task.size,'bg',400);
 
   return <div className={`mb-3 justify-between flex gap-1`}>
-    <div className={`flex items-center bg-${bg} min-h-8 rounded-2xl pl-4 w-full`}
+    <div className={`flex items-center ${bg} min-h-8 rounded-2xl pl-4 w-full`}
          onClick={onClick}>{task.name}</div>
-    <div className={"bg-red-400 flex items-center px-2 rounded-2xl"}  onClick={onDone}>
+    <div className={"bg-neutral-200 flex items-center px-2 rounded-2xl"}  onClick={onDone}>
       <Check/>
     </div>
   </div>
