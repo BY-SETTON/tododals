@@ -39,7 +39,7 @@ export default function Calender({tasks, month}: Props) {
   const dayList: DayInterface[] = [];
   const firstDaysOffset = [];
   todaysDate.setDate(1);
-  const firstDayOfMonthIndex = todaysDate.getDay();
+  const firstDayOfMonthIndex = todaysDate.getDay() ? todaysDate.getDay() : 7;
 
   for (let i = 1; i < firstDayOfMonthIndex; i++) {
     firstDaysOffset.push({id: i});
