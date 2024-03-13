@@ -8,9 +8,11 @@ export default async function CalenderMonthPage({params}: {
     month: string,
   }
 }) {
-
-  let month: number = Number(params.month) || (new Date().getMonth()) + 1;
-
+  let month = (new Date().getMonth()) + 1;
+  const paramMonth = Number(params.month)
+  if (paramMonth && (!(paramMonth < 1) && !(paramMonth > 12))) {
+    month = paramMonth
+  }
   const calenderTaskData = await getMonthTasksByPersonId(month);
 
   return (
