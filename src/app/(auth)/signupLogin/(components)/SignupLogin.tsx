@@ -67,7 +67,7 @@ export default function SignupLogin({path}: Props) {
     <div
       className={`flex flex-col w-full h-full z-0 sm:hidden`}>
       <div
-        className={`bg-neutral-100 px-2 transition-all ${isSignup ? 'h-[100vh]' : 'h-0'} ease-in-out duration-700 overflow-auto -z-20`}>
+        className={`bg-neutral-100 px-2 transition-all ${isSignup ? 'h-[100vh]' : 'h-0'} ease-in-out duration-[1900ms] overflow-auto -z-20`}>
         <div className={"mt-[20vh]"}>
           <SignupForm/>
         </div>
