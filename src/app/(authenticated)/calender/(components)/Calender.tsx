@@ -12,7 +12,8 @@ import CalenderPopUpItem from "@/app/(authenticated)/calender/(components)/Calen
 import {markAsDone} from "@/app/(authenticated)/actions";
 
 interface Props {
-  tasks: TaskNoteInterface[]
+  tasks: TaskNoteInterface[],
+  month?: number,
 }
 
 export interface DayInterface {
@@ -24,7 +25,7 @@ export interface DayInterface {
 
 const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
 
-export default function Calender({tasks}: Props) {
+export default function Calender({tasks, month}: Props) {
   const mobileScreen = useCheckMobileScreen();
   const router = useRouter();
 
@@ -32,6 +33,8 @@ export default function Calender({tasks}: Props) {
   const [selectedDaysTasks, setSelectedDaysTasks] = useState<TaskNoteInterface[] | undefined>([]);
 
   const todaysDate = new Date();
+  todaysDate.setMonth(month ? month - 1 : todaysDate.getMonth());
+
   const days = daysInMonth(todaysDate.getMonth() + 1, todaysDate.getFullYear());
   const dayList: DayInterface[] = [];
   const firstDaysOffset = [];
