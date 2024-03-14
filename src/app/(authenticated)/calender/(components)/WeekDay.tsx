@@ -61,9 +61,9 @@ export default function WeekDay({day, onClick, onChipClick, onTaskDone}: Props) 
             onClick={(event) => {
               handleChipClick(event, task)
             }}>
-            <div className={"hidden sm:flex sm:justify-between sm:w-full"}>
+            <div className={"hidden sm:flex sm:w-full"}>
               <div
-                className={`${bg400} hover:${bg500} pl-1.5  transition-all duration-300 whitespace-nowrap text truncate`}>{task.name}</div>
+                className={`w-full ${bg400} hover:${bg500} pl-1.5  transition-all duration-300 whitespace-nowrap text truncate`}>{task.name}</div>
               <div className={`${bg400} hover:${bg500} flex justify-center w-7`} onClick={(event) => {
                 setShowDialog(true)
                 setSelectedTask(task);

@@ -9,5 +9,5 @@ export const metadata: Metadata = {
 export default function CalenderMonthLayout({children}: Readonly<{
   children: React.ReactNode
 }>) {
-  return (<PageLayout>{children}</PageLayout>);
+  return (<>{children}</>);
 }

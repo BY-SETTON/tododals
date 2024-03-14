@@ -22,7 +22,7 @@ export default function SearchIconFolder({onSelected, onClose, defaultValue}: Pr
   }
 
   const onSearchChange = (event: any) => {
-    setSearchValue(event.target.value)
+    setSearchValue(event.target.value.toLowerCase())
   }
 
   const getSearchedIcons = (icons: any): any => {

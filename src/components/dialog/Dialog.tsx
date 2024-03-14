@@ -31,19 +31,14 @@ export default function Dialog({title, primaryAction, secondaryAction, onClose}:
           <p className="mt-2 text-sm text-gray-500"></p>
           <div className="mt-4 flex gap-2">
             <Button
-              onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-                event.stopPropagation();
-                primaryAction.onClick();
-              }}
+              onClick={primaryAction.onClick}
               className="hover:bg-primary-400"
-            >{primaryAction.text}</Button>
+              name={primaryAction.text}
+            ></Button>
             <Button
-              onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-                event.stopPropagation();
-                secondaryAction.onClick();
-              }}
-              className="hover:bg-red-400">
-              {secondaryAction.text}
+              onClick={secondaryAction.onClick}
+              className="hover:bg-red-400"
+              name={secondaryAction.text}>
             </Button>
           </div>
         </div>

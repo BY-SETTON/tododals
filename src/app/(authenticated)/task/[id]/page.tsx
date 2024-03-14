@@ -33,7 +33,7 @@ export default async function TaskPage({params}: {
     icon: taskData.icon,
   }
 
-  const svgIcon = taskNote?.icon && feather.icons[taskNote.icon].toSvg({color: 'black', width: 30, height: 30});
+  const svgIcon = taskNote?.icon && feather.icons[taskNote.icon]?.toSvg({color: 'black', width: 30, height: 30});
 
   return <>
     <div className={"bg-gray-100 p-4"}>

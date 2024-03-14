@@ -1,21 +1,22 @@
 import React, {ButtonHTMLAttributes} from "react";
 
-interface ButtonProp extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'className' | 'children' | 'onClick' | 'type'> {
-  onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
-  children: React.ReactNode;
+export interface ButtonProp extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'className' | 'children' | 'onClick' | 'type'> {
+  onClick?: () => void
+  name: string;
   className?: string;
   type?: "button" | "submit" | "reset" | undefined;
 }
 
-export default function Button({onClick, children, className, type, ...props}: ButtonProp) {
+export default function Button({onClick, name, className, type, ...props}: ButtonProp) {
   return (<button
     type="submit"
-    className={`bg-primary-500-50  rounded-full p-3 transition-colors duration-300 ease-in-out min-w-20 ${className}`}
+    className={`rounded-full p-3 transition-colors duration-300 ease-in-out min-w-20 ${className}`}
     onClick={(event) => {
       event.preventDefault();
-      onClick?.(event);
+      event.stopPropagation();
+      onClick?.();
     }}
   >
-    {children}
+    {name}
   </button>)
 }

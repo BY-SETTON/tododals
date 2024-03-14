@@ -2,6 +2,8 @@
 
 import TaskNoteCollection from "@/components/TaskNoteCollection/TaskNoteCollection";
 import {useRouter} from "next/navigation";
+import React from "react";
+import {markAsDone} from "@/app/(authenticated)/actions";
 
 interface Props {
   tasks: any
@@ -13,5 +15,17 @@ export default function TodaysTasks({tasks}: Props) {
     router.push(`/task/${taskId}`)
   }
 
-  return <TaskNoteCollection taskNotes={tasks} onClicked={onClicked}/>
+  const onDone = (taskId: string) => {
+    markAsDone(taskId);
+  }
+
+  const onEdit = (taskId: string) => {
+    router.push(`/edit/${taskId}`)
+  }
+  const primaryAction = {name: 'Edit', onClick: onEdit, className: 'hover:bg-neutral-400 hover:text-white'}
+  const secondaryAction = {name: 'Done', onClick: onDone, className: 'hover:bg-red-400 hover:text-white'}
+
+  return <TaskNoteCollection taskNotes={tasks} onClicked={onClicked}
+                             primaryButton={primaryAction}
+                             secondaryButton={secondaryAction}/>
 }

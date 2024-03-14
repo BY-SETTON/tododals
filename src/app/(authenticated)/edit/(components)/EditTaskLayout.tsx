@@ -23,7 +23,7 @@ export default function EditTaskLayout({task}: Props) {
     <EditTaskForm task={task} onTaskChange={onTaskChange}/>
     <div className={"flex w-full"}>
       <div className={"fixed max-w-[50%] w-full pr-16 pl-4"}>
-        <TaskNote taskNote={editedTask} showCallToAction={true} isHoverState={isHover} className="mb-4"></TaskNote>
+        <TaskNote taskNote={editedTask}  isHoverState={isHover} className="mb-4"></TaskNote>
         <div className="flex flex-row">
           <input type="checkbox" onChange={onHoverClick} className="mr-4 cursor-pointer"/>
           <h2>Hover</h2>

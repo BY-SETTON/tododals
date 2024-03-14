@@ -1,6 +1,6 @@
 'use client';
 
-import Button from "@/components/Button/Button";
+import Button, {ButtonProp} from "@/components/Button/Button";
 import {useRouter} from "next/navigation";
 import React, {useEffect, useRef, useState} from "react";
 import {TaskNoteInterface} from "@/components/TodaysTasks/(interfaces)/task";
@@ -11,15 +11,27 @@ import {Maximize2} from "react-feather";
 
 const feather = require('feather-icons');
 
+export interface TaskNoteButtonInterface extends Omit<ButtonProp, 'onClick'> {
+  onClick: (id: string) => void
+}
+
 export interface TaskNotProp {
   taskNote: TaskNoteInterface,
   onClicked?: (taskId: string) => void,
   className?: string,
-  showCallToAction?: boolean,
   isHoverState?: boolean,
+  primaryButton?: TaskNoteButtonInterface,
+  secondaryButton?: TaskNoteButtonInterface,
 }
 
-function TaskNote({taskNote, onClicked, showCallToAction = true, isHoverState = false, className}: TaskNotProp) {
+function TaskNote({
+                    taskNote,
+                    onClicked,
+                    isHoverState = false,
+                    className,
+                    primaryButton,
+                    secondaryButton
+                  }: TaskNotProp) {
   const [hoverState, setHoverState] = useState<boolean>(isHoverState);
   const ref = useRef<any>(null);
   useEffect(() => {
@@ -40,19 +52,8 @@ function TaskNote({taskNote, onClicked, showCallToAction = true, isHoverState = 
     setHoverState(isHoverState);
   }, [isHoverState]);
 
-  const svgIcon = taskNote?.icon && feather.icons[taskNote.icon].toSvg({color: 'black', width: 30, height: 30});
-  const router = useRouter();
+  const svgIcon = taskNote?.icon && feather.icons[taskNote.icon]?.toSvg({color: 'black', width: 30, height: 30});
   const markDownDescription = convertMarkDownToHTML(taskNote.description);
-
-  const onDeleteClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.stopPropagation();
-    markAsDone(taskNote.id);
-  }
-
-  const onEdit = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.stopPropagation();
-    router.push(`/edit/${taskNote.id}`)
-  }
 
   const onTaskClick = () => {
     onClicked?.(taskNote.id);
@@ -101,18 +102,18 @@ function TaskNote({taskNote, onClicked, showCallToAction = true, isHoverState = 
           >
             <div className="flex justify-between items-start">
               <h3 className="mt-4 text-xl font-medium sm:text-2xl mb-4">{taskNote.name || taskNote.name}</h3>
-              {showCallToAction && <div className="flex">
-                <div className="mr-2 inline-flex">
-                  <Button
-                    className="hover:bg-blue-400"
-                    onClick={onEdit}>EDIT</Button>
-                </div>
-                <div className="inline-flex">
-                  <Button
-                    className="hover:bg-red-400"
-                    onClick={onDeleteClick}>Done</Button>
-                </div>
-              </div>}
+              <div className="flex">
+                {primaryButton && <div className="mr-2 inline-flex">
+                  <Button {...primaryButton} onClick={() => {
+                    primaryButton?.onClick?.(taskNote.id)
+                  }}/>
+                </div>}
+                {secondaryButton && <div className="inline-flex">
+                  <Button {...secondaryButton} onClick={() => {
+                    secondaryButton?.onClick?.(taskNote.id)
+                  }}/>
+                </div>}
+              </div>
             </div>
             <div className="text-container" dangerouslySetInnerHTML={{__html: markDownDescription}}/>
           </div>
