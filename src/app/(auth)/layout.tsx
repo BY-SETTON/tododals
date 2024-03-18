@@ -1,7 +1,7 @@
-import type {Metadata} from "next";
+import type {Metadata, Viewport} from "next";
 import "../globals.css";
 import Navbar, {NavItem} from "@/components/Navbar/Navbar";
-import { Roboto, Rubik_Bubbles} from 'next/font/google'
+import {Roboto, Rubik_Bubbles} from 'next/font/google'
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -20,6 +20,14 @@ const roboto = Roboto({
   variable: '--font-roboto',
 });
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  // Also supported by less commonly used
+  // interactiveWidget: 'resizes-visual',
+}
 export default function RootLayout({
                                      children,
                                    }: Readonly<{

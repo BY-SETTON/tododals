@@ -4,6 +4,7 @@ import Navbar, {NavItem} from "@/components/Navbar/Navbar";
 import {logout} from "@/app/(authenticated)/actions";
 import {Archive, Calendar, CheckSquare, Plus} from "react-feather";
 import {Roboto, Rubik_Bubbles} from "next/font/google";
+import {Viewport} from "next";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,6 +22,15 @@ const roboto = Roboto({
   weight: ['400'],
   variable: '--font-roboto',
 });
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  // Also supported by less commonly used
+  // interactiveWidget: 'resizes-visual',
+}
 
 export default function RootLayout({
                                      children,
