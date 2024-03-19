@@ -152,7 +152,7 @@ export default function NewTaskForm() {
 
         <div className={"mb-64"}>
           <Datepicker
-            inputClassName="bg-white p-4 w-full rounded  rounded-xl"
+            inputClassName="bg-white p-4 w-full rounded rounded-xl"
             primaryColor={"green"}
             asSingle={true}
             useRange={false}
