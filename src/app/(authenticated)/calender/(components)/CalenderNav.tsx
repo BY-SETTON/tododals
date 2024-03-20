@@ -19,7 +19,7 @@ export default function CalenderNav({currentMonth}: Props) {
   }
   return <>
 
-    <div className={"flex w-full max-w-64 justify-between  mx-auto"}>
+    <div className={"flex w-full max-w-64 justify-between mx-auto mb-4"}>
       {currentMonth > 1 ? <button onClick={handlePrevMonth}>{"<"}</button> : <div></div>}
       <div>{monthName}</div>
       {currentMonth < 12? <button onClick={handleNextMonth}>{">"}</button> : <div></div>}

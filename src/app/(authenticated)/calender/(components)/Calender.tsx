@@ -23,7 +23,7 @@ export interface DayInterface {
   tasks?: TaskNoteInterface[],
 }
 
-const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+const weekDays = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"];
 
 export default function Calender({tasks, month}: Props) {
   const mobileScreen = useCheckMobileScreen();
@@ -62,10 +62,8 @@ export default function Calender({tasks, month}: Props) {
     dayList.splice(-7)
   }
 
-  const onWeekDayClick = async (day: DayInterface) => {
-    // const date = `${todaysDate.getMonth() + 1}/${day.number}/${todaysDate.getFullYear()}`
-    // const daysTasks = await getDaysTasks(date);
-    if (!mobileScreen) {
+  const onWeekDayClick = (day: DayInterface) => {
+    if (!mobileScreen || !day.tasks?.length) {
       return;
     }
     setSelectedDaysTasks(day.tasks);
@@ -94,8 +92,7 @@ export default function Calender({tasks, month}: Props) {
     await onTaskDone(task);
   }
 
-  return <div
-    className={"grid grid-cols-7 gap-0.5 sm:gap-1 bg-neutral-500 border-2 sm:border-4 border-neutral-500"}>
+  return <>
     <PopUp show={showDialog} onClose={() => setShowDialog(false)}>
       <div>{selectedDaysTasks?.map((task) => {
         return <
@@ -111,20 +108,26 @@ export default function Calender({tasks, month}: Props) {
           }}/>
       })}</div>
     </PopUp>
-    {firstDaysOffset.map((day) => {
-      return <div key={"empty-" + day.id} className={"bg-neutral-100 flex justify-between p-2 h-full"}></div>
-    })}
-
-    {dayList.map((day: DayInterface) => {
-      return (<
-        WeekDay
-        key={day.id}
-        day={day}
-        onClick={async () => {
-          await onWeekDayClick(day)
-        }}
-        onChipClick={onChipClick}
-        onTaskDone={onTaskDone}
-      />)
-    })}</div>
+    <div
+      className={"grid grid-cols-7 gap-0.5 sm:gap-1 bg-neutral-500 border-2 sm:border-4 border-neutral-500"}>
+      {mobileScreen && weekDays.map((day) => {
+        return <div key={day} className={"flex justify-center bg-neutral-200 text-neutral-600"}>{day}</div>
+      })}
+      {firstDaysOffset.map((day) => {
+        return <div key={"empty-" + day.id} className={"bg-neutral-100 flex justify-between p-2 h-full"}></div>
+      })}
+      {dayList.map((day: DayInterface) => {
+        return (<
+          WeekDay
+          key={day.id}
+          day={day}
+          onClick={() => {
+            onWeekDayClick(day)
+          }}
+          onChipClick={onChipClick}
+          onTaskDone={onTaskDone}
+        />)
+      })}
+    </div>
+  </>
 }

@@ -4,6 +4,7 @@ import React, {useState} from "react";
 import {TaskNoteInterface} from "@/components/TodaysTasks/(interfaces)/task";
 import getActiveColor from "@/utils/getActiveColor";
 import PopUp from "@/components/PopUp/PopUp";
+import {Check} from "react-feather";
 
 interface Props {
   day: DayInterface;
@@ -63,12 +64,14 @@ export default function WeekDay({day, onClick, onChipClick, onTaskDone}: Props) 
             }}>
             <div className={"hidden sm:flex sm:w-full"}>
               <div
-                className={`w-full ${bg400} hover:${bg500} pl-1.5  transition-all duration-300 whitespace-nowrap text truncate`}>{task.name}</div>
+                className={`w-full ${bg400} hover:${bg500} pl-1.5  transition-all duration-300 whitespace-nowrap truncate flex items-center`}>
+                {task.name}
+              </div>
               <div className={`${bg400} hover:${bg500} flex justify-center w-7`} onClick={(event) => {
                 setShowDialog(true)
                 setSelectedTask(task);
                 event.stopPropagation();
-              }}>{`\u2713`}
+              }}><Check className={"py-1 pr-1"}/>
               </div>
             </div>
           </Chip>
