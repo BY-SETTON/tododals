@@ -19,12 +19,12 @@ export default function CalenderNav({currentMonth}: Props) {
   }
   return <>
 
-    <div className={"flex w-full sm:max-w-64 justify-between sm:mx-auto mb-4  text-neutral-600"}>
+    <div className={"flex w-full sm:max-w-64 justify-between sm:mx-auto mb-4 text-neutral-600"}>
       {currentMonth > 1 ?
-        <button onClick={handlePrevMonth} className={"bg-neutral-200 rounded px-6 h-8"}>{"<"}</button> : <div></div>}
+        <button onClick={handlePrevMonth} className={"bg-neutral-200 hover:bg-neutral-300 rounded px-6 h-8"}>{"<"}</button> : <div></div>}
       <div className={"bg-neutral-200 flex items-center justify-center rounded w-full mx-2 h-8"}>{monthName}</div>
       {currentMonth < 12 ?
-        <button onClick={handleNextMonth} className={"bg-neutral-200 rounded px-6 h-8"}>{">"}</button> : <div></div>}
+        <button onClick={handleNextMonth} className={"bg-neutral-200 hover:bg-neutral-300 rounded px-6 h-8"}>{">"}</button> : <div></div>}
     </div>
   </>
 }
