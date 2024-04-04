@@ -9,6 +9,7 @@ import useCheckMobileScreen from "@/hooks/useCheckMobileScreen";
 import {useRouter} from "next/navigation";
 import {markAsDone} from "@/app/(authenticated)/actions";
 import WeekDayModal from "@/app/(authenticated)/calender/(components)/WeekDayModal";
+import dayjs from "dayjs";
 
 interface Props {
   tasks: TaskNoteInterface[],
@@ -91,7 +92,12 @@ export default function Calender({tasks, month}: Props) {
   }
 
   const onNewTaskClicked = () => {
-    console.log(selectedDay);
+    const thisYear = dayjs().year();
+    console.log(`${selectedDay?.number}-${month}-${thisYear}`);
+    const date = dayjs(`${month}-${selectedDay?.number}-${thisYear}`, "M-D-YYYY")
+    console.log(date.toISOString());
+
+    router.push(`/new?date=${date.toISOString()}`);
   }
 
   return <>

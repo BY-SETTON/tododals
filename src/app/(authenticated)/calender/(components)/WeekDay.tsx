@@ -49,7 +49,7 @@ export default function WeekDay({day, onClick, onChipClick, onTaskDone, tabindex
         </div>
       </PopUp>
       <div className={"bg-neutral-100 group h-24 sm:h-32 flex flex-col p-1"} role={"button"} onClick={onClick}
-           tabIndex={tabindex}>
+           tabIndex={tabindex+1}>
         <div className={" flex justify-end sm:p-2 text-neutral-400 w-full"}>
           <div className={"group-hover:bg-neutral-200 rounded-full w-7 flex justify-center text-sm p-1"}>{day.number}</div>
         </div>
