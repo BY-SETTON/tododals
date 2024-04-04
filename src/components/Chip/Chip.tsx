@@ -7,7 +7,8 @@ interface Props {
 }
 
 export default function Chip({children, className, onClick}: Props) {
-  return <div
+  return <button
     onClick={onClick}
-    className={`rounded-full mx-1.5 my-0.5 flex items-center text-sm ${className}`}>{children}</div>;
+    className={`rounded-full mx-1.5 my-0.5 flex items-center text-sm ${className}`}
+    >{children}</button>;
 }

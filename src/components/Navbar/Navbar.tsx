@@ -80,7 +80,7 @@ export default function Navbar({navItem, onLogOut, loggedInState = false}: Props
           </>
         }
       </div>
-      <div className={"sm:mb-24 mb-0"}></div>
+      <div className={"sm:mb-16 mb-0"}></div>
     </>
   )
 }

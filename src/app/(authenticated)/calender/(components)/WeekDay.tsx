@@ -11,9 +11,10 @@ interface Props {
   onClick: () => void;
   onChipClick: (event: React.MouseEvent<HTMLElement>, task: TaskNoteInterface) => void;
   onTaskDone: (task: TaskNoteInterface) => void;
+  tabindex: number;
 }
 
-export default function WeekDay({day, onClick, onChipClick, onTaskDone}: Props) {
+export default function WeekDay({day, onClick, onChipClick, onTaskDone, tabindex}: Props) {
   const [selectedTask, setSelectedTask] = useState<TaskNoteInterface | undefined>(undefined);
   const [showDialog, setShowDialog] = useState<boolean>(false);
 
@@ -47,11 +48,10 @@ export default function WeekDay({day, onClick, onChipClick, onTaskDone}: Props) 
           </div>
         </div>
       </PopUp>
-
-      <div className={"bg-neutral-100 h-24 sm:h-32 flex flex-col p-1"} onClick={onClick}>
-        <div className={" flex justify-between sm:p-2 text-neutral-400"}>
-          <div className={"hidden sm:block"}>{day.name} &nbsp;</div>
-          <div>{day.number}</div>
+      <div className={"bg-neutral-100 group h-24 sm:h-32 flex flex-col p-1"} role={"button"} onClick={onClick}
+           tabIndex={tabindex+1}>
+        <div className={" flex justify-end sm:p-2 text-neutral-400 w-full"}>
+          <div className={"group-hover:bg-neutral-200 rounded-full w-7 flex justify-center text-sm p-1"}>{day.number}</div>
         </div>
         {day.tasks?.map((task: any) => {
           let bg400 = getActiveColor(task.size, 'bg', 400);
@@ -67,11 +67,14 @@ export default function WeekDay({day, onClick, onChipClick, onTaskDone}: Props) 
                 className={`w-full ${bg400} hover:${bg500} pl-1.5  transition-all duration-300 whitespace-nowrap truncate flex items-center`}>
                 {task.name}
               </div>
-              <div className={`${bg400} hover:${bg500} flex justify-center w-7`} onClick={(event) => {
-                setShowDialog(true)
-                setSelectedTask(task);
-                event.stopPropagation();
-              }}><Check className={"py-1 pr-1"}/>
+              <div
+                className={`${bg400} hover:${bg500} flex justify-center w-7`}
+                onClick={(event) => {
+                  setShowDialog(true)
+                  setSelectedTask(task);
+                  event.stopPropagation();
+                }}
+                role={"button"}><Check className={"py-1 pr-1"}/>
               </div>
             </div>
           </Chip>

@@ -2,14 +2,14 @@
 
 import daysInMonth from "@/utils/daysInMonth";
 import WeekDay from "@/app/(authenticated)/calender/(components)/WeekDay";
-import PopUp from "@/components/PopUp/PopUp";
 import React, {useState} from "react";
 import {onlyDate} from "@/utils/formatDate";
 import {TaskNoteInterface} from "@/components/TodaysTasks/(interfaces)/task";
 import useCheckMobileScreen from "@/hooks/useCheckMobileScreen";
 import {useRouter} from "next/navigation";
-import CalenderPopUpItem from "@/app/(authenticated)/calender/(components)/CalenderPopUpItem";
 import {markAsDone} from "@/app/(authenticated)/actions";
+import WeekDayModal from "@/app/(authenticated)/calender/(components)/WeekDayModal";
+import dayjs from "dayjs";
 
 interface Props {
   tasks: TaskNoteInterface[],
@@ -31,6 +31,7 @@ export default function Calender({tasks, month}: Props) {
 
   const [showDialog, setShowDialog] = useState<boolean>(false);
   const [selectedDaysTasks, setSelectedDaysTasks] = useState<TaskNoteInterface[] | undefined>([]);
+  const [selectedDay, setSelectedDay] = useState<DayInterface | undefined>(undefined);
 
   const todaysDate = new Date();
   todaysDate.setMonth(month ? month - 1 : todaysDate.getMonth());
@@ -63,9 +64,7 @@ export default function Calender({tasks, month}: Props) {
   }
 
   const onWeekDayClick = (day: DayInterface) => {
-    if (!mobileScreen || !day.tasks?.length) {
-      return;
-    }
+    setSelectedDay(day);
     setSelectedDaysTasks(day.tasks);
     setShowDialog(true);
   }
@@ -92,33 +91,36 @@ export default function Calender({tasks, month}: Props) {
     await onTaskDone(task);
   }
 
+  const onNewTaskClicked = () => {
+    const thisYear = dayjs().year();
+    console.log(`${selectedDay?.number}-${month}-${thisYear}`);
+    const date = dayjs(`${month}-${selectedDay?.number}-${thisYear}`, "M-D-YYYY")
+    console.log(date.toISOString());
+
+    router.push(`/new?date=${date.toISOString()}`);
+  }
+
   return <>
-    <PopUp show={showDialog} onClose={() => setShowDialog(false)}>
-      <div>{selectedDaysTasks?.map((task) => {
-        return <
-          CalenderPopUpItem
-          key={task.id}
-          task={task}
-          onClick={(event) => {
-            handlePopUpItemClick(event, task)
-          }}
-          onDone={async (event) => {
-            await onPopUpItemDone(event, task);
-            setShowDialog(false);
-          }}/>
-      })}</div>
-    </PopUp>
+    <WeekDayModal
+      show={showDialog}
+      setShowDialog={() => setShowDialog(false)}
+      selectedDaysTasks={selectedDaysTasks}
+      handlePopUpItemClick={handlePopUpItemClick}
+      onPopUpItemDone={onPopUpItemDone}
+      onNewTaskClicked={onNewTaskClicked}/>
+
     <div
       className={"grid grid-cols-7 gap-0.5 sm:gap-1 bg-neutral-500 border-2 sm:border-4 border-neutral-500"}>
-      {mobileScreen && weekDays.map((day) => {
+      {weekDays.map((day) => {
         return <div key={day} className={"flex justify-center bg-neutral-200 text-neutral-600"}>{day}</div>
       })}
       {firstDaysOffset.map((day) => {
         return <div key={"empty-" + day.id} className={"bg-neutral-100 flex justify-between p-2 h-full"}></div>
       })}
-      {dayList.map((day: DayInterface) => {
+      {dayList.map((day: DayInterface, index: number) => {
         return (<
           WeekDay
+          tabindex={index}
           key={day.id}
           day={day}
           onClick={() => {

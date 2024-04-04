@@ -10,19 +10,24 @@ import {ResponseTypes} from "@/app/(authenticated)/new/(enums)/(enums)";
 import Datepicker from "react-tailwindcss-datepicker";
 import {useRouter} from "next/navigation";
 
+interface Props {
+  date: string
+}
+
 const initialState: ResponseInterface = {
   message: '',
   type: ResponseTypes.DONE,
 }
 
-export default function NewTaskForm() {
+export default function NewTaskForm({date}: Props) {
+  console.log(date);
   const router = useRouter();
   const onSubmitted = () => {
     router.push('/')
   }
   const [dateValue, setDateValue] = useState<any>({
-    startDate: new Date(),
-    endDate: new Date().setMonth(11)
+    startDate: date || new Date(),
+    endDate: date || new Date()
   });
 
   const handleValueChange = (newValue: any) => {
@@ -163,6 +168,7 @@ export default function NewTaskForm() {
             onChange={handleValueChange}
             inputName="date"
             inputId="date"
+            displayFormat={"DD/MM/YYYY"}
           />
         </div>
         {!showBox &&
